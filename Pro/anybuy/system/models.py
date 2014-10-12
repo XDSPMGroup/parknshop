@@ -41,7 +41,6 @@ class Advertisement(models.Model):
 		('S','ShopAdvertisement'),
 		('C','CommodityAdvertisement'),
 	)
-	#AdsID = models.IntegerField()
 	AdvertisementAccount = models.CharField(max_length=64)
 	ShopID = models.ForeignKey(Shop)
 	Type = models.CharField(max_length=1,choices=AdvertisementTypeChoice)
