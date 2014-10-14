@@ -1,0 +1,49 @@
+
+h1{
+	padding-bottom:10px;
+}
+
+.h1-change{
+	padding-top:45px;
+	padding-bottom:10px;
+}
+
+.form-horizontal.col-sm-2 control-label{
+	float:center;
+	width:160px;
+	text-align:right;
+}
+
+
+.my-item {
+	font: 14px Tahoma, Helvetica, Arial, sans-serif;
+}
+
+
+
+.my-item:visited {
+	color: black;
+} 
+
+
+
+
+.form-control{
+
+}
+
+
+.head-1 {
+	font: 20px Tahoma, Helvetica, Arial, sans-serif;
+	color:orange;
+}
+
+.head-2 {
+	font: 20px Tahoma, Helvetica, Arial, sans-serif;
+	color:gray;
+}
+
+.head-3 {
+	font: 22px Tahoma, Helvetica, Arial, sans-serif;
+	color:blue;
+}

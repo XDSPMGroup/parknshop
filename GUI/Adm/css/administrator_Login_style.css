@@ -1,0 +1,13 @@
+
+h1{
+	padding-top:90px;
+	padding-bottom:50px;
+
+}
+
+
+.form-horizontal.col-sm-2 control-label{
+	float:center;
+	width:160px;
+	text-align:right;
+}

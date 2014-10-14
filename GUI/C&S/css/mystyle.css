@@ -1,0 +1,58 @@
+.bdr_menu{
+text-align:right;
+}
+
+.block{
+padding-top:50px;
+font-size:14px;
+height:500px;
+width:1002px;
+}
+
+.division{
+border-right:1px solid black;
+}
+
+#navigation{
+padding-top:100px;
+text-align:center;
+font-size:20px;
+font-weight:bolder;
+}
+#navigation nav{
+background:rgba(0, 143, 255, 0.46);
+color:black;
+text-align:center;
+min-height:40px;
+}
+#navigation nav li{
+float:left;
+list-style:none; /* 将默认的列表符号去掉 */
+padding:0; /* 将默认的内边距去掉 */
+margin:0; /* 将默认的外边距去掉 */
+border-right-width: 1px;
+border-right-style: solid;
+border-right-color: #000000;
+float: left;
+}
+
+#navigation nav li a{
+color: #FFFFFF;
+text-decoration: none;
+padding-top: 8px;
+display: block; /* 作为一个块 */
+padding-right: 50px; /* 设置块的属性 */
+padding-left: 50px;
+height:40px;
+width:185px;
+}
+
+#floor .logo{
+width:120px;
+height:100px;
+}
+#floor .floor-intro-top{
+}
+#floor .floor-intro-bottom a{
+color:black;
+}

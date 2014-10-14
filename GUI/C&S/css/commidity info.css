@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+
+.header{
+	background:#CCC;
+	height:21px;
+	color:#3a87ad;
+}
+
+.changtiao{
+	background::#3a87ad;
+	height:10px;
+}
+
+.header span{
+	line-height:21px;
+	float:right;
+	display:block;
+	margin-right:10px;
+}
+
+.header span a {
+	cursor:inherit;
+	color:#3a87ad;
+}
+
+
+
+.jiajian{
+	width: 150px;
+  margin: 40px auto;  
+}
+
+
+
+
+.search {
+    padding: 5px 0;
+    width: 230px;
+    height: 30px;
+    position: relative;
+    left: 10px;
+    float: left;
+    line-height: 22px;
+	text-align: right;
+}
+
+    .search input {
+        position: absolute;
+        width: 0px;
+        float: Left;
+        margin-left: 210px;
+        -webkit-transition: all 0.7s ease-in-out;
+        -moz-transition: all 0.7s ease-in-out;
+        -o-transition: all 0.7s ease-in-out;
+        transition: all 0.7s ease-in-out;
+        height: 30px;
+        line-height: 18px;
+        padding: 0 2px 0 2px;
+        border-radius:1px;
+    }
+
+        .search:hover input, .search input:focus {
+            width: 300px;
+            margin-left: -100px;
+        }
+
+.newbutton {
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    border-radius:1px;
+}
+
+.yanse {
+	color:#3a87ad;
+}
+
+
+
