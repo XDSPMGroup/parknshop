@@ -9,7 +9,7 @@
 ##Sitemap
 - Homepage
 	- [homepage](www.any-buy.com/homepage/)
-	- [help center](www.any-buy.com/help_center with administration here.
+	- [help center](www.any-buy.com/help_center) with administration here.
 
 - Administrator
 	- Management
@@ -31,7 +31,8 @@
 	- After Service
 		- [address](www.any-buy.com/address/): manage your shipping address here.
 		- [commodity commend](www.any-buy.com/commodity_commend/): to see where is your package.
- www.any-buy.com/search/keyword www.any-buy.com/commodity/CommodityID 
+ www.any-buy.com/search/keyword 
+ www.any-buy.com/commodity/CommodityID 
  www.any-buy.com/shop/ShopID
 - Seller
 	- Become a seller
@@ -45,5 +46,6 @@
 		- [shop data](www.any-buy.com/shop/data/): history and income.
 		- [notification](www.any-buy.com/notification/)
 		- [refund manage](www.any-buy.com/refund_manage/)
+		[search](www.any-buy.com/search/keyword/)
 	- Advertisement
 		- [manage adv](www.any-buy.com/shop/adv/manage/)
