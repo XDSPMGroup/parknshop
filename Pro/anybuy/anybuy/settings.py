@@ -90,7 +90,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Upload picture
+<<<<<<< HEAD
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
 #os.path.dirname(BASE_DIR)+ '/anybuy/files'
 #os.path.join(BASE_DIR, '/files')
 #'D:/GitHub/SPM/parknshop/Pro/anybuy/files'
+

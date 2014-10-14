@@ -28,7 +28,7 @@ class Commodity_class:
 		self.CommodityAmount = commodity.CommodityAmount
 		#self.CommoditySoldAmount = commodity.CommoditySoldAmount
 		self.PurchasePrice = commodity.PurchasePrice
-		self.OriginalPrice = commodity.OriginalPrice
+		#self.OriginalPrice = commodity.OriginalPrice
 		self.CommodityImage = commodity.CommodityImage
 		self.CommodityDiscount = commodity.CommodityDiscount
 		self.CommentsList = commodity.CommentsList
