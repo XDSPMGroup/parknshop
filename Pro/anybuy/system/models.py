@@ -117,7 +117,7 @@ class Commodity(models.Model):
 	)
 	CommodityName = models.CharField(max_length=64)
 	CommodityDescription = models.TextField(blank=True)
-	CommodityAmount = models.IntegerField(blank=True,null=True)
+	CommodityAmount = models.IntegerField(blank=True)
 	SoldAmount = models.IntegerField(blank=True)
 	PurchasePrice = models.FloatField(blank=True)
 	SellPrice = models.FloatField(blank=True)
