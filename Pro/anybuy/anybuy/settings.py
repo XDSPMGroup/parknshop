@@ -37,6 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'system',
+    'store',
+    'account',
+    'container',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,4 +90,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Upload picture
-MEDIA_ROOT = os.path.join(BASE_DIR, '/files')#'D:/GitHub/SPM/parknshop/Pro/anybuy/files'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
+#os.path.dirname(BASE_DIR)+ '/anybuy/files'
+#os.path.join(BASE_DIR, '/files')
+#'D:/GitHub/SPM/parknshop/Pro/anybuy/files'
