@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<changelog xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2">
+  <version>2.1</version>
+  <task-change-set user="Eric" date="2014-10-14T07:41:29.825Z" timestamp="2014-10-14T07:41:29.825Z">
+    <change idref="t2" to="t-1" to-position="1" resolved="yes">
+      <change idref="t2" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxMjY1XGNvY29hc3VicnRmMjEwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MTM0IFNUSGVpdGlTQy1MaWdodDt9CntcY29sb3J0Ymw7XHJlZDI1NVxncmVlbjI1NVxibHVlMjU1O1xyZWQ4NVxncmVlbjg1XGJsdWU4NTt9ClxwYXJkXHR4NTYwXHR4MTEyMFx0eDE2ODBcdHgyMjQwXHR4MjgwMFx0eDMzNjBcdHgzOTIwXHR4NDQ4MFx0eDUwNDBcdHg1NjAwXHR4NjE2MFx0eDY3MjBccGFyZGlybmF0dXJhbAoKXGYwXGZzMjIgXGNmMiBcdXAwIFxub3N1cGVyc3ViIFx1bG5vbmUgXG9ibGlxdWVuZXNzMCBcZXhwYW5zaW9uMCBcJ2NkXCdiM1wnZDJcJ2JiXCdiNVwnZDhcJ2Q2XCdiN1wnYjlcJ2U2XCdiN1wnYjZcJ2EzXCdhY1wnZDBcJ2I0XCdiYVwnYzNcJ2MyXCdiN1wnZDNcJ2M5XCdiMVwnZWR9"/>
+      <change idref="t2" attribute="title" type="string" to="URL"/>
+    </change>
+    <change idref="t3" to="t-1" to-position="2" resolved="yes">
+      <change idref="t3" attribute="title" type="string" to="Three classes: Store, Adv, Commodity "/>
+    </change>
+    <change idref="t4" to="t-1" to-position="3" resolved="yes">
+      <change idref="t4" attribute="effort" type="real" from="28800" to="57600"/>
+      <change idref="t4" attribute="internalPrerequisitesString" type="string" to="1FS, 2FS, 3FS"/>
+      <change idref="t4" attribute="noEarlierThanConstraintDate" type="date" to="2014-10-15T00:00:00.000Z"/>
+      <change idref="t4" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxMjY1XGNvY29hc3VicnRmMjEwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MTM0IFNUSGVpdGlTQy1MaWdodDt9CntcY29sb3J0Ymw7XHJlZDI1NVxncmVlbjI1NVxibHVlMjU1O1xyZWQ4NVxncmVlbjg1XGJsdWU4NTt9ClxwYXJkXHR4NTYwXHR4MTEyMFx0eDE2ODBcdHgyMjQwXHR4MjgwMFx0eDMzNjBcdHgzOTIwXHR4NDQ4MFx0eDUwNDBcdHg1NjAwXHR4NjE2MFx0eDY3MjBccGFyZGlybmF0dXJhbAoKXGYwXGZzMjIgXGNmMiBcdXAwIFxub3N1cGVyc3ViIFx1bG5vbmUgXG9ibGlxdWVuZXNzMCBcZXhwYW5zaW9uMCBcJ2JmXCdkY1wnYzNcJ2U3XCdiZVwnZWFcJ2EzXCdhY1wnY2RcJ2Y1XCdjY1wnZGF9"/>
+      <change idref="t4" attribute="title" type="string" to="Three classes: Order"/>
+    </change>
+    <change idref="t5" to="t-1" to-position="4" resolved="yes">
+      <change idref="t5" attribute="internalPrerequisitesString" type="string" to="1FS"/>
+      <change idref="t5" attribute="noEarlierThanConstraintDate" type="date" to="2014-10-15T00:00:00.000Z"/>
+      <change idref="t5" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxMjY1XGNvY29hc3VicnRmMjEwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MTM0IFNUSGVpdGlTQy1MaWdodDt9CntcY29sb3J0Ymw7XHJlZDI1NVxncmVlbjI1NVxibHVlMjU1O1xyZWQ4NVxncmVlbjg1XGJsdWU4NTt9ClxwYXJkXHR4NTYwXHR4MTEyMFx0eDE2ODBcdHgyMjQwXHR4MjgwMFx0eDMzNjBcdHgzOTIwXHR4NDQ4MFx0eDUwNDBcdHg1NjAwXHR4NjE2MFx0eDY3MjBccGFyZGlybmF0dXJhbAoKXGYwXGZzMjIgXGNmMiBcdXAwIFxub3N1cGVyc3ViIFx1bG5vbmUgXG9ibGlxdWVuZXNzMCBcZXhwYW5zaW9uMCBcJ2IzXCdjMlwnY2VcJ2M0XCdiZlwnYjVcJ2EzXCdhY1wnYjJcJ2RjXCdiMVwnZjl9"/>
+      <change idref="t5" attribute="title" type="string" to="Two classes: System, Admin"/>
+    </change>
+    <change idref="t6" to="t-1" to-position="5" resolved="yes">
+      <change idref="t6" attribute="effort" type="real" from="28800" to="57600"/>
+      <change idref="t6" attribute="internalPrerequisitesString" type="string" to="4FS"/>
+      <change idref="t6" attribute="noEarlierThanConstraintDate" type="date" to="2014-10-17T00:00:00.000Z"/>
+      <change idref="t6" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxMjY1XGNvY29hc3VicnRmMjEwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MTM0IFNUSGVpdGlTQy1MaWdodDt9CntcY29sb3J0Ymw7XHJlZDI1NVxncmVlbjI1NVxibHVlMjU1O1xyZWQ4NVxncmVlbjg1XGJsdWU4NTt9ClxwYXJkXHR4NTYwXHR4MTEyMFx0eDE2ODBcdHgyMjQwXHR4MjgwMFx0eDMzNjBcdHgzOTIwXHR4NDQ4MFx0eDUwNDBcdHg1NjAwXHR4NjE2MFx0eDY3MjBccGFyZGlybmF0dXJhbAoKXGYwXGZzMjIgXGNmMiBcdXAwIFxub3N1cGVyc3ViIFx1bG5vbmUgXG9ibGlxdWVuZXNzMCBcZXhwYW5zaW9uMCBcJ2MwXCdlZVwnY2JcJ2FjXCdhM1wnYWNcJ2I5XCdmOVwnZThcJ2M5XCdjNVwnZjR9"/>
+      <change idref="t6" attribute="title" type="string" to="Three classes: Guest, Customer, Seller"/>
+    </change>
+    <change idref="t7" to="t-1" to-position="6" resolved="yes">
+      <change idref="t7" attribute="effort" type="real" from="28800" to="0"/>
+      <change idref="t7" attribute="internalPrerequisitesString" type="string" to="6FS"/>
+      <change idref="t7" attribute="isSplittableTask" type="real" from="1" to="0"/>
+      <change idref="t7" attribute="noEarlierThanConstraintDate" type="date" to="2014-10-21T00:00:00.000Z"/>
+      <change idref="t7" attribute="percentCompleteForMilestone" type="real" to="0"/>
+      <change idref="t7" attribute="taskType" type="real" from="0" to="1"/>
+      <change idref="t7" attribute="title" type="string" to="Classes done"/>
+    </change>
+    <change idref="t9" to="t-1" to-position="7" resolved="yes">
+      <change idref="t9" attribute="internalPrerequisitesString" type="string" to="7FS"/>
+      <change idref="t9" attribute="noEarlierThanConstraintDate" type="date" to="2014-10-21T00:00:00.000Z"/>
+      <change idref="t9" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxMjY1XGNvY29hc3VicnRmMjEwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MTM0IFNUSGVpdGlTQy1MaWdodDt9CntcY29sb3J0Ymw7XHJlZDI1NVxncmVlbjI1NVxibHVlMjU1O1xyZWQ4NVxncmVlbjg1XGJsdWU4NTt9ClxwYXJkXHR4NTYwXHR4MTEyMFx0eDE2ODBcdHgyMjQwXHR4MjgwMFx0eDMzNjBcdHgzOTIwXHR4NDQ4MFx0eDUwNDBcdHg1NjAwXHR4NjE2MFx0eDY3MjBccGFyZGlybmF0dXJhbAoKXGYwXGZzMjIgXGNmMiBcdXAwIFxub3N1cGVyc3ViIFx1bG5vbmUgXG9ibGlxdWVuZXNzMCBcZXhwYW5zaW9uMCBcJ2MwXCdlZVwnY2JcJ2FjfQ=="/>
+      <change idref="t9" attribute="title" type="string" to="Guest views"/>
+    </change>
+    <change idref="t10" to="t-1" to-position="8" resolved="yes">
+      <change idref="t10" attribute="effort" type="real" from="28800" to="115200"/>
+      <change idref="t10" attribute="internalPrerequisitesString" type="string" to="9FS"/>
+      <change idref="t10" attribute="noEarlierThanConstraintDate" type="date" to="2014-10-22T00:00:00.000Z"/>
+      <change idref="t10" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxMjY1XGNvY29hc3VicnRmMjEwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MTM0IFNUSGVpdGlTQy1MaWdodDt9CntcY29sb3J0Ymw7XHJlZDI1NVxncmVlbjI1NVxibHVlMjU1O1xyZWQ4NVxncmVlbjg1XGJsdWU4NTt9ClxwYXJkXHR4NTYwXHR4MTEyMFx0eDE2ODBcdHgyMjQwXHR4MjgwMFx0eDMzNjBcdHgzOTIwXHR4NDQ4MFx0eDUwNDBcdHg1NjAwXHR4NjE2MFx0eDY3MjBccGFyZGlybmF0dXJhbAoKXGYwXGZzMjIgXGNmMiBcdXAwIFxub3N1cGVyc3ViIFx1bG5vbmUgXG9ibGlxdWVuZXNzMCBcZXhwYW5zaW9uMCBcJ2IzXCdjMlwnY2VcJ2M0XCdiZlwnYjVcJ2EzXCdhY1wnYjJcJ2RjXCdiMVwnZjl9"/>
+      <change idref="t10" attribute="title" type="string" to="Customer views"/>
+    </change>
+    <change idref="t11" to="t-1" to-position="9" resolved="yes">
+      <change idref="t11" attribute="effort" type="real" from="28800" to="115200"/>
+      <change idref="t11" attribute="internalPrerequisitesString" type="string" to="9FS"/>
+      <change idref="t11" attribute="noEarlierThanConstraintDate" type="date" to="2014-10-22T00:00:00.000Z"/>
+      <change idref="t11" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxMjY1XGNvY29hc3VicnRmMjEwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MTM0IFNUSGVpdGlTQy1MaWdodDt9CntcY29sb3J0Ymw7XHJlZDI1NVxncmVlbjI1NVxibHVlMjU1O1xyZWQ4NVxncmVlbjg1XGJsdWU4NTt9ClxwYXJkXHR4NTYwXHR4MTEyMFx0eDE2ODBcdHgyMjQwXHR4MjgwMFx0eDMzNjBcdHgzOTIwXHR4NDQ4MFx0eDUwNDBcdHg1NjAwXHR4NjE2MFx0eDY3MjBccGFyZGlybmF0dXJhbAoKXGYwXGZzMjIgXGNmMiBcdXAwIFxub3N1cGVyc3ViIFx1bG5vbmUgXG9ibGlxdWVuZXNzMCBcZXhwYW5zaW9uMCBcJ2JmXCdkY1wnYzNcJ2U3XCdiZVwnZWFcJ2EzXCdhY1wnY2RcJ2Y1XCdjY1wnZGF9"/>
+      <change idref="t11" attribute="title" type="string" to="Seller views"/>
+    </change>
+    <change idref="t12" to="t-1" to-position="10" resolved="yes">
+      <change idref="t12" attribute="effort" type="real" from="28800" to="86400"/>
+      <change idref="t12" attribute="internalPrerequisitesString" type="string" to="9FS"/>
+      <change idref="t12" attribute="noEarlierThanConstraintDate" type="date" to="2014-10-22T00:00:00.000Z"/>
+      <change idref="t12" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxMjY1XGNvY29hc3VicnRmMjEwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MTM0IFNUSGVpdGlTQy1MaWdodDt9CntcY29sb3J0Ymw7XHJlZDI1NVxncmVlbjI1NVxibHVlMjU1O1xyZWQ4NVxncmVlbjg1XGJsdWU4NTt9ClxwYXJkXHR4NTYwXHR4MTEyMFx0eDE2ODBcdHgyMjQwXHR4MjgwMFx0eDMzNjBcdHgzOTIwXHR4NDQ4MFx0eDUwNDBcdHg1NjAwXHR4NjE2MFx0eDY3MjBccGFyZGlybmF0dXJhbAoKXGYwXGZzMjIgXGNmMiBcdXAwIFxub3N1cGVyc3ViIFx1bG5vbmUgXG9ibGlxdWVuZXNzMCBcZXhwYW5zaW9uMCBcJ2I5XCdmOVwnZThcJ2M5XCdjNVwnZjRcJ2EzXCdhY1wnYzBcJ2VlXCdjYlwnYWN9"/>
+      <change idref="t12" attribute="title" type="string" to="Admin views"/>
+    </change>
+    <change idref="t15" to="t-1" to-position="11" resolved="yes">
+      <change idref="t15" attribute="effort" type="real" from="28800" to="0"/>
+      <change idref="t15" attribute="internalPrerequisitesString" type="string" to="10FS, 11FS, 12FS"/>
+      <change idref="t15" attribute="isSplittableTask" type="real" from="1" to="0"/>
+      <change idref="t15" attribute="noEarlierThanConstraintDate" type="date" to="2014-10-24T00:15:00.000Z"/>
+      <change idref="t15" attribute="percentCompleteForMilestone" type="real" to="0"/>
+      <change idref="t15" attribute="taskType" type="real" from="0" to="1"/>
+      <change idref="t15" attribute="title" type="string" to="views done"/>
+    </change>
+    <change idref="t1" attribute="title" type="string" from="" to="Model" resolved="yes"/>
+  </task-change-set>
+  <metadata-change-set user="Eric" date="2014-10-14T07:41:29.823Z" timestamp="2014-10-14T07:41:29.823Z">
+    <change idref="m1" attribute="fixedDate" type="date" from="2007-01-01T20:00:00.000Z" to="2014-10-14T00:00:00.000Z" resolved="yes"/>
+  </metadata-change-set>
+</changelog>
