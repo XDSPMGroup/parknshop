@@ -1,8 +1,4 @@
-from system.models import Shop
-from system.models import Commodity
-from system.models import Advertisement
-from system.models import Comment
-
+from system.models import *
 
 class Commodity_class:
 	"""This is Commodity class"""

@@ -1,4 +1,5 @@
 from system.models import *
+from store.classes import *
 import time
 
 class Cart_Class:
@@ -6,12 +7,15 @@ class Cart_Class:
 	CartQuantityList=[]
 	CartDateList=[]
 	CartAmout=0
-	def __init__(self, customerID):
-		CommodityList = Cart.objects.all(id = customerID)
-		QuantityList = Cart.objects.all(id = customerID)
-		DateList = Cart.objects.all(id = customerID)
+	def __init__(self, cartID):		
+		for c in Cart.objects.get(id = cartID):
+			CommodityList.append(Commodity_class(k.CommodityID))
+		for q in Cart.objects.get(id = cartID):
+			QuantityList.append(q.CartCommodityAmount) 
+		for q in Cart.objects.get(id = cartID):
+			DateList.append(q.CartDate) 
 		Amount = 0
-		for k in CommodityList:
+		for k in Cart.objects.get(id = cartID):
 			Amount = Amount+k.CartCommodityAmount*(Commodity.objects.get(CommodityID=k.CommodityID).SellPrice)
 		self.CartCommodityList = CommodityList
 		self.CartQuantityList = QuantityList
@@ -30,4 +34,6 @@ class Cart_Class:
 	def GetCommodityList():
 		CommodityList = Commodity.objects.all()
 		return CommodityList
+
+#class Favorite_Class:
 
