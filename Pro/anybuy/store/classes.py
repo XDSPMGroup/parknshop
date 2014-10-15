@@ -1,6 +1,8 @@
 from system.models import Shop
 from system.models import Commodity
 from system.models import Advertisement
+from system.models import Comment
+
 
 class Commodity_class:
 	"""This is Commodity class"""
@@ -26,12 +28,12 @@ class Commodity_class:
 		#self.CommoditySecondType = commodity.CommoditySecondType
 		self.CommodityDescription = commodity.CommodityDescription
 		self.CommodityAmount = commodity.CommodityAmount
-		#self.CommoditySoldAmount = commodity.CommoditySoldAmount
+		self.CommoditySoldAmount = commodity.SoldAmount
 		self.PurchasePrice = commodity.PurchasePrice
 		#self.OriginalPrice = commodity.OriginalPrice
 		self.CommodityImage = commodity.CommodityImage
 		self.CommodityDiscount = commodity.CommodityDiscount
-		self.CommentsList = commodity.CommentsList
+		self.CommentsList = Comment.objects.get(CommodityID=commodityID)
 
 	def SetDiscount(newDiscount):
 		pass
