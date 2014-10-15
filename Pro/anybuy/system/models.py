@@ -170,8 +170,8 @@ class OrderList(models.Model):
 	OrderListState = models.CharField(max_length=64)
 	OrderListDate = models.DateField()
 	SellerID = models.ForeignKey(Seller)
-	ShopID = models.ForeignKey(Shop)
-	CustomerID = models.ForeignKey(Customer)
+	ShopOrderID = models.ForeignKey(Shop)
+	CustomerOrderID = models.ForeignKey(Customer)
 	CommodityID = models.ForeignKey(Commodity)
 	def __unicode__(self):
 		return '%s %s %s' %(self.OrderListAccount,self.OrderListDate, self.OrderListState)
