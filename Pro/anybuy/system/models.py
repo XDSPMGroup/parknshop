@@ -138,6 +138,36 @@ class Customer(models.Model):
 	def __unicode__(self):
 		return u'%s %s' %(self.CustomerAccount, self.CustomerName)
 
+<<<<<<< HEAD
+=======
+class Commodity(models.Model):
+	CommodityTypeChoices=(
+		('C','Clothing'),
+		('A','Accesory'),
+		('S','Sport'),
+		('J','Jewelry'),
+		('D','Digit'),
+		('H','Household appliances'),
+		('M','Makeup'),
+		('F','Food'),
+		('E','Entertainment'),
+		('O','Others')
+	)
+	CommodityName = models.CharField(max_length=64)
+	CommodityDescription = models.TextField(blank=True)
+	CommodityAmount = models.IntegerField(blank=True)
+	SoldAmount = models.IntegerField(blank=True)
+	PurchasePrice = models.FloatField(blank=True)
+	SellPrice = models.FloatField(blank=True)
+	CommodityType = models.CharField(max_length=1,choices=CommodityTypeChoices,blank=True)
+	#CommoditySecondType = models.IntegerField(blank=True)
+	CommodityImage = models.ImageField(upload_to='images',max_length=255,blank=True,null=True)
+	CommodityDiscount = models.FloatField(null=True,blank=True)
+	ShopID = models.ForeignKey(Shop)
+	def __unicode__(self):
+		return '%s %s %s' %(self.CommodityName, self.CommodityType, self.CommodityAmount)
+
+>>>>>>> origin/master
 class OrderList(models.Model):
 	OrderListAccount = models.CharField(max_length=64)
 	OrderListState = models.CharField(max_length=64)

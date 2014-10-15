@@ -53,7 +53,7 @@ This document presents the architecture as a series of diagrams and views: conce
 There are some key requirements and system constraints we have to concern about when designing the architecture, they are:    
 
 1. Large commodities’ data and complex relationship mean E-R module database will be a good choice. 
-2. Large number of commodities’ information, Customers and StoreOwners’ basic information need to be stored safety in database. 
+2. Large number of commodities’ information, Customers and Shop Owners’ basic information need to be stored safety in database. 
 3. The Online Shopping Management System will be implemented as a browser-server system. 
 4. The system server should ensure more than 500 visitors accessing stably at the same time and ensure more than 1000 people simultaneously access the database, the server's response time should not exceed 5 seconds. 
 5. All customers can access server successfully whether through Internet or private networks.
@@ -243,9 +243,9 @@ There are some key requirements and system constraints we have to concern about 
 			* SellerRealID 身份证号
 			* SellerTelephone 电话
 			* SellerEmail 邮件地址
-			* StoreList 店铺列表
-			* Store GetStore(integer); 进入具体店铺
-			* int ApplyNewStore(Store); 申请新店铺,用户填写申请表，写入基本店铺信息，生成new store, 店铺状态为待审核。返回申请提交成功与否。
+			* ShopList 店铺列表
+			* Shop GetShop(integer); 进入具体店铺
+			* int ApplyNewShop(Shop); 申请新店铺,用户填写申请表，写入基本店铺信息，生成new Shop, 店铺状态为待审核。返回申请提交成功与否。
 			* int ModifyPassword(Sting Old,String New); 修改密码
 					参数为旧密码与新密码，先匹配旧密码，旧密码匹配成功则修改新密码至数据库。修改成功返回1.失败返回0.
 			* int ModifyBasicInfo(Seller); 修改基本信息，用户昵称，电话，邮件等。返回成功与否。
@@ -265,9 +265,9 @@ There are some key requirements and system constraints we have to concern about 
 			* int Login(Account, Password); 管理员登录
 			* int BackupDB(); 备份数据库
 			* int RestoreDB(); 恢复数据库
-			* StoreList DealStoreApply(); 处理店铺申请,从数据库中选择所有店铺状态为’待审核’的店铺。
-			* int PassApply(StoreID); 审核通过
-			* int RejectApply(StoreID); 审核不通过 
+			* ShopList DealShopApply(); 处理店铺申请,从数据库中选择所有店铺状态为’待审核’的店铺。
+			* int PassApply(ShopID); 审核通过
+			* int RejectApply(ShopID); 审核不通过 
 			* int BlacklistCustomer(integer CustomerID); 拉黑用户, 参数为用户ID
 			* int BlacklistSeller(integer SellerID);
 			* GuestList GetBlacklist(); 查看黑名单信息,返回账户列表。
@@ -276,24 +276,24 @@ There are some key requirements and system constraints we have to concern about 
 			* int DeleteCustomer(integer CustomerID); 删除帐号
 			* int DeleteSeller(integer SellerID); 删除帐号
 			* int SetAd(Advertisement Ad); 配置主页广告
-		4. Store
-			* StoreID 店铺ID
+		4. Shop
+			* ShopID 店铺ID
 			* SellerID 卖家ID
-			* StoreName 店铺名称
-			* StoreState 店铺状态(0-待审核, 1-营业, 2-歇业)
+			* ShopName 店铺名称
+			* ShopState 店铺状态(0-待审核, 1-营业, 2-歇业)
 			* CommodityList 商品列表
-			* StoreBriefInfo 店铺简介
-			* StoreAds 广告
+			* ShopBriefInfo 店铺简介
+			* ShopAds 广告
 			* OrderList GetOrderList(); 获得对应店铺订单列表。展示订单内的商品进价、卖价，利润，以查看店铺经营情况。
 			* Order GetOrder(integer OrderID); 获得订单
-			* int StoreProfit(integet); 计算店铺的利润，传入参数代表(0-日,1-周,2-月,3-年)
+			* int ShopProfit(integet); 计算店铺的利润，传入参数代表(0-日,1-周,2-月,3-年)
 			* int ConfirmRefund(integer); 确认订单退款
 			* int RejectRefund(integer); 拒绝订单退款
 				砍掉回复评论的功能。
 			* int Close(); 关闭具体店铺
 				传入店铺编号，向系统提出关闭店铺，更改店铺状态为’歇业’。
 			* int Open(); 重新开店,更改店铺状态为’开业’;
-			* int ModifyBasicInfo(Store); 修改基本信息。
+			* int ModifyBasicInfo(Shop); 修改基本信息。
 			* int SetAdPage(Advertisement Ad); 设置店铺广告
 			* CommodityList ViewCommodity(); 查看店铺商品
 			* int AddCommodity(Commodity new); 添加商品
@@ -301,7 +301,7 @@ There are some key requirements and system constraints we have to concern about 
 			* int DeleteCommodity(CommodityID); 删除商品
 		5. Commodity
 			* CommodityID 商品ID
-			* StoreID 店铺ID
+			* ShopID 店铺ID
 			* CommodityName 商品名称
 			* CommodityType 商品类型
 			* CommoditySecondType 商品二次类型
@@ -366,21 +366,21 @@ There are some key requirements and system constraints we have to concern about 
 			* int GetAlive(); 查看用户是否登录,返回登录标识
 			* int GetAuthority(); 查看用户权限
 		10. Advertisement
-				广告类。系统主页有TOP Products & Top Store, 店铺主页亦有Store & Commodity, 因此这里设计一个类。
-				管理员有一个公共的Advertisement类成员, 每个店铺Class Store类中也有一个Advertisement.
+				广告类。系统主页有TOP Products & Top Shop, 店铺主页亦有Shop & Commodity, 因此这里设计一个类。
+				管理员有一个公共的Advertisement类成员, 每个店铺Class Shop类中也有一个Advertisement.
 			* OwnerID 拥有者ID(为店铺ID或系统)
 			* CommodityList 商品列表
 					存储广告所需的商品信息。类型为Commodity List.
-			* StoreList 店铺列表
-					存储广告所需的店铺信息。类型为Store List.
+			* ShopList 店铺列表
+					存储广告所需的店铺信息。类型为Shop List.
 			* CommodityList GetCommodityList();
 					根据拥有者ID,从数据库中读取出Commodity List,存放至类内变量中。
-			* StoreList GetStoreList();
+			* ShopList GetShopList();
 					根据拥有者ID,从数据库中读取出Commodity List,存放至类内变量中。
 			* int AddCommodity(Commodity new); 添加新商品
-			* int AddStore(Store new); 添加新店铺
+			* int AddShop(Shop new); 添加新店铺
 			* int DeleteCommodity(CommodityID); 删除商品
-			* int DeleteStore(StoreID); 删除店铺
+			* int DeleteShop(ShopID); 删除店铺
 		11. System
 				系统类。此类只有一个对象，代表系统主页上的公告板以及系统交易佣金率。
 				管理员可以查看和修改，其他用户可以查看。
