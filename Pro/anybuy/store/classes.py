@@ -30,19 +30,21 @@ class Commodity_class:
 		self.CommodityAmount = commodity.CommodityAmount
 		self.CommoditySoldAmount = commodity.SoldAmount
 		self.PurchasePrice = commodity.PurchasePrice
-		#self.OriginalPrice = commodity.OriginalPrice
+		self.SellPrice = commodity.SellPrice
+		self.PurchasePrice = commodity.PurchasePrice
 		self.CommodityImage = commodity.CommodityImage
 		self.CommodityDiscount = commodity.CommodityDiscount
 		self.CommentsList = Comment.objects.get(CommodityID=commodityID)
-
-	def SetDiscount(newDiscount):
-		pass
+	def SetDiscount(self, newDiscount):
+		commodity = Commodity.objects.get(id=self.commodityID)
+		commodity.CommodityDiscount = newDiscount
+		commodity.save()
 	def GetDiscount():
-		pass
-	def GetSellProce():
-		pass
+		return self.CommodityDiscount
+	def GetSellPrice():
+		return self.SellPrice * self.CommodityDiscount
 	def GetProfit():
-		pass
+		return GetSellPrice - self.PurchasePrice
 
 class Shop:
 	"""This is Shop class"""

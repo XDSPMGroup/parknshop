@@ -36,16 +36,32 @@ class Shop(models.Model):
 	def __unicode__(self):
 		return self.ShopName
 
-class Advertisement(models.Model):
-	AdvertisementTypeChoice=(
-		('S','ShopAdvertisement'),
-		('C','CommodityAdvertisement'),
+class Commodity(models.Model):
+	CommodityTypeChoices=(
+		('C','Clothing'),
+		('A','Accesory'),
+		('S','Sport'),
+		('J','Jewelry'),
+		('D','Digit'),
+		('H','Household appliances'),
+		('M','Makeup'),
+		('F','Food'),
+		('E','Entertainment'),
+		('O','Others')
 	)
-	AdvertisementAccount = models.CharField(max_length=64)
+	CommodityName = models.CharField(max_length=64)
+	CommodityDescription = models.TextField(blank=True)
+	CommodityAmount = models.IntegerField(blank=True,null=True)
+	SoldAmount = models.IntegerField(blank=True)
+	PurchasePrice = models.FloatField(blank=True)
+	SellPrice = models.FloatField(blank=True)
+	CommodityType = models.CharField(max_length=1,choices=CommodityTypeChoices,blank=True)
+	#CommoditySecondType = models.IntegerField(blank=True)
+	CommodityImage = models.ImageField(upload_to='images',max_length=255,blank=True,null=True)
+	CommodityDiscount = models.FloatField(null=True,blank=True)
 	ShopID = models.ForeignKey(Shop)
-	Type = models.CharField(max_length=1,choices=AdvertisementTypeChoice)
 	def __unicode__(self):
-		return '%s %s' %(self.AdvertisementAccount, self.Type)
+		return '%s %s %s' %(self.CommodityName, self.CommodityType, self.CommodityAmount)
 
 class Administrator(models.Model):
 	AdministratorAccount = models.CharField(max_length=64)
@@ -55,6 +71,26 @@ class Administrator(models.Model):
 	AdministratorEmail = models.EmailField()
 	def __unicode__(self):
 		return self.AdministratorName
+
+class ShopAdv(models.Model):
+	ShopID = models.ForeignKey(Shop)
+	OwnerID = models.IntegerField()
+	AdvertisementContent = models.TextField()
+
+class CommodityAdv(models.Model):
+	CommodityID = models.ForeignKey(Commodity)
+	OwnerID = models.ForeignKey(Shop)
+	AdvertisementContent = models.TextField()
+
+class HomeShopAdv(models.Model):
+	ShopID = models.ForeignKey(Shop)
+	OwnerID = models.ForeignKey(Administrator)
+	AdvertisementContent = models.TextField()
+
+class HomeCommodityAdv(models.Model):
+	CommodityID = models.ForeignKey(Commodity)
+	OwnerID = models.ForeignKey(Administrator)
+	AdvertisementContent = models.TextField()
 
 class System(models.Model):
 	BulletinBoardContent = models.CharField(max_length=64,blank=True)
@@ -151,9 +187,9 @@ class Cart(models.Model):
 	CartDate = models.DateField()
 	CustomerID = models.ForeignKey(Customer)
 	CommodityID = models.ForeignKey(Commodity)
-	CartCommodityAccount = models.CharField(max_length=64,blank=True)
+	CartCommodityAmount = models.IntegerField(blank=True, default=1)
 	def __unicode__(self):
-		return '%s %s' %(self.CartCommodityAccount, self.CartDate)
+		return '%s %s' %(self.CartCommodityAmount, self.CartDate)
 
 class Favorite(models.Model):
 	FavoriteDate = models.DateField()
