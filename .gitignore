@@ -15,6 +15,6 @@ a.out
 #ctags生成的tags文件
 tags
 *.pyc
-*.db
+
 *~
 *.png

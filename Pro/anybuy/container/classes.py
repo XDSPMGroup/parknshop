@@ -8,14 +8,15 @@ class Cart_Class:
 	CartDateList=[]
 	CartAmout=0
 	def __init__(self, cartID):		
-		for c in Cart.objects.get(id = cartID):
-			CommodityList.append(Commodity_class(k.CommodityID))
-		for q in Cart.objects.get(id = cartID):
+		CommodityList=[]
+		for c in Cart.objects.filter(id = cartID):
+			CommodityList.append(Commodity_class(c.CommodityID.id))
+		for q in Cart.objects.filter(id = cartID):
 			QuantityList.append(q.CartCommodityAmount) 
-		for q in Cart.objects.get(id = cartID):
-			DateList.append(q.CartDate) 
+		for d in Cart.objects.filter(id = cartID):
+			DateList.append(d.CartDate) 
 		Amount = 0
-		for k in Cart.objects.get(id = cartID):
+		for k in Cart.objects.filter(id = cartID):
 			Amount = Amount+k.CartCommodityAmount*(Commodity.objects.get(CommodityID=k.CommodityID).SellPrice)
 		self.CartCommodityList = CommodityList
 		self.CartQuantityList = QuantityList
