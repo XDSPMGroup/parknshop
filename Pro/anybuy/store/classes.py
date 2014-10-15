@@ -1,8 +1,4 @@
-from system.models import Shop
-from system.models import Commodity
-from system.models import Advertisement
-from system.models import Comment
-
+from system.models import *
 
 class Commodity_class:
 	"""This is Commodity class"""
@@ -36,17 +32,17 @@ class Commodity_class:
 		self.CommodityDiscount = commodity.CommodityDiscount
 		self.CommentsList = Comment.objects.get(CommodityID=commodityID)
 	def SetDiscount(self, newDiscount):
-		commodity = Commodity.objects.get(id=self.commodityID)
+		commodity = Commodity.objects.get(id=self.CommodityID)
 		commodity.CommodityDiscount = newDiscount
 		commodity.save()
-	def GetDiscount():
+	def GetDiscount(self):
 		return self.CommodityDiscount
-	def GetSellPrice():
+	def GetSellPrice(self):
 		return self.SellPrice * self.CommodityDiscount
-	def GetProfit():
-		return GetSellPrice - self.PurchasePrice
+	def GetProfit(self):
+		return self.GetSellPrice() - self.PurchasePrice
 
-class Shop:
+class Shop_class:
 	"""This is Shop class"""
 	ShopID = 0
 	SellerID = 0
@@ -55,18 +51,24 @@ class Shop:
 	CommodityList = []
 	ShopBriefInfo = ""
 	ShopAds = []
-	def __init__(self):
-		self.ShopID = 0
-		self.SellerID = 0
-		self.ShopName = ""
-		self.ShopState = 0 #(0-suspend, 1-open, 2-close)
-		self.CommodityList = []
-		self.ShopBriefInfo = ""
-		self.ShopAds = []
-	def GetOrderList():
-		pass
-	def GetOrder(OrderID):
-		pass
+	def __init__(self, shopID):
+		self.ShopID = shopID
+		shop = Shop.objects.get(id = shopID)
+		self.SellerID = shop.SellerID
+		self.ShopName = shop.ShopName
+		self.ShopState = shop.ShopState #(0-suspend, 1-open, 2-close)
+		self.CommodityList = Commodity.objects.get(ShopID = shopID)
+		self.ShopBriefInfo = shop.ShopDescription
+		#self.ShopAds = []
+	def GetOrderList(self):
+		orderList = []
+		shopOrders = ShopOrder.objects.filter(ShopID = self.ShopID)
+		for shopOrder in shopOrders:
+			orderlist_temp = OrderList.objects.filter(ShopOrderID = shopOrder.ShopOrderID)
+			orderList = orderList + orderlist_temp
+		return orderList
+	def GetOrder(self, OrderID):
+		return OrderList.objects.get(ShopOrderID = OrderID)
 	def ShopProfit(ShopID):
 		pass
 	def ConfirmRefund(OrderID):
@@ -90,7 +92,7 @@ class Shop:
 	def DeleteCommodity(CommodityID):
 		pass
 
-class Advertisement(object):
+class Advertisement_class(object):
 	"""docstring for Advertisement"""
 	OwnerID = 0
 	CommodityList = []

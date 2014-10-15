@@ -138,8 +138,6 @@ class Customer(models.Model):
 	def __unicode__(self):
 		return u'%s %s' %(self.CustomerAccount, self.CustomerName)
 
-<<<<<<< HEAD
-=======
 class Commodity(models.Model):
 	CommodityTypeChoices=(
 		('C','Clothing'),
@@ -167,7 +165,6 @@ class Commodity(models.Model):
 	def __unicode__(self):
 		return '%s %s %s' %(self.CommodityName, self.CommodityType, self.CommodityAmount)
 
->>>>>>> origin/master
 class OrderList(models.Model):
 	OrderListAccount = models.CharField(max_length=64)
 	OrderListState = models.CharField(max_length=64)
