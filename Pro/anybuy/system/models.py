@@ -74,12 +74,12 @@ class Administrator(models.Model):
 
 class ShopAdv(models.Model):
 	ShopID = models.ForeignKey(Shop)
-	OwnerID = models.IntegerField()
+	OwnerID = models.ForeignKey(Seller)
 	AdvertisementContent = models.TextField()
 
 class CommodityAdv(models.Model):
 	CommodityID = models.ForeignKey(Commodity)
-	OwnerID = models.ForeignKey(Shop)
+	OwnerID = models.ForeignKey(Seller)
 	AdvertisementContent = models.TextField()
 
 class HomeShopAdv(models.Model):
