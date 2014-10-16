@@ -1,144 +1,159 @@
-from system.models import Administrator
-from system.models import System
-from system.models import Advertisement
-from system.models import OrderList
-from system.models import Shop
-from system.models import Seller
-from system.models import Customer
-from system.models import BlacklistSeller
-from system.models import BlacklistCustomer
+#encoding:utf-8
 
+from system.models import *
 
+class Admistrator_class:
+	#ç®¡ç†å‘˜IDç¼–å·
+	AdministratorID = 0
+	#ç®¡ç†å‘˜å¸å·
+	AdministratorAccount = ""
+	#ç®¡ç†å‘˜å¯†ç 
+	AdministratorPassword = ""
+	#ç®¡ç†å‘˜æ˜µç§°
+	AdministratorName = ""
+	#ç®¡ç†å‘˜ç”µè¯    
+	AdministratorTelephone = 0 
+	#ç®¡ç†å‘˜é‚®ä»¶ 
+	AdministratorEmail = ""
+	#ä¸»é¡µåº—é“ºå¹¿å‘Š   
+	HomeShopAdvList = []
+	#ä¸»é¡µå•†å“å¹¿å‘Š     
+	HomeCommodityAdvList = []
+	#å–å®¶é»‘åå•     
+	SellerBlackList = []
+	 #ä¹°å®¶é»‘åå•      
+	CustomerBlackList = []
 
-class Administrator_class:
-        """This is Administrator class"""
-        AdministratorID = 0           #¹ÜÀíÔ±ID±àºÅ
-	AdministratorAccount = ""     #¹ÜÀíÔ±ÕÊºÅ
-	AdministratorPassword = ""    #¹ÜÀíÔ±ÃÜÂë
-	AdministratorName = ""        #¹ÜÀíÔ±êÇ³Æ
-	AdministratorTelephone = 0    #¹ÜÀíÔ±µç»°
-	AdministratorEmail = ""       #¹ÜÀíÔ±ÓÊ¼ş
-	Advertisement                 #¹ã¸æ
-	SellerBlackList = []          #Âô¼ÒºÚÃûµ¥
-	CustomerBlackList = []        #Âò¼ÒºÚÃûµ¥
-	def __init__(self,administratorID):
-	        self.AdministratorID = administratorID
-	        admin = Administrator.objects.get(id=administratorID)
-	        self.AdministratorAccount = admin.AdministratorAccount
-	        self.AdministratorPassword = admin.AdministratorPassword
-	        self.AdministratorName = admin.AdministratorName
-	        self.AdministratorTelephone = admin.AdministratorTelephone
-	        self.AdministratorEmail = admin.AdministratorEmail
-	        #Advertisement
-	        self.SellerBlackList = SellerBlackList.object.get(AdministratorID = administratorID)
-	        self.CustomerBlackList = CustomerBlackList.object.get(AdministratorID = administratorID)
+	def __init__(self, administratorID):
+		self.AdministratorID = administratorID
+		admin = Administrator.objects.get(id = administratorID)
+		self.AdministratorAccount = admin.AdministratorAccount
+		self.AdministratorPassword = admin.AdministratorPassword
+		self.AdministratorName = admin.AdministratorName
+		self.AdministratorTelephone = admin.AdministratorTelephone
+		self.AdministratorEmail = admin.AdministratorEmail
+		#Advertisement
+		self.HomeShopAdvList = HomeShopAdv.objects.filter(OwnerID = administratorID)
+		self.HomeCommodityAdvList = HomeCommodityAdv.objects.filter(OwnerID = administratorID)
+		#BlackList
+		self.SellerBlackList = SellerBlackList.objects.get(AdministratorID = administratorID)
+		self.CustomerBlackList = CustomerBlackList.objects.get(AdministratorID = administratorID)
 	        
-	def GetOrderList():    #»ñµÃËùÓĞ¶©µ¥ÒÔ²é¿´ÏúÊÛÀúÊ·¡£
-	        return OrderList.objects.filter(OrderState = 3)
+	def GetOrderList():    #è·å¾—æ‰€æœ‰è®¢å•ä»¥æŸ¥çœ‹é”€å”®å†å²ã€‚
+		return OrderList.objects.filter(OrderState = 3)
 	
-	def GetCommission():   #¼ÆËã³öÃ¿Ò»±Ê½»Ò×µÄÓ¶½ğ¡£
-	        a = []
-	        b = OrderList.objects.filter(OrderState = 3)
-	        for c in b.OrderProfit
-	            a.append(c * System.ComissionRate)
-	        return a
+	def GetCommission(self):   #è®¡ç®—å‡ºæ¯ä¸€ç¬”äº¤æ˜“çš„ä½£é‡‘ã€‚
+		ComissionList = []
+		for c in OrderList.objects.filter(OrderState = 3):
+			ComissionList.append(Commodity(id = c.CommodityID.id) * \
+            	(System.objects.get(id=1)).ComissionRate)
+		return ComissionList
 
-	def GetOrder(i):       #»ñµÃÌØ¶¨¶©µ¥
-	        return OrderList.objects.filter(OrderID = i)
+	def GetSpecificOrder(orderListID):       #è·å¾—ç‰¹å®šè®¢å•
+		return OrderList.objects.get(id = orderListID)
 
-	def Login(a, p):       #¹ÜÀíÔ±µÇÂ¼
-                b = Administrator.objects.filter(AdministratorAccount = a)
-                if p = b.AdministratorPassword
-                    return 1
+	def Login(account, password):       #ç®¡ç†å‘˜ç™»å½•
+		admin = Administrator.objects.filter(AdministratorAccount = account)
+		if (password == admin.AdministratorPassword):
+			return 1
 
-	def BackupDB():   #±¸·İÊı¾İ¿â
-	        pass
+	def BackupDB():   #å¤‡ä»½æ•°æ®åº“
+		pass
 	
-	def RestoreDB():  #»Ö¸´Êı¾İ¿â
-	        pass
+	def RestoreDB():  #æ¢å¤æ•°æ®åº“
+		pass
 
-	def ShopList DealShopApply():  #´¦ÀíµêÆÌÉêÇë,´ÓÊı¾İ¿âÖĞÑ¡ÔñËùÓĞµêÆÌ×´Ì¬Îª¡¯´ıÉóºË¡¯µÄµêÆÌ¡£
-	        return Shop.objects.filter(ShopState = 0)
+	def ShopListDealShopApply():  #å¤„ç†åº—é“ºç”³è¯·,ä»æ•°æ®åº“ä¸­é€‰æ‹©æ‰€æœ‰åº—é“ºçŠ¶æ€ä¸ºâ€™å¾…å®¡æ ¸â€™çš„åº—é“ºã€‚
+		return Shop.objects.filter(ShopState = 0)
 	
-	def PassApply(i):    #ÉóºËÍ¨¹ı
-	        s = Shop.objects.filter(ShopID = i)
-	        s.ShopState = 1
-	        s.save()
-	        return 1
+	def PassApply(shopID):    #å®¡æ ¸é€šè¿‡
+		s = Shop.objects.filter(id = shopID)
+		s.ShopState = 1
+		s.save()
+		return 1
 	
-	def RejectApply(i):  #ÉóºË²»Í¨¹ı
-	        s = Shop.objects.filter(ShopID = i)
-	        s.ShopState = 2
-	        s.save()
-	        return 1
+	def RejectApply(shopID):  #å®¡æ ¸ä¸é€šè¿‡
+		s = Shop.objects.filter(id = shopID)
+		s.ShopState = 2
+		s.save()
+		return 1
 	
-	def BlacklistCustomer(self, c):  #À­ºÚÂò¼Ò,²ÎÊıÎªÂò¼ÒID
-	        r = raw_input("input:")
-	        b = BlacklistCustomer(BlacklistCustomerID = ,
-                                      AdministratorID = self.AdministratorID,
-                                      CustomerID = c ,
-                                      BlacklistCustomerReason = r)
+	def BlacklistCustomer(self, customerID):  #æ‹‰é»‘ä¹°å®¶,å‚æ•°ä¸ºä¹°å®¶ID
+		r = raw_input("input:")  #input BlacklistReason
+        b = BlacklistCustomer(BlacklistCustomerReason = r,
+        	AdministratorID = self.AdministratorID, CustomerID = customerID)
+        b.save()
 	
-	def BlacklistSeller(self, s):    #À­ºÚÂô¼Ò,²ÎÊıÎªÂô¼ÒID
-	        r = raw_input("input:")
-	        b = BlacklistCustomer(BlacklistCustomerID = ,
-                                      AdministratorID = self.AdministratorID,
-                                      CustomerID = s ,
-                                      BlacklistCustomerReason = r)
+	def BlacklistSeller(self, sellerID):    #æ‹‰é»‘å–å®¶,å‚æ•°ä¸ºå–å®¶ID
+		r = raw_input("input:")   #input BlacklistReason
+		b = BlacklistSeller(BlacklistSellerReason = r,
+			AdministratorID = self.AdministratorID, SellerID = sellerID)
+		b.save()
 
-	def GetBlacklist():  #²é¿´ºÚÃûµ¥ĞÅÏ¢,·µ»ØÕË»§ÁĞ±í¡£
-	        return SellerBlackList.objects.all(),CustomerBlackList.objects.all()
+	def GetBlacklistCustomer():  #æŸ¥çœ‹ä¹°å®¶é»‘åå•ä¿¡æ¯
+		return BlackListCustomer.objects.all()
 
-	def RestoreCustomer(c):  #»Ö¸´ÕÊºÅ
-	        p = CustomerBlackList.object.get(CustomerID = c)
-	        p.delete()
+	def GetBlacklistSeller():  #æŸ¥çœ‹å–å®¶é»‘åå•ä¿¡æ¯
+		return BlackListSeller.objects.all()
 
-	def RestoreSeller(s):    #»Ö¸´ÕÊºÅ
-	        p = SellerBlackList.object.get(CustomerID = s)
-	        p.delete()
+	def RestoreCustomer(customerID):  #æ¢å¤ä¹°å®¶å¸å·
+		c = BlackListCustomer.objects.get(id = customerID)
+		c.delete()
+
+	def RestoreSeller(sellerID):    #æ¢å¤å–å®¶å¸å·
+		s = BlackListSeller.objects.get(id = sellerID)
+		s.delete()
 	
-	def DeleteCustomer(c):   #É¾³ıÕÊºÅ
-	        p = Customer.object.get(CustomerID = c)
-	        p.delete()
+	def DeleteCustomer(customerID):   #åˆ é™¤ä¹°å®¶å¸å·
+		c = Customer.objects.get(id = customerID)
+		c.delete()
 	
-	def DeleteSeller(s):     #É¾³ıÕÊºÅ
-	        p = Seller.object.get(SellerID = s)
-	        p.delete()
+	def DeleteSeller(sellerID):     #åˆ é™¤å–å®¶å¸å·
+		s = Seller.objects.get(SellerID = sellerID)
+		s.delete()
 	
-	def SetAd(Advertisement Ad):  #ÅäÖÃÖ÷Ò³¹ã¸æ
-	        pass
+	def SetHomeShopAdv(self, shopID, ownerID):  #é…ç½®ä¸»é¡µåº—é“ºå¹¿å‘Š
+		r = raw_input("input:")   #input AdvertisementContent
+		Adv = HomeShopAdv(ShopID = shopID, OwnerID = self.AdministratorID,
+			AdvertisementContent = r)
+		Adv.save()
+    
 	        
- 
-
+ 	def SetHomeCommodityAdv(self, commodityID, ownerID):  #é…ç½®ä¸»é¡µå•†å“å¹¿å‘Š
+ 		r = raw_input("input:")   #input AdvertisementContent
+		Adv = HomeShopAdv(CommodityID = commodityID, OwnerID = self.AdministratorID,
+			AdvertisementContent = r)
+		Adv.save()
 
 
 
 
 class System_class:
-        """This is System class"""
-        Announcement = ""        #¹«¸æ(String)
-        Date = 0                 #¹«¸æÊ±¼ä
-	CommissionRate = 0       #½»Ò×Ó¶½ğÂÊ(Ã¿Ò»±Ê½»Ò×¶¼ÒªÊÕÈ¡)
-	def __init__(self)
-		self.Announcement = Announcement
-		self.Date = Date
-		self.CommissionRate = CommissionRate
+	"""This is System class"""
+	Announcement = ""        #å…¬å‘Š(String)
+	AnnouncementDate = ""    #å…¬å‘Šæ—¶é—´
+	CommissionRate = 0       #äº¤æ˜“ä½£é‡‘ç‡(æ¯ä¸€ç¬”äº¤æ˜“éƒ½è¦æ”¶å–)
+	def __init__(self):
+		self.Announcement = (System.objects.get(id = 1)).BulletinBoardDecription
+		self.AnnouncementDate = (System.objects.get(id = 1)).BulletinBoardDate
+		self.CommissionRate = (System.objects.get(id = 1)).CommissionRate
 	
-	def GetAnnouncement(self):      #²é¿´¹«¸æ°å(¹«¹²API)
+
+	def GetAnnouncement(self):  #æŸ¥çœ‹å…¬å‘Šæ¿(å…¬å…±API)
 		return self.Announcement 
 	
-	def ModifyAnnouncement():       #ĞŞ¸Ä¹«¸æ(ÏµÍ³¹ÜÀíÔ±È¨ÏŞ)
-                r = raw_input("input:")
-		p = System.objects.get(BulletinBoardContent=String)
-		p.BulletinBoardContent = r                         
+	def ModifyAnnouncement():       #ä¿®æ”¹å…¬å‘Š(ç³»ç»Ÿç®¡ç†å‘˜æƒé™)
+		r = raw_input("input:")
+		p = System.objects.get(id = 1)
+		p.BulletinBoardDecription = r                         
 		p.save()
 	
 	def GetCommissionRate(self):
 		return self.CommissionRate 
 	
-	def SetCommissionRate(self, n):
+	def SetCommissionRate(self, commissionRate):
 		self.CommissionRate = n
-		return self.CommissionRate
+		self.save()
 
 	
 
