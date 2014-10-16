@@ -120,18 +120,25 @@ class System_class:
         Date = 0                 #公告时间
 	CommissionRate = 0       #交易佣金率(每一笔交易都要收取)
 	def __init__(self)
-
+		self.Announcement = Announcement
+		self.Date = Date
+		self.CommissionRate = CommissionRate
 	
-	def GetAnnouncement():           #查看公告板(公共API)
-
+	def GetAnnouncement(self):      #查看公告板(公共API)
+		return self.Announcement 
 	
-	def ModifyAnnouncement(String):  #修改公告(系统管理员权限)
-
+	def ModifyAnnouncement():       #修改公告(系统管理员权限)
+                r = raw_input("input:")
+		p = System.objects.get(BulletinBoardContent=String)
+		p.BulletinBoardContent = r                         
+		p.save()
 	
-	def GetCommissionRate():
-
+	def GetCommissionRate(self):
+		return self.CommissionRate 
 	
-	def SetCommissionRate(double newrate):
+	def SetCommissionRate(self, n):
+		self.CommissionRate = n
+		return self.CommissionRate
 
 	
 
