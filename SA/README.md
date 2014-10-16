@@ -320,7 +320,7 @@ There are some key requirements and system constraints we have to concern about 
 		6. Order
 			* OrderID 订单编号
 			* OrderDate 订单生成时间
-			* OrderState 订单状态(0-待付款,1-已付款待发货,2-待签收,3-待评价,4-待退款,5-退款成功)
+			* OrderState 订单状态(0-待付款,1-已付款待发货,2-待签收,3-待评价,4-待退款,5-退款成功, 6-卖家拒绝退款)
 			* OrderExpressID 快递单编号
 			* OrderTransfee 运费
 			* OrderCost 订单金额

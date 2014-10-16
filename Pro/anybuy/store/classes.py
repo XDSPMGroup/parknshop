@@ -2,114 +2,145 @@ from system.models import *
 
 class Commodity_class:
 	"""This is Commodity class"""
-	CommodityID = 0
-	ShopID = 0
-	CommodityName = 0
-	CommodityType = ""
-	CommoditySecondType = ""
-	CommodityDescription = ""
-	CommodityAmount = 0
-	CommoditySoldAmount = 0
-	PurchasePrice = 0
-	OriginalPrice = 0
-	CommodityImage = ""
-	CommodityDiscount = 0
-	CommentsList = []
 	def __init__(self, commodityID):
-		self.CommodityID = commodityID
+		self.commodityID = commodityID
 		commodity = Commodity.objects.get(id=commodityID)
-		self.ShopID = commodity.ShopID
-		self.CommodityName = commodity.CommodityName
-		self.CommodityType = commodity.CommodityType
+		self.shopID = commodity.ShopID
+		self.commodityName = commodity.CommodityName
+		self.commodityType = commodity.CommodityType
 		#self.CommoditySecondType = commodity.CommoditySecondType
-		self.CommodityDescription = commodity.CommodityDescription
-		self.CommodityAmount = commodity.CommodityAmount
-		self.CommoditySoldAmount = commodity.SoldAmount
-		self.PurchasePrice = commodity.PurchasePrice
-		self.SellPrice = commodity.SellPrice
-		self.PurchasePrice = commodity.PurchasePrice
-		self.CommodityImage = commodity.CommodityImage
-		self.CommodityDiscount = commodity.CommodityDiscount
-		self.CommentsList = Comment.objects.get(CommodityID=commodityID)
+		self.commodityDescription = commodity.CommodityDescription
+		self.commodityAmount = commodity.CommodityAmount
+		self.commoditySoldAmount = commodity.SoldAmount
+		self.purchasePrice = commodity.PurchasePrice
+		self.sellPrice = commodity.SellPrice
+		self.purchasePrice = commodity.PurchasePrice
+		self.commodityImage = commodity.CommodityImage
+		self.commodityDiscount = commodity.CommodityDiscount
+		self.commentsList = Comment.objects.get(CommodityID=commodityID)
 	def SetDiscount(self, newDiscount):
-		commodity = Commodity.objects.get(id=self.CommodityID)
+		commodity = Commodity.objects.get(id=self.commodityID)
 		commodity.CommodityDiscount = newDiscount
 		commodity.save()
 	def GetDiscount(self):
 		return self.CommodityDiscount
 	def GetSellPrice(self):
-		return self.SellPrice * self.CommodityDiscount
+		return self.SellPrice * self.commodityDiscount
 	def GetProfit(self):
-		return self.GetSellPrice() - self.PurchasePrice
+		return self.GetSellPrice() - self.purchasePrice
 
 class Shop_class:
 	"""This is Shop class"""
-	ShopID = 0
-	SellerID = 0
-	ShopName = ""
-	ShopState = 0 #(0-suspend, 1-open, 2-close)
-	CommodityList = []
-	ShopBriefInfo = ""
-	ShopAds = []
 	def __init__(self, shopID):
-		self.ShopID = shopID
+		self.shopID = shopID
 		shop = Shop.objects.get(id = shopID)
-		self.SellerID = shop.SellerID
-		self.ShopName = shop.ShopName
-		self.ShopState = shop.ShopState #(0-suspend, 1-open, 2-close)
-		self.CommodityList = Commodity.objects.get(ShopID = shopID)
-		self.ShopBriefInfo = shop.ShopDescription
-		#self.ShopAds = []
+		self.sellerID = shop.SellerID
+		self.shopName = shop.ShopName
+		self.shopState = shop.ShopState #(0-suspend, 1-open, 2-close)
+		self.commodityList = Commodity.objects.get(ShopID = shop)
+		self.shopBriefInfo = shop.ShopDescription
+		#Adv = []
+		self.shopAdv = ShopAdv.objects.filter(OwnerID = shop)
+		self.commodityAdv = CommodityAdv.objects.filter(OwnerID = shop)
 	def GetOrderList(self):
+		shop = Shop.objects.get(id = self.shopID)
 		orderList = []
-		shopOrders = ShopOrder.objects.filter(ShopID = self.ShopID)
+		shopOrders = ShopOrder.objects.filter(ShopID = shop)
 		for shopOrder in shopOrders:
 			orderlist_temp = OrderList.objects.filter(ShopOrderID = shopOrder.ShopOrderID)
 			orderList = orderList + orderlist_temp
 		return orderList
-	def GetOrder(self, OrderID):
-		return OrderList.objects.get(ShopOrderID = OrderID)
-	def ShopProfit(ShopID):
+	def GetOrder(self, orderID):
+		return OrderList.objects.get(ShopOrderID = orderID)
+	def ShopProfit(self, shopID):
 		pass
-	def ConfirmRefund(OrderID):
-		pass
-	def RejectRefund(OrderID):
-		pass
-	def Close():
-		pass
-	def Open():
-		pass
-	def ModifyBasicInfo(newShop):
-		pass
+	def ConfirmRefund(self, orderID):
+		orderList = OrderList.objects.get(OrderID = orderID)
+		if orderList.OrderState == 4:
+			orderList.OrderState = 5
+			orderList.save()
+			return 1
+		else return 0
+	def RejectRefund(self, orderID):
+		orderList = OrderList.objects.get(OrderID = orderID)
+		if orderList.OrderState == 4:
+			orderList.OrderState = 6
+			orderList.save()
+			return 1
+		else return 0
+	def Close(self):
+		shop = Shop.objects.get(ShopID = self.shopID)
+		if shop.ShopState == 1:
+			shop.ShopState = 2
+			shop.save()
+			return 1
+		else return 0
+	def Open(self):
+		shop = Shop.objects.get(ShopID = self.shopID)
+		if shop.ShopState == 2:
+			shop.ShopState = 1
+			shop.save()
+			return 1
+		else return 0
+	def ModifyBasicInfo(self, newShop):  #####! need modify
+		shop = Shop.objects.get(ShopID = self.shopID)
+		shop = newShop
+		shop.save()
 	def SetAdPage(newAdvertisement):
 		pass
-	def ViewCommodity(CommodityID):
-		pass
-	def AddCommodity(newCommodity):
-		pass
-	def ModifyCommodity(CommodityID):
-		pass
-	def DeleteCommodity(CommodityID):
-		pass
+	def ViewCommodity(self, commodityID):
+		return Commodity.objects.get(id=commodityID)
+	def AddCommodity(self, name = none, description = none, camount = none, samount = none, pprice ＝ none, sprice = none, ctype = none, img = none, dicount = none):
+		shop = Shop.objects.get(ShopID = self.shopID)
+		Commodity.objects.create(CommodityName = name, CommodityDescription = description, CommodityAmount = camount, SoldAmount = samount, PurchasePrice = pprice, SellPrice = sprice, CommodityType = ctype, CommodityImage = img, CommodityDiscount = dicount, ShopID = shop)
+	def ModifyCommodity(self, name = none, description = none, camount = none, samount = none, pprice ＝ none, sprice = none, ctype = none, img = none, dicount = none):
+		commodity = Commodity.objects.get(id=commodityID)
+		##### commodity.
+	def DeleteCommodity(self, commodityID):
+		Commodity.objects.get(id=commodityID).delete()
 
-class Advertisement_class(object):
+class ShopAdv_class(object):
 	"""docstring for Advertisement"""
-	OwnerID = 0
-	CommodityList = []
-	ShopList = []
-	def __init__(self, arg):
-		self.OwnerID = 0
-		self.CommodityList = []
-		self.ShopList = []
+	def __init__(self, ownerType, ownerID):
+		self.ownerID = ownerID
+		self.Type = ownerType
+		if self.Type == "HomePage":
+			self.ownerID = Administrator.objects.get(id = ownerID)
+			self.shopList = HomeShopAdv.objects.filter(ownerID = self.ownerID)
+			self.commodityList = HomeCommodityAdv.objects.filter(ownerID = self.ownerID)
+		else:
+			self.ownerID = Seller.objects.get(id = ownerID)
+			self.shopList = ShopAdv.objects.filter(ownerID = self.ownerID)
+			self.commodityList = CommodityAdv.objects.filter(ownerID = self.ownerID)
 	def GetCommodityList():
 		pass
 	def GetShopList():
 		pass
-	def AddCommodity(newCommodity):
-		pass
-	def AddShop(newShop):
-		pass
-	def DeleteCommodity(CommodityID):
-		pass
+	def AddCommodity(self, commodity, description = none): #here commodity is a existed Commodity_class
+		if self.Type == "HomePage":
+			owner = Administrator.objects.get(id = self.ownerID)
+			HomeCommodityAdv.objects.create(CommodityID = commodity, OwnerID = owner, AdvertisementContent = description)
+		else:
+			owner = Seller.objects.get(id = self.ownerID)
+			HomeCommodityAdv.objects.create(CommodityID = commodity, OwnerID = owner, AdvertisementContent = description)
+	def AddShop(self, shop, description = none): #here shop is a existed shop_classes
+		if self.Type == "HomePage":
+			owner = Administrator.objects.get(id = self.ownerID)
+			HomeShopAdv.objects.create(ShopID = shop, OwnerID = owner, AdvertisementContent = description)
+		else:
+			owner = Seller.objects.get(id = self.ownerID)
+			HomeShopAdv.objects.create(ShopID = shop, OwnerID = owner, AdvertisementContent = description)
+	def DeleteCommodity(self, commodity):
+		if self.Type == "HomePage":
+			owner = Administrator.objects.get(id = self.ownerID)
+			HomeCommodityAdv.objects.get(CommodityID = commodity, ownerID = owner).delete()
+		else:
+			owner = Seller.objects.get(id = self.ownerID)
+			HomeCommodityAdv.objects.get(CommodityID = commodity, OwnerID = owner).delete()
 	def DeleteShop(ShopID):
-		pass
+		if self.Type == "HomePage":
+			owner = Administrator.objects.get(id = self.ownerID)
+			HomeShopAdv.objects.get(CommodityID = commodity, ownerID = owner).delete()
+		else:
+			owner = Seller.objects.get(id = self.ownerID)
+			HomeShopAdv.objects.get(CommodityID = commodity, OwnerID = owner).delete()
