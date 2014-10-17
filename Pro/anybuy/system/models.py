@@ -32,7 +32,8 @@ class Shop(models.Model):
 	ShopDescription = models.TextField(blank=True)
 	SellerID = models.ForeignKey(Seller)
 	ShopName = models.CharField(max_length=64,blank=True)
-	ShopState = models.BooleanField(blank=True)
+	#店铺状态：0-待审核，1-营业，2-歇业
+	ShopState = models.IntegerField()
 	def __unicode__(self):
 		return self.ShopName
 
@@ -101,7 +102,7 @@ class System(models.Model):
 		return '%s %s' %(self.BulletinBoardDate,self.BulletinBoardContent)
 
 class BlacklistSeller(models.Model):
-	BlacklistSellerReason = models.TextField(blank=True)
+	BlacklistSellerReason = models.TextField()
 	SellerID = models.ForeignKey(Seller)
 	AdministratorID = models.ForeignKey(Administrator)
 	def __unicode__(self):
@@ -167,7 +168,9 @@ class Commodity(models.Model):
 
 class OrderList(models.Model):
 	OrderListAccount = models.CharField(max_length=64)
-	OrderListState = models.CharField(max_length=64)
+	#订单状态：0-待付款，1-已付款待发货，2-待签收，
+	# 3-待评价，4-待退款，5-退款成功，6-卖家拒绝退款
+	OrderListState = models.IntegerField()
 	OrderListDate = models.DateField()
 	SellerID = models.ForeignKey(Seller)
 	ShopOrderID = models.ForeignKey(Shop)

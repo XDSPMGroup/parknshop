@@ -2,7 +2,7 @@
 
 from system.models import *
 
-class Admistrator_class:
+class Administrator_class:
 	#管理员ID编号
 	AdministratorID = 0
 	#管理员帐号
@@ -36,43 +36,43 @@ class Admistrator_class:
 		self.HomeShopAdvList = HomeShopAdv.objects.filter(OwnerID = administratorID)
 		self.HomeCommodityAdvList = HomeCommodityAdv.objects.filter(OwnerID = administratorID)
 		#BlackList
-		self.SellerBlackList = SellerBlackList.objects.get(AdministratorID = administratorID)
-		self.CustomerBlackList = CustomerBlackList.objects.get(AdministratorID = administratorID)
+		self.SellerBlackList = BlacklistSeller.objects.get(AdministratorID = administratorID)
+		self.CustomerBlackList = BlacklistCustomer.objects.get(AdministratorID = administratorID)
 	        
-	def GetOrderList():    #获得所有订单以查看销售历史。
-		return OrderList.objects.filter(OrderState = 3)
+	def GetOrderList(self):    #获得所有订单以查看销售历史。
+		return OrderList.objects.filter(OrderListState = 3)
 	
 	def GetCommission(self):   #计算出每一笔交易的佣金。
 		ComissionList = []
-		for c in OrderList.objects.filter(OrderState = 3):
-			ComissionList.append(Commodity(id = c.CommodityID.id) * \
+		for c in OrderList.objects.filter(OrderListState = 3):
+			ComissionList.append(Commodity(id = c.CommodityID.id) * 
             	(System.objects.get(id=1)).ComissionRate)
 		return ComissionList
 
-	def GetSpecificOrder(orderListID):       #获得特定订单
+	def GetSpecificOrder(self, orderListID):       #获得特定订单
 		return OrderList.objects.get(id = orderListID)
 
-	def Login(account, password):       #管理员登录
+	def Login(self, account, password):       #管理员登录
 		admin = Administrator.objects.filter(AdministratorAccount = account)
 		if (password == admin.AdministratorPassword):
 			return 1
 
-	def BackupDB():   #备份数据库
+	def BackupDB(self):   #备份数据库
 		pass
 	
-	def RestoreDB():  #恢复数据库
+	def RestoreDB(self):  #恢复数据库
 		pass
 
-	def ShopListDealShopApply():  #处理店铺申请,从数据库中选择所有店铺状态为’待审核’的店铺。
+	def ShopListDealShopApply(self):  #处理店铺申请,从数据库中选择所有店铺状态为’待审核’的店铺。
 		return Shop.objects.filter(ShopState = 0)
 	
-	def PassApply(shopID):    #审核通过
+	def PassApply(self, shopID):    #审核通过
 		s = Shop.objects.filter(id = shopID)
 		s.ShopState = 1
 		s.save()
 		return 1
 	
-	def RejectApply(shopID):  #审核不通过
+	def RejectApply(self, shopID):  #审核不通过
 		s = Shop.objects.filter(id = shopID)
 		s.ShopState = 2
 		s.save()
@@ -80,9 +80,9 @@ class Admistrator_class:
 	
 	def BlacklistCustomer(self, customerID):  #拉黑买家,参数为买家ID
 		r = raw_input("input:")  #input BlacklistReason
-        b = BlacklistCustomer(BlacklistCustomerReason = r,
-        	AdministratorID = self.AdministratorID, CustomerID = customerID)
-        b.save()
+		b = BlacklistCustomer(BlacklistCustomerReason = r,\
+			AdministratorID = self.AdministratorID, CustomerID = customerID)
+		b.save()
 	
 	def BlacklistSeller(self, sellerID):    #拉黑卖家,参数为卖家ID
 		r = raw_input("input:")   #input BlacklistReason
@@ -90,25 +90,25 @@ class Admistrator_class:
 			AdministratorID = self.AdministratorID, SellerID = sellerID)
 		b.save()
 
-	def GetBlacklistCustomer():  #查看买家黑名单信息
+	def GetBlacklistCustomer(self):  #查看买家黑名单信息
 		return BlackListCustomer.objects.all()
 
-	def GetBlacklistSeller():  #查看卖家黑名单信息
+	def GetBlacklistSeller(self):  #查看卖家黑名单信息
 		return BlackListSeller.objects.all()
 
-	def RestoreCustomer(customerID):  #恢复买家帐号
+	def RestoreCustomer(self, customerID):  #恢复买家帐号
 		c = BlackListCustomer.objects.get(id = customerID)
 		c.delete()
 
-	def RestoreSeller(sellerID):    #恢复卖家帐号
+	def RestoreSeller(self, sellerID):    #恢复卖家帐号
 		s = BlackListSeller.objects.get(id = sellerID)
 		s.delete()
 	
-	def DeleteCustomer(customerID):   #删除买家帐号
+	def DeleteCustomer(self, customerID):   #删除买家帐号
 		c = Customer.objects.get(id = customerID)
 		c.delete()
 	
-	def DeleteSeller(sellerID):     #删除卖家帐号
+	def DeleteSeller(self, sellerID):     #删除卖家帐号
 		s = Seller.objects.get(SellerID = sellerID)
 		s.delete()
 	
@@ -142,7 +142,7 @@ class System_class:
 	def GetAnnouncement(self):  #查看公告板(公共API)
 		return self.Announcement 
 	
-	def ModifyAnnouncement():       #修改公告(系统管理员权限)
+	def ModifyAnnouncement(self):       #修改公告(系统管理员权限)
 		r = raw_input("input:")
 		p = System.objects.get(id = 1)
 		p.BulletinBoardDecription = r                         
