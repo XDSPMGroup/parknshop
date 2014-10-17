@@ -17,3 +17,5 @@ tags
 *.pyc
 *~
 *.png
+*.ids
+*.xml
