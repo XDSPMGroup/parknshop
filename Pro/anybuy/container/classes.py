@@ -83,3 +83,50 @@ class Favorite_class:
 		#CommodityList = Commodity.objects.all()
 		return self.CommodityList
 
+class Order_class:
+	OrderID=0
+	OrderDate=time.strftime('%Y-%m-%d',time.localtime(time.time()))
+	OrderState=0  
+	OrderExpressID=""
+	OrderTransfee=0
+	OrderCost=0.0
+	OrderProfit=0
+	OrderCommodityList=[]
+	OrderCommodityNumberList=[]
+	def __init__(self,shopID,orderID):	
+   		CommodityList=[]
+		CommodityNumberList =[]
+		Cost=0
+		for o in Commodity.objects.filter( ShopID=Shop.objects.get(id=shopID)):
+			CommodityList.append(o)    
+		self.OrderCommodityList= CommodityList
+		for n in Commodity.objects.filter( ShopID=Shop.objects.get(id=shopID)):
+			CommodityNumberList.append(n.CommodityAmount)
+		self.OrderCommodityNumberList=CommodityNumberList
+		for n in Commodity.objects.filter( ShopID=Shop.objects.get(id=shopID)):
+			Cost+=n.CommodityAmount*n.SellPrice
+		self.OrderCost=Cost
+		self.OrderID=orderID
+		order=OrderList.objects.get(id=orderID)
+		self.OrderDate=order.OrderListDate
+		self. OrderState=order. OrderListState
+		self.OrderExpressID=  ""
+		# self.OrderTransfee=OrderTransfee
+		self.OrderProfit=0
+
+	def GetCommodityList(self,orderID):
+		OrderCommodityList=[]
+		OrderCommodityList.append(OrderList.objects.get(id=orderID).CommodityID)
+		return OrderCommodityList
+
+	def SetOrderState(self,orderState):
+		order=OrderList.objects.get(id=self.OrderID)
+		order.OrderListState=orderState
+		order.save()
+
+	def GetOrderProfit(self):
+		TotalCost=0
+		for commodity in self.OrderCommodityList: 
+			TotalCost+= (commodity.SoldAmount * (commodity.SellPrice-commodity.PurchasePrice))
+		return TotalCost
+
