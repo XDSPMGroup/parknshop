@@ -85,15 +85,15 @@ class Administrator_class:
 	def BlacklistCustomer(self, customerID):  #拉黑买家,参数为买家ID
 		r = raw_input("input:")  #input BlacklistReason
 		b = BlacklistCustomer(BlacklistCustomerReason = r,\
-			AdministratorID = Administrator_class(self.AdministratorID), \
-			CustomerID = customerID)
+			AdministratorID = Administrator.objects.get(id = self.AdministratorID), \
+			CustomerID = Customer.objects.get(id = customerID))
 		b.save()
 	
 	def BlacklistSeller(self, sellerID):    #拉黑卖家,参数为卖家ID
 		r = raw_input("input:")   #input BlacklistReason
 		b = BlacklistSeller(BlacklistSellerReason = r,
-			AdministratorID = Administrator_class(self.AdministratorID), \
-			SellerID = sellerID)
+			AdministratorID = Administrator.objects.get(id = self.AdministratorID), \
+			SellerID = Seller.objects.get(id = sellerID))
 		b.save()
 
 	def GetBlacklistCustomer(self):  #查看买家黑名单信息
@@ -123,10 +123,9 @@ class Administrator_class:
 		Adv = HomeShopAdv(ShopID = Shop_class(shopID), \
 			OwnerID = self.AdministratorID, AdvertisementContent = r)
 		Adv.save()
-    
 	        
- 	def SetHomeCommodityAdv(self, commodityID, ownerID):  #配置主页商品广告
- 		r = raw_input("input:")   #input AdvertisementContent
+	def SetHomeCommodityAdv(self, commodityID, ownerID):  #配置主页商品广告
+		r = raw_input("input:")   #input AdvertisementContent
 		Adv = HomeShopAdv(CommodityID = Commodity_class(commodityID), \
 			OwnerID = self.AdministratorID, AdvertisementContent = r)
 		Adv.save()
