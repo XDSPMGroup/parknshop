@@ -1,7 +1,7 @@
 #encoding:utf-8
 
 from system.models import *
-#from store.classes import *
+from store.classes import *
 class Administrator_class:
 	#管理员ID编号
 	AdministratorID = 0
@@ -53,7 +53,7 @@ class Administrator_class:
 		return OrderList.objects.get(id = orderListID)
 
 	def Login(self, account, password):       #管理员登录
-		admin = Administrator.objects.filter(AdministratorAccount = account)
+		admin = Administrator.objects.get(AdministratorAccount = account)
 		if (password == admin.AdministratorPassword):
 			return 1
 
