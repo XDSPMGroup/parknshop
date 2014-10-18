@@ -103,7 +103,7 @@ class Shop_class:
 	def DeleteCommodity(self, commodityID):
 		Commodity.objects.get(id=commodityID).delete()
 
-class ShopAdv_class(object):
+class Adv_class(object):
 	"""docstring for Advertisement"""
 	def __init__(self, ownerType, ownerID):
 		self.ownerID = ownerID
