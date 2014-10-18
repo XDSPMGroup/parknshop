@@ -15,7 +15,8 @@ class Cart_class:
 		Amount = 0
 		# Commodity List
 		for c in Cart.objects.filter(id = cartID):
-			CommodityList.append(Commodity_class(c.CommodityID.id))
+			#CommodityList.append(Commodity_class(c.CommodityID.id))
+			CommodityList.append(c)
 		# Quantity List
 		for q in Cart.objects.filter(id = cartID):
 			QuantityList.append(q.CartCommodityAmount) 
@@ -34,14 +35,14 @@ class Cart_class:
 	# 在购物车添加商品
 	def AddCommodity(self, customerID, commodityID):
 		C = Cart(CartDate = time.strftime('%Y-%m-%d',time.localtime(time.time())),\
-			CustomerID = Customer_class(customerID), \
-			CommodityID = Commodity_class(commodityID))
+			CustomerID = Customer.objects.get(id = customerID), \
+			CommodityID = Commodity.objects.get(id = commodityID))
 		C.save()
 
 	#在购物车删除商品
 	def DeleteCommodity(self, customerID, commodityID):
-		C = Cart.objects.get(CustomerID = Customer_class(customerID),\
-			CommodityID=Commodity_class(commodityID))
+		C = Cart.objects.get(CustomerID = Customer.objects.get(id = customerID),\
+			CommodityID=Commodity.objects.get(id = commodityID))
 		C.delete()
 
 	#获得购物车的商品列表
@@ -68,8 +69,8 @@ class Favorite_class:
 	# 在收藏夹添加商品
 	def AddCommodity(self, customerID, commodityID):
 		C = Favorite(FavoriteDate = time.strftime('%Y-%m-%d',time.localtime(time.time())),\
-			CustomerID = Customer_class(customerID), \
-			CommodityID = Commodity_class(commodityID))
+			CustomerID = Customer.objects.get(id = customerID), \
+			CommodityID = Commodity.objects.get(id = commodityID))
 		C.save()
 
 	#在收藏夹删除商品

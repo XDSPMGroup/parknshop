@@ -36,8 +36,8 @@ class Administrator_class:
 		self.HomeShopAdvList = HomeShopAdv.objects.filter(OwnerID = administratorID)
 		self.HomeCommodityAdvList = HomeCommodityAdv.objects.filter(OwnerID = administratorID)
 		#BlackList
-		self.SellerBlackList = BlacklistSeller.objects.get(AdministratorID = administratorID)
-		self.CustomerBlackList = BlacklistCustomer.objects.get(AdministratorID = administratorID)
+		self.SellerBlackList = BlacklistSeller.objects.filter(AdministratorID = administratorID)
+		self.CustomerBlackList = BlacklistCustomer.objects.filter(AdministratorID = administratorID)
 	        
 	def GetOrderList(self):    #获得所有订单以查看销售历史。
 		return OrderList.objects.filter(OrderListState = 3)
@@ -120,14 +120,16 @@ class Administrator_class:
 	
 	def SetHomeShopAdv(self, shopID, ownerID):  #配置主页店铺广告
 		r = raw_input("input:")   #input AdvertisementContent
-		Adv = HomeShopAdv(ShopID = Shop_class(shopID), \
-			OwnerID = self.AdministratorID, AdvertisementContent = r)
+		Adv = HomeShopAdv(ShopID = Shop.objects.get(id = shopID), \
+			OwnerID = Administrator.objects.get(id = ownerID), \
+			AdvertisementContent = r)
 		Adv.save()
 	        
 	def SetHomeCommodityAdv(self, commodityID, ownerID):  #配置主页商品广告
 		r = raw_input("input:")   #input AdvertisementContent
-		Adv = HomeShopAdv(CommodityID = Commodity_class(commodityID), \
-			OwnerID = self.AdministratorID, AdvertisementContent = r)
+		Adv = HomeShopAdv(CommodityID = Commodity.objects.get(id = commodityID), \
+			OwnerID = Administrator.objects.get(id = ownerID), \
+			AdvertisementContent = r)
 		Adv.save()
 
 
