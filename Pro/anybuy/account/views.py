@@ -5,38 +5,86 @@ from django import forms
 from django.shortcuts import render_to_response
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import RequestContext
-from account.models import *
+from system.models import *
+import hashlib
 
 #定义表单模型
-class UserForm(forms.Form):
-    username = forms.CharField(label='用户名：',max_length=100)
-    passworld = forms.CharField(label='密码：',widget=forms.PasswordInput())
-    email = forms.EmailField(label='电子邮件：')
-
-	CustomerAccount = forms.CharField(label='Username:', max_length=64)
+class CustomerForm(forms.Form):
+	CustomerAccount = forms.CharField(label='Account:', max_length=64)
 	CustomerName = forms.CharField(label='Name:', max_length=64)
-	CustomerPassword = forms.CharField(label='password:', widget=forms.PasswordInput(), max_length=16)
+	CustomerPassword = forms.CharField(label='Password:', widget=forms.PasswordInput(), max_length=16)
 	#CustomerType = forms.CharField(label='Type：', max_length=1, choices=CustomerTypeChoices,blank=True)
-	CustomerTelephone = forms.CharField(label='Tel:',max_length=64,blank=True)
-	CustomerEmail = forms.EmailField()
-	CustomerAddress = forms.TextField(label='e-mail:',blank=True)
+	CustomerTelephone = forms.CharField(label='Tel:',max_length=64)
+	CustomerEmail = forms.EmailField(label='E-mail:')
+	CustomerAddress = forms.CharField(label='Address:')
+
+class UserForm(forms.Form):
+	identity = forms.ChoiceField(label='your identity:')
+	UserAccount = forms.CharField(label='Account:', max_length=64)
+	UserPassword = forms.CharField(label='Password:', widget=forms.PasswordInput(), max_length=16)
+
 # Create your views here.
+
 def register(request):
-    if request.method == "POST":
-        uf = UserForm(request.POST)
-        if uf.is_valid():
-            #获取表单信息
-            username = uf.cleaned_data['username']
-            passworld = uf.cleaned_data['passworld']
-            email = uf.cleaned_data['email']
-            #将表单写入数据库
-            user = Customer()
-            user.username = username
-            user.passworld = passworld
-            user.email = email
-            user.save()
-            #返回注册成功页面
-            return render_to_response('success.html',{'username':username})
-    else:
-        uf = UserForm()
-    return render_to_response('register.html',{'uf':uf})
+	if request.method == "POST":
+		cf = CustomerForm(request.POST)
+		if cf.is_valid():
+			#get form
+			customer = Customer()
+			customer.CustomerAccount = cf.cleaned_data['CustomerAccount']
+			customer.CustomerName = cf.cleaned_data['CustomerName']
+			pw = cf.cleaned_data['CustomerPassword']
+			pw_md5 = hashlib.md5(pw).hexdigest()
+			customer.CustomerPassword = pw_md5[0:16]
+			customer.CustomerEmail = cf.cleaned_data['CustomerEmail']
+			customer.CustomerAddress = cf.cleaned_data['CustomerAddress']
+			customer.CustomerTelephone = cf.cleaned_data['CustomerTelephone']
+			#write into db
+			customer.save()
+			#返回注册成功页面
+			return render_to_response('success.html',{'customer':customer})
+	else:
+		cf = CustomerForm()
+		#cf = CustomerForm(request.POST)
+	return render_to_response('register.html',{'cf':cf}, context_instance=RequestContext(request))
+
+
+
+def login(request):
+	wrongpw = False
+	if request.method == 'POST':
+		uf = UserForm(request.POST)
+		if uf.is_valid():
+			UserAccount = uf.cleaned_data['UserAccount']
+			pw = uf.cleaned_data['UserPassword']
+			pw_md5 = hashlib.md5(pw).hexdigest()
+			UserPassword = pw_md5[0:16]
+			user = Customer.objects.filter(CustomerAccount__exact = UserAccount, CustomerPassword__exact = UserPassword)
+			if user:
+				request.session['UserAccount'] = UserAccount
+				#return render_to_response('index.html',{'customer':user})
+				return HttpResponseRedirect('/account/index/')
+			else:
+				wrongpw = True
+				return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
+	else:
+		uf = UserForm()
+		return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
+
+def index(request):
+	UserName = request.session.get('UserAccount', False)#, 'anybody')
+	if UserName:
+		return render_to_response('index.html', {'username': UserName}, context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/account/login/')
+
+def logout(request):
+	session = request.session.get('UserAccount', False)
+	if session:
+		del request.session['UserAccount']
+		return render_to_response('logout.html', {'CustomerName': session}, context_instance=RequestContext(request))
+	else:
+		return HttpResponse('You have not login!')
+
+
+

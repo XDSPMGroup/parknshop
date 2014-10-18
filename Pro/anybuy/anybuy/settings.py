@@ -70,6 +70,11 @@ DATABASES = {
     }
 }
 
+#template
+TEMPLATE_DIRS=(
+    os.path.join(BASE_DIR, 'account', 'templates'),
+)
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
