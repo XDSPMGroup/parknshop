@@ -48,10 +48,16 @@ def register(request):
 		#cf = CustomerForm(request.POST)
 	return render_to_response('register.html',{'cf':cf}, context_instance=RequestContext(request))
 
+def search(request, keyword):  #/search/keyword/ 以keyword为关键字进行搜索，返回一个commodityList
+	commodityList = Commodity.objects.filter(CommodityName__contains = keyword)
+	return render_to_response('Customer_CommidityList.html', {'commodityList': commodityList, 'keyword': keyword})
 
+def getCommodity(request, id):  #/commodity/id/ 返回ID=id 的Commodity
+	commodity = Commodity.objects.get(CommodityName = int(id))
+	return render_to_response('Customer_CommodityInfo.html', {'commodity': commodity})
 
 def login(request):
-	wrongpw = False
+	wrongpw = False  #wrongpw == True 代表密码错误
 	if request.method == 'POST':
 		uf = UserForm(request.POST)
 		if uf.is_valid():

@@ -11,6 +11,10 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^account/', include('account.urls')),
+    url(r'^index/$', 'account.views.index',name = 'index'),
+    url(r'^/$', 'account.views.index',name = 'index'),
+    url(r'^search/(?P<keyword>\w*)/$', 'account.views.search'),
+    url(r'^commodity/id/(?P<id>\d*)/$', 'account.views.getCommodity'),
     #url(r'^account/$', views.register, name='register'),
     #url(r'^account/register/$',views.register, name = 'register'),
 )
