@@ -73,6 +73,7 @@ DATABASES = {
 #template
 TEMPLATE_DIRS=(
     os.path.join(BASE_DIR, 'account', 'templates'),
+    os.path.join(BASE_DIR, 'base_template'),
 )
 
 # Internationalization
@@ -93,7 +94,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_PATH = os.path.join(BASE_DIR, 'base_template')
 # Upload picture
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
