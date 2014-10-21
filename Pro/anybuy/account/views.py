@@ -9,7 +9,13 @@ from system.models import *
 import hashlib
 
 #定义表单模型
+IDENTITY = (
+('C', 'Customer'),
+('S', 'Seller'),
+)
+
 class CustomerForm(forms.Form):
+	identity = forms.ChoiceField(label='your identity:', choices=IDENTITY)
 	CustomerAccount = forms.CharField(label='Account:', max_length=64)
 	CustomerName = forms.CharField(label='Name:', max_length=64)
 	CustomerPassword = forms.CharField(label='Password:', widget=forms.PasswordInput(), max_length=16)
@@ -19,7 +25,7 @@ class CustomerForm(forms.Form):
 	CustomerAddress = forms.CharField(label='Address:')
 
 class UserForm(forms.Form):
-	identity = forms.ChoiceField(label='your identity:')
+	#identity = forms.ChoiceField(label='your identity:', choices=IDENTITY)
 	UserAccount = forms.CharField(label='Account:', max_length=64)
 	UserPassword = forms.CharField(label='Password:', widget=forms.PasswordInput(), max_length=16)
 
@@ -31,6 +37,10 @@ def register(request):
 		if cf.is_valid():
 			#get form
 			customer = Customer()
+			if cf.cleaned_data['identity'] == 'C':
+				customer.CustomerTypeChoices = 'J'
+			else: 
+				customer.CustomerTypeChoices = 'S'
 			customer.CustomerAccount = cf.cleaned_data['CustomerAccount']
 			customer.CustomerName = cf.cleaned_data['CustomerName']
 			pw = cf.cleaned_data['CustomerPassword']
@@ -53,7 +63,8 @@ def search(request, keyword):  #/search/keyword/ 以keyword为关键字进行搜
 	return render_to_response('Customer_CommidityList.html', {'commodityList': commodityList, 'keyword': keyword})
 
 def getCommodity(request, id):  #/commodity/id/ 返回ID=id 的Commodity
-	commodity = Commodity.objects.get(CommodityName = int(id))
+	
+	commodity = Commodity.objects.get(id = int(id))
 	return render_to_response('Customer_CommodityInfo.html', {'commodity': commodity})
 
 def login(request):
@@ -65,11 +76,13 @@ def login(request):
 			pw = uf.cleaned_data['UserPassword']
 			pw_md5 = hashlib.md5(pw).hexdigest()
 			UserPassword = pw_md5[0:16]
-			user = Customer.objects.filter(CustomerAccount__exact = UserAccount, CustomerPassword__exact = UserPassword)
+			user = Customer.objects.get(CustomerAccount__exact = UserAccount, CustomerPassword__exact = UserPassword)
+			request.session['UserType'] = user.CustomerTypeChoices
 			if user:
 				request.session['UserAccount'] = UserAccount
+				request.session['UserID'] = user.id
 				#return render_to_response('index.html',{'customer':user})
-				return HttpResponseRedirect('/account/index/')
+				return HttpResponseRedirect('/index/')
 			else:
 				wrongpw = True
 				return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
@@ -78,16 +91,20 @@ def login(request):
 		return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
 
 def index(request):
-	UserName = request.session.get('UserAccount', False)#, 'anybody')
-	if UserName:
-		return render_to_response('index.html', {'username': UserName}, context_instance=RequestContext(request))
+	UserID = request.session.get('UserID', False)#, 'anybody')
+	UserType = request.session.get('UserType')
+	if UserID:
+		user = Customer.objects.get(id = UserID)
+		UserName = user.CustomerName
+		#locals() -> {'UserName': UserName, 'UserType': UserType, 'UserID':UserID}
+		return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 	else:
-		return HttpResponseRedirect('/account/login/')
+		return HttpResponseRedirect('/login/')
 
 def logout(request):
-	session = request.session.get('UserAccount', False)
+	session = request.session.get('UserID', False)
 	if session:
-		del request.session['UserAccount']
+		del request.session['UserID']
 		return render_to_response('logout.html', {'CustomerName': session}, context_instance=RequestContext(request))
 	else:
 		return HttpResponse('You have not login!')

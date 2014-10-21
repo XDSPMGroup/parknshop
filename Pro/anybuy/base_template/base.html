@@ -45,24 +45,41 @@
         
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
+            {% if UserType == 'J'%}
             <li style="border-right: 1px solid #C0C0C0">
               <a href="/favorate/">My Favorite</a>
             </li>
             <li>
               <a href="/cart/">My Carts</a>
             </li>
+            {% endif %}
+            {% if UserType == 'S' %}
+            <li>
+              <a href="/shop/">My Shops</a>
+            </li>
+            {% endif %}
           </ul>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control">
-            </div> <button type="submit" class="btn btn-default">Search</button>
+              <input type="text" id="keyword" class="form-control">
+            </div> 
+
+<script language="javascript">
+ function searchForCommodity() {
+  keyword = document.getElementById("keyword").value;
+  location.href='/search/'+keyword;
+ }
+</script>
+
+            <button type="button" onclick="searchForCommodity()" id="search" class="btn btn-default">Search</button>
+            
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li>
               <a href="/" style = "color:#3299CC">Homepage</a>
             </li>
             <li>
-              <a href="/{{usertype}}/{{userid}}">Hello,{{username}}</a>
+              <a href="/user/{{UserID}}">Hello,{{UserName}}</a>
             </li>
             <li>
               <a href="/help_center/" style = "color:#A67D3D">Help center</a>

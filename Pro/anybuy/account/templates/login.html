@@ -2,7 +2,7 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h1>登陆页面：</h1>
+<h1>Please Login</h1>
 {% if wrongpw %}
 Wrong account or password!
 {% endif %}
@@ -11,6 +11,5 @@ Wrong account or password!
     {{uf.as_p}}
     <input type="submit" value = "ok" />
 </form>
-<br>
-<a href="/account/register/">注册</a>
+No account? <a href="/register/">Register</a>
 {% endblock %}
