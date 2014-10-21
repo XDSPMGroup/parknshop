@@ -1,23 +1,55 @@
+#coding=utf-8
 from system.models import *
 
 class Commodity_class:
 	"""This is Commodity class"""
-	def __init__(self, commodityID):
-		self.commodityID = commodityID
-		commodity = Commodity.objects.get(id=commodityID)
-		self.shopID = commodity.ShopID
-		self.commodityName = commodity.CommodityName
-		self.commodityType = commodity.CommodityType
-		#self.CommoditySecondType = commodity.CommoditySecondType
-		self.commodityDescription = commodity.CommodityDescription
-		self.commodityAmount = commodity.CommodityAmount
-		self.commoditySoldAmount = commodity.SoldAmount
-		self.purchasePrice = commodity.PurchasePrice
-		self.sellPrice = commodity.SellPrice
-		self.purchasePrice = commodity.PurchasePrice
-		self.commodityImage = commodity.CommodityImage
-		self.commodityDiscount = commodity.CommodityDiscount
-		self.commentsList = Comment.objects.filter(CommodityID=commodityID)
+	# 修改之后：
+	#1，__init__函数中加入了多个参数，默认None；
+	#2，用if commodityID != None来判断是以哪种方式调用
+	#3，若没有传入commodityID，那就新建一个，并调用save()保存至数据库
+	def __init__(self, commodityID = None, commodityName = None, shopID =None, commodityType = None, commodityDescription = None, commodityAmount = None, sellPrice = None, purchasePrice = None, commodityImage = None, commodityDiscount = None, commentsList = None,):
+		if commodityID != None:
+			self.commodityID = commodityID
+			commodity = Commodity.objects.get(id=commodityID)
+			self.shopID = commodity.ShopID
+			self.commodityName = commodity.CommodityName
+			self.commodityType = commodity.CommodityType
+			#self.CommoditySecondType = commodity.CommoditySecondType
+			self.commodityDescription = commodity.CommodityDescription
+			self.commodityAmount = commodity.CommodityAmount
+			self.commoditySoldAmount = commodity.SoldAmount
+			self.purchasePrice = commodity.PurchasePrice
+			self.sellPrice = commodity.SellPrice
+			self.commodityImage = commodity.CommodityImage
+			self.commodityDiscount = commodity.CommodityDiscount
+			self.commentsList = Comment.objects.filter(CommodityID=commodityID)
+		else:
+			self.commodityName = commodityName
+			self.commodityType = commodityType
+			self.shopID = Shop.objects.get(id = shopID)
+			#self.CommoditySecondType = CommoditySecondType
+			self.commodityDescription = commodityDescription
+			self.commodityAmount = commodityAmount
+			self.commoditySoldAmount = 0
+			self.purchasePrice = purchasePrice
+			self.sellPrice = sellPrice
+			self.commodityImage = commodityImage
+			self.commodityDiscount = commodityDiscount
+			self.save()
+			#self.commentsList = commentsList
+	def save(self): 
+		commodity = Commodity()
+		commodity.CommodityName=self.commodityName
+		commodity.CommodityType=self.commodityType
+		commodity.CommodityDescription=self.commodityDescription
+		commodity.CommodityAmount=self.commodityAmount
+		commodity.SoldAmount=self.commoditySoldAmount
+		commodity.PurchasePrice=self.purchasePrice
+		commodity.SellPrice=self.sellPrice
+		commodity.CommodityImage=self.commodityImage
+		commodity.CommodityDiscount=self.commodityDiscount
+		commodity.ShopID = self.shopID
+		commodity.save()
 	def SetDiscount(self, newDiscount):
 		commodity = Commodity.objects.get(id=self.commodityID)
 		commodity.CommodityDiscount = newDiscount
