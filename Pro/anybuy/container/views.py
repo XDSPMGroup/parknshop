@@ -8,6 +8,3 @@ from django.template import RequestContext
 from system.models import *
 
 # Create your views here.
-
-def Seller_ShopBaseInfo(request):
-	
