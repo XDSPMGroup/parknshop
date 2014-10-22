@@ -78,11 +78,16 @@
             <li>
               <a href="/" style = "color:#3299CC">Homepage</a>
             </li>
+            {% if UserName %}
             <li>
-              <a href="/user/{{UserID}}">Hello,{{UserName}}</a>
+              <a href="/myinfo">Hello,{{UserName}}</a>
             </li>
+            {% endif %}
             <li>
               <a href="/help_center/" style = "color:#A67D3D">Help center</a>
+            </li>
+            <li>
+              <a href="/logout/" style = "color:#A67D3D">Logout</a>
             </li>
             <!-- <li class="dropdown">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
