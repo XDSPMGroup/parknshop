@@ -7,33 +7,37 @@ from django.db import models
 class HelpCenter(models.Model):
 	HelpCenterName = models.CharField(max_length=64)
 	HelpCenterContent = models.TextField(blank=True)
-
 	def __unicode__(self):
 		return self.HelpCenterName
 
 class Seller(models.Model):
 	SellerTypeChoices=(
-		('J','Junior seller'),
-		('I','Intermediate seller'),
-		('S','Senior seller'),
+		(0,'limited user'),
+		(1,'normal user'),
 	)
 	SellerAccount = models.CharField(max_length=64)
 	SellerPassword = models.CharField(max_length=16)
 	SellerName = models.CharField(max_length=64)
 	SellerType = models.CharField(max_length=1,choices=SellerTypeChoices,blank=True)
-	SellerRealName = models.CharField(max_length=64)
-	SellerRealID = models.IntegerField()
+	SellerRealName = models.CharField(max_length=64,null=True)
+	SellerRealID = models.IntegerField(null=True)
 	SellerTelephone = models.CharField(max_length=64,blank=True)
 	SellerEmail = models.EmailField(blank=True)
+	SellerAddress = models.CharField(max_length=64,blank=True)
 	def __unicode__(self):
 		return '%s %s' %(self.SellerAccount,self.SellerName)
 
 class Shop(models.Model):
+	States=(
+		(0, 'checking'),
+		(1, 'open'),
+		(2, 'close')
+	)
 	ShopDescription = models.TextField(blank=True)
 	SellerID = models.ForeignKey(Seller)
 	ShopName = models.CharField(max_length=64,blank=True)
 	#店铺状态：0-待审核，1-营业，2-歇业
-	ShopState = models.IntegerField()
+	ShopState = models.IntegerField(choices=States)
 	def __unicode__(self):
 		return self.ShopName
 
@@ -115,7 +119,16 @@ class Discount(models.Model):
 		return '%s' %(self.DiscountRate)
 
 class ShopOrder(models.Model):
-	ShopOrderState = models.CharField(max_length=64)
+	StateChoices=(
+		(0, 'paying'),
+		(1, 'shipping'),
+		(2, 'signing'),
+		(3, 'commenting'),
+		(4, 'refunding'),
+		(5, 'refunded'),
+		(6, 'refund refuded'),
+	)
+	ShopOrderState = models.IntegerField(choices=StateChoices)
 	ShopOrderDate = models.DateField()
 	ShopID = models.ForeignKey(Shop)
 	def __unicode__(self):
@@ -123,9 +136,8 @@ class ShopOrder(models.Model):
 
 class Customer(models.Model):
 	CustomerTypeChoices=(
-		('J','Junior customer'),
-		('I','Intermediate customer'),
-		('S','Senior customer'),
+		(0,'limited user'),
+		(1,'normal user'),
 	)
 	CustomerAccount = models.CharField(max_length=64)
 	CustomerName = models.CharField(max_length=64)
@@ -134,22 +146,46 @@ class Customer(models.Model):
 	CustomerTelephone = models.CharField(max_length=64,blank=True)
 	CustomerEmail = models.EmailField()
 	CustomerAddress = models.TextField(blank=True)
-
 	def __unicode__(self):
 		return u'%s %s' %(self.CustomerAccount, self.CustomerName)
 
+class CustomerOrder(models.Model):
+	StateChoices=(
+		(0, 'paying'),
+		(1, 'shipping'),
+		(2, 'signing'),
+		(3, 'commenting'),
+		(4, 'refunding'),
+		(5, 'refunded'),
+		(6, 'refund refuded'),
+	)
+	CustomerOrderState = models.IntegerField(choices=StateChoices)
+	CustomerOrderDate = models.DateField()
+	CustomerID = models.ForeignKey(Customer)
+	def __unicode__(self):
+		return '%s %s' %(self.CustomerOrderState, self.CustomerOrderDate)
+
 class OrderList(models.Model):
-	OrderListAccount = models.CharField(max_length=64)
+	#OrderListAccount = models.CharField(max_length=64)
 	#订单状态：0-待付款，1-已付款待发货，2-待签收，
 	# 3-待评价，4-待退款，5-退款成功，6-卖家拒绝退款
-	OrderListState = models.IntegerField()
+	StateChoices=(
+		(0, 'paying'),
+		(1, 'shipping'),
+		(2, 'signing'),
+		(3, 'commenting'),
+		(4, 'refunding'),
+		(5, 'refunded'),
+		(6, 'refund refuded'),
+	)
+	OrderListState = models.IntegerField(choices=StateChoices)
 	OrderListDate = models.DateField()
-	SellerID = models.ForeignKey(Seller)
-	ShopOrderID = models.ForeignKey(Shop)
-	CustomerOrderID = models.ForeignKey(Customer)
+	#SellerID = models.ForeignKey(Seller)
+	ShopOrderID = models.ForeignKey(ShopOrder)
+	CustomerOrderID = models.ForeignKey(CustomerOrder)
 	CommodityID = models.ForeignKey(Commodity)
 	def __unicode__(self):
-		return '%s %s %s' %(self.OrderListAccount,self.OrderListDate, self.OrderListState)
+		return '%s %s' %(self.OrderListDate, self.OrderListState)
 
 class Comment(models.Model):
 	CommentContent = models.TextField(blank=True)
@@ -173,19 +209,6 @@ class Favorite(models.Model):
 	def __unicode__(self):
 		return '%s' %(self.FavoriteDate)
 
-class CustomerOrder(models.Model):
-	CustomerOrderState = models.CharField(max_length=64)
-	CustomerOrderDate = models.DateField()
-	CustomerID = models.ForeignKey(Customer)
-	def __unicode__(self):
-		return '%s %s' %(self.CustomerOrderState, self.CustomerOrderDate)
-
-class NotificationCustomer(models.Model):
-	NotificationContent = models.TextField()
-	CustomerID = models.ForeignKey(Customer)
-	SellerID = models.ForeignKey(Seller)
-	def __unicode__(self):
-		return self.NotificationContent
 
 class BlacklistCustomer(models.Model):
 	BlacklistCustomerReason = models.TextField()

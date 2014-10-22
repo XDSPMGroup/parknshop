@@ -19,3 +19,5 @@ Seller views | Oct 27 | 寇苗娟，王腾
 Admin views | Oct 24 | 郭枭鹏，李爽
 
 PS: You need to install Python Imaging Library in http://www.pythonware.com/products/pil/ before you runserver.
+
+    <img src="/site_media/{{msg.imageurl}}"</img>
