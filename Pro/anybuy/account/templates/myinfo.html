@@ -2,11 +2,11 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<h1>Register here:</h1>
+<h1>Change your info here:</h1>
 
 <form method = 'post' enctype="multipart/form-data">
 {% csrf_token %}
 {{cf.as_p}}
-<input type="submit" value = "register" />
+<input type="submit" value = "modify" />
 </form>
 {% endblock %}

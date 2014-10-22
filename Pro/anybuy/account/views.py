@@ -24,8 +24,18 @@ class CustomerForm(forms.Form):
 	CustomerEmail = forms.EmailField(label='E-mail:')
 	CustomerAddress = forms.CharField(label='Address:')
 
-class UserForm(forms.Form):
+class CustomerForm2(forms.Form):
 	#identity = forms.ChoiceField(label='your identity:', choices=IDENTITY)
+	CustomerAccount = forms.CharField(label='Account:', max_length=64)
+	CustomerName = forms.CharField(label='Name:', max_length=64)
+	CustomerPassword = forms.CharField(label='Password:', widget=forms.PasswordInput(), max_length=16)
+	#CustomerType = forms.CharField(label='Type：', max_length=1, choices=CustomerTypeChoices,blank=True)
+	CustomerTelephone = forms.CharField(label='Tel:',max_length=64)
+	CustomerEmail = forms.EmailField(label='E-mail:')
+	CustomerAddress = forms.CharField(label='Address:')
+
+class UserForm(forms.Form):
+	identity = forms.ChoiceField(label='your identity:', choices=IDENTITY)
 	UserAccount = forms.CharField(label='Account:', max_length=64)
 	UserPassword = forms.CharField(label='Password:', widget=forms.PasswordInput(), max_length=16)
 
@@ -36,27 +46,99 @@ def register(request):
 		cf = CustomerForm(request.POST)
 		if cf.is_valid():
 			#get form
-			customer = Customer()
 			if cf.cleaned_data['identity'] == 'C':
-				customer.CustomerTypeChoices = 'J'
+				customer = Customer()
+				customer.CustomerAccount = cf.cleaned_data['CustomerAccount']
+				customer.CustomerName = cf.cleaned_data['CustomerName']
+				pw = cf.cleaned_data['CustomerPassword']
+				pw_md5 = hashlib.md5(pw).hexdigest()
+				customer.CustomerPassword = pw_md5[0:16]
+				customer.CustomerEmail = cf.cleaned_data['CustomerEmail']
+				customer.CustomerAddress = cf.cleaned_data['CustomerAddress']
+				customer.CustomerTelephone = cf.cleaned_data['CustomerTelephone']
+				#write into db
+				customer.save()
+				return render_to_response('success.html',{'UserType':'C','UserName':customer.CustomerName})
 			else: 
-				customer.CustomerTypeChoices = 'S'
-			customer.CustomerAccount = cf.cleaned_data['CustomerAccount']
-			customer.CustomerName = cf.cleaned_data['CustomerName']
-			pw = cf.cleaned_data['CustomerPassword']
-			pw_md5 = hashlib.md5(pw).hexdigest()
-			customer.CustomerPassword = pw_md5[0:16]
-			customer.CustomerEmail = cf.cleaned_data['CustomerEmail']
-			customer.CustomerAddress = cf.cleaned_data['CustomerAddress']
-			customer.CustomerTelephone = cf.cleaned_data['CustomerTelephone']
-			#write into db
-			customer.save()
 			#返回注册成功页面
-			return render_to_response('success.html',{'customer':customer})
+				seller = Seller()
+				seller.SellerAccount = cf.cleaned_data['CustomerAccount']
+				seller.SellerName = cf.cleaned_data['CustomerName']
+				pw = cf.cleaned_data['CustomerPassword']
+				pw_md5 = hashlib.md5(pw).hexdigest()
+				seller.SellerPassword = pw_md5[0:16]
+				seller.SellerEmail = cf.cleaned_data['CustomerEmail']
+				seller.SellerAddress = cf.cleaned_data['CustomerAddress']
+				seller.SellerTelephone = cf.cleaned_data['CustomerTelephone']
+				#write into db
+				seller.save()
+				return render_to_response('success.html',{'UserType':'S','UserName':seller.SellerName})
 	else:
 		cf = CustomerForm()
 		#cf = CustomerForm(request.POST)
 	return render_to_response('register.html',{'cf':cf}, context_instance=RequestContext(request))
+
+#/myinfo
+def info(request):
+	UserID = request.session['UserID']
+	UserType = request.session['UserType']
+	#UserName = request.session['UserName']
+	if request.method == "POST":
+		cf = CustomerForm2(request.POST)
+		if cf.is_valid():
+			#get form
+			if UserType == 'C':
+				customer = Customer.objects.get(id = UserID)
+				customer.CustomerAccount = cf.cleaned_data['CustomerAccount']
+				customer.CustomerName = cf.cleaned_data['CustomerName']
+				pw = cf.cleaned_data['CustomerPassword']
+				pw_md5 = hashlib.md5(pw).hexdigest()
+				customer.CustomerPassword = pw_md5[0:16]
+				customer.CustomerEmail = cf.cleaned_data['CustomerEmail']
+				customer.CustomerAddress = cf.cleaned_data['CustomerAddress']
+				customer.CustomerTelephone = cf.cleaned_data['CustomerTelephone']
+				#write into db
+				customer.save()
+				return render_to_response('success.html',{'UserType':'C','UserName':customer.CustomerName})
+			else: 
+				seller = Seller.objects.get(id = UserID)
+				seller.SellerAccount = cf.cleaned_data['CustomerAccount']
+				seller.SellerName = cf.cleaned_data['CustomerName']
+				pw = cf.cleaned_data['CustomerPassword']
+				pw_md5 = hashlib.md5(pw).hexdigest()
+				seller.SellerPassword = pw_md5[0:16]
+				seller.SellerEmail = cf.cleaned_data['CustomerEmail']
+				seller.SellerAddress = cf.cleaned_data['CustomerAddress']
+				seller.SellerTelephone = cf.cleaned_data['CustomerTelephone']
+				#write into db
+				seller.save()
+				return render_to_response('success.html',{'UserType':'S','UserName':seller.SellerName})
+	else:
+		if UserType == 'C':
+			user = Customer.objects.get(id=UserID)
+			UserAccount = user.CustomerAccount
+			UserEmail = user.CustomerEmail
+			UserAddress = user.CustomerAddress
+			UserTel = user.CustomerTelephone
+			UserName = user.CustomerName
+		else:
+			user = Seller.objects.get(id=UserID)
+			UserAccount = user.SellerAccount
+			UserEmail = user.SellerEmail
+			UserAddress = user.SellerAddress
+			UserTel = user.SellerTelephone
+			UserName = user.SellerName
+		data = {
+			'identity':UserType,
+			'CustomerAccount':UserAccount,
+			'CustomerName':UserName,
+			'CustomerEmail':UserEmail,
+			'CustomerAddress':UserAddress,
+			'CustomerTelephone':UserTel,
+			}
+		cf = CustomerForm2(data)
+	return render_to_response('myinfo.html',locals(), context_instance=RequestContext(request))
+
 
 def search(request, keyword):  #/search/keyword/ 以keyword为关键字进行搜索，返回一个commodityList
 	commodityList = Commodity.objects.filter(CommodityName__contains = keyword)
@@ -72,13 +154,23 @@ def login(request):
 	if request.method == 'POST':
 		uf = UserForm(request.POST)
 		if uf.is_valid():
+			user = False
 			UserAccount = uf.cleaned_data['UserAccount']
 			pw = uf.cleaned_data['UserPassword']
 			pw_md5 = hashlib.md5(pw).hexdigest()
 			UserPassword = pw_md5[0:16]
-			user = Customer.objects.get(CustomerAccount__exact = UserAccount, CustomerPassword__exact = UserPassword)
-			request.session['UserType'] = user.CustomerTypeChoices
+			if uf.cleaned_data['identity'] == 'C':
+				try:
+					user = Customer.objects.get(CustomerAccount__exact = UserAccount, CustomerPassword__exact = UserPassword)
+				except:
+					pass
+			else:
+				try:
+					user = Seller.objects.get(SellerAccount__exact = UserAccount, SellerPassword__exact = UserPassword)
+				except:
+					pass
 			if user:
+				request.session['UserType'] = uf.cleaned_data['identity']
 				request.session['UserAccount'] = UserAccount
 				request.session['UserID'] = user.id
 				#return render_to_response('index.html',{'customer':user})
@@ -88,7 +180,7 @@ def login(request):
 				return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
 	else:
 		uf = UserForm()
-		return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
+	return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
 
 def index(request):
 	UserID = request.session.get('UserID', False)#, 'anybody')
