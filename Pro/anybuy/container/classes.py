@@ -8,29 +8,44 @@ class Cart_class:
 	CartQuantityList=[]
 	CartDateList=[]
 	CartAmount=0
-	def __init__(self, cartID):		
-		CommodityList = []
-		QuantityList = []
-		DateList = []
-		Amount = 0
-		# Commodity List
-		for c in Cart.objects.filter(id = cartID):
-			#CommodityList.append(Commodity_class(c.CommodityID.id))
-			CommodityList.append(c)
-		# Quantity List
-		for q in Cart.objects.filter(id = cartID):
-			QuantityList.append(q.CartCommodityAmount) 
-		# Date List
-		for d in Cart.objects.filter(id = cartID):
-			DateList.append(d.CartDate) 
-		# Commodity total value
-		for k in Cart.objects.filter(id = cartID):
-			Amount = Amount+k.CartCommodityAmount*\
-				((Commodity.objects.get(id=k.CommodityID.id)).SellPrice)
-		self.CartCommodityList = CommodityList
-		self.CartQuantityList = QuantityList
-		self.CartDateList = DateList
-		self.CartAmount = Amount
+	def __init__(self, cartID = None, cartDate = None, customerID = None, commodityID = None, cartCommodityAmount = None):
+		if cartID != None:	
+			CommodityList = []
+			QuantityList = []
+			DateList = []
+			Amount = 0
+			# Commodity List
+			for c in Cart.objects.filter(id = cartID):
+				CommodityList.append(c)
+			# Quantity List
+			for q in Cart.objects.filter(id = cartID):
+				QuantityList.append(q.CartCommodityAmount) 
+			# Date List
+			for d in Cart.objects.filter(id = cartID):
+				DateList.append(d.CartDate) 
+			# Commodity total value
+			for k in Cart.objects.filter(id = cartID):
+				Amount = Amount+k.CartCommodityAmount*\
+					((Commodity.objects.get(id=k.CommodityID.id)).SellPrice)
+			self.CartCommodityList = CommodityList
+			self.CartQuantityList = QuantityList
+			self.CartDateList = DateList
+			self.CartAmount = Amount
+		else:
+			self.CartDate = cartDate
+			self.CustomerID = Customer.objects.get(id = customerID)
+			self.CommodityID = Commodity.objects.get(id = commodityID)
+			self.CartCommodityAmount = cartCommodityAmount
+			self.save()
+			
+	def save(self):
+		cart = Cart()
+		cart.CartDate = self.CartDate
+		cart.CustomerID = self.CustomerID
+		cart.CommodityID = self.CommodityID
+		cart.CartCommodityAmount = self.CartCommodityAmount
+		cart.save()
+
 	
 	# 在购物车添加商品
 	def AddCommodity(self, customerID, commodityID):
@@ -54,17 +69,30 @@ class Cart_class:
 class Favorite_class:
 	CommodityList=[]
 	DateList=[]
-	def __init__(self, favoriteID):		
-		CommodityListTemp = []
-		DateListTemp = []
-		# Commodity List
-		for c in Favorite.objects.filter(id = favoriteID):
-			CommodityListTemp.append(c)
-		# Date List
-		for d in Favorite.objects.filter(id = favoriteID):
-			DateListTemp.append(d.FavoriteDate) 
-		self.CommodityList = CommodityListTemp
-		self.DateList = DateListTemp
+	def __init__(self, favoriteID = None, favoriteDate = None, customerID = None, commodityID = None):
+		if favoriteID != None:		
+			CommodityListTemp = []
+			DateListTemp = []
+			# Commodity List
+			for c in Favorite.objects.filter(id = favoriteID):
+				CommodityListTemp.append(c)
+			# Date List
+			for d in Favorite.objects.filter(id = favoriteID):
+				DateListTemp.append(d.FavoriteDate) 
+			self.CommodityList = CommodityListTemp
+			self.DateList = DateListTemp
+		else:
+			self.FavoriteDate = favoriteDate
+			self.CustomerID = Customer.objects.get(id = customerID)
+			self.CommodityID = Commodity.objects.get(id = commodityID)
+			self.save()
+
+	def save(self):
+		favorite = Favorite()
+		favorite.FavoriteDate = self.FavoriteDate
+		favorite.CustomerID = self.CustomerID
+		favorite.CommodityID = self.CommodityID
+		favorite.save()
 	
 	# 在收藏夹添加商品
 	def AddCommodity(self, customerID, commodityID):
