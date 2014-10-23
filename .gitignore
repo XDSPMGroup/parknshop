@@ -16,6 +16,5 @@ a.out
 tags
 *.pyc
 *~
-*.png
 *.ids
 *.xml
