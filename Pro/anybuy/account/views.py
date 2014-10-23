@@ -52,7 +52,7 @@ def register(request):
 				customer.CustomerName = cf.cleaned_data['CustomerName']
 				pw = cf.cleaned_data['CustomerPassword']
 				pw_md5 = hashlib.md5(pw).hexdigest()
-				customer.CustomerPassword = pw_md5[0:16]
+				customer.CustomerPassword = pw_md5
 				customer.CustomerEmail = cf.cleaned_data['CustomerEmail']
 				customer.CustomerAddress = cf.cleaned_data['CustomerAddress']
 				customer.CustomerTelephone = cf.cleaned_data['CustomerTelephone']
@@ -66,7 +66,7 @@ def register(request):
 				seller.SellerName = cf.cleaned_data['CustomerName']
 				pw = cf.cleaned_data['CustomerPassword']
 				pw_md5 = hashlib.md5(pw).hexdigest()
-				seller.SellerPassword = pw_md5[0:16]
+				seller.SellerPassword = pw_md5
 				seller.SellerEmail = cf.cleaned_data['CustomerEmail']
 				seller.SellerAddress = cf.cleaned_data['CustomerAddress']
 				seller.SellerTelephone = cf.cleaned_data['CustomerTelephone']
@@ -93,7 +93,7 @@ def info(request):
 				customer.CustomerName = cf.cleaned_data['CustomerName']
 				pw = cf.cleaned_data['CustomerPassword']
 				pw_md5 = hashlib.md5(pw).hexdigest()
-				customer.CustomerPassword = pw_md5[0:16]
+				customer.CustomerPassword = pw_md5
 				customer.CustomerEmail = cf.cleaned_data['CustomerEmail']
 				customer.CustomerAddress = cf.cleaned_data['CustomerAddress']
 				customer.CustomerTelephone = cf.cleaned_data['CustomerTelephone']
@@ -106,7 +106,7 @@ def info(request):
 				seller.SellerName = cf.cleaned_data['CustomerName']
 				pw = cf.cleaned_data['CustomerPassword']
 				pw_md5 = hashlib.md5(pw).hexdigest()
-				seller.SellerPassword = pw_md5[0:16]
+				seller.SellerPassword = pw_md5
 				seller.SellerEmail = cf.cleaned_data['CustomerEmail']
 				seller.SellerAddress = cf.cleaned_data['CustomerAddress']
 				seller.SellerTelephone = cf.cleaned_data['CustomerTelephone']
@@ -140,9 +140,6 @@ def info(request):
 	return render_to_response('myinfo.html',locals(), context_instance=RequestContext(request))
 
 
-def search(request, keyword):  #/search/keyword/ 以keyword为关键字进行搜索，返回一个commodityList
-	commodityList = Commodity.objects.filter(CommodityName__contains = keyword)
-	return render_to_response('Customer_CommidityList.html', {'commodityList': commodityList, 'keyword': keyword})
 
 def getCommodity(request, id):  #/commodity/id/ 返回ID=id 的Commodity
 	
@@ -158,7 +155,7 @@ def login(request):
 			UserAccount = uf.cleaned_data['UserAccount']
 			pw = uf.cleaned_data['UserPassword']
 			pw_md5 = hashlib.md5(pw).hexdigest()
-			UserPassword = pw_md5[0:16]
+			UserPassword = pw_md5
 			if uf.cleaned_data['identity'] == 'C':
 				try:
 					user = Customer.objects.get(CustomerAccount__exact = UserAccount, CustomerPassword__exact = UserPassword)

@@ -73,6 +73,7 @@ DATABASES = {
 #template
 TEMPLATE_DIRS=(
     os.path.join(BASE_DIR, 'account', 'templates'),
+    os.path.join(BASE_DIR, 'store', 'templates'),
     os.path.join(BASE_DIR, 'base_template'),
 )
 

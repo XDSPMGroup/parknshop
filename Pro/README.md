@@ -20,4 +20,6 @@ Admin views | Oct 24 | 郭枭鹏，李爽
 
 PS: You need to install Python Imaging Library in http://www.pythonware.com/products/pil/ before you runserver.
 
-    <img src="/site_media/{{msg.imageurl}}"</img>
+关于图片，存在file/img目录下然后通过下面的形式访问：
+
+    <img src="/file/{{msg.imageurl}}"</img>

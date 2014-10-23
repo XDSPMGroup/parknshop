@@ -10,16 +10,16 @@
 	<div class="row clearfix">
 		<div class="col-md-5 column">
         	
-			<img alt="400x400" src="img/1.jpg" />
+			<img alt="400x400" src="/file/{{commodity.CommodityImage}}" />
             
 		</div>
 		<div class="col-md-7 column">
 			<h3 >
-				commodity title:Lacoste Blue Sevrin 3 SRM Trainers
-			</h3>
+				commodity title:{{ commodity.CommodityName }}
+			</h3> <!--这里是Commodity里的CommodityName-->
 			<p class="hangju">
-		        commodity price:66.95 RMB
-			</p>
+		        commodity price:{{ commodity.SellPrice }} RMB
+			</p> <!--这里是Commodity里的OriginalPrice-->
             <div class="row clearfix">
 				<div class="col-md-12 column">
                <div class="row clearfix">
@@ -31,7 +31,7 @@
                            <input type="text" placeholder="  1" class="input-small" style="width:30px;" >
 					</div>
 					   <div class="col-md-8 column">
-                        pairs(last 82)
+                        pairs(last {{ commodity.CommodityAmount }})   <!--这里是Commodity里的CommodityAmount-->
 					</div>
 					</div>
             
@@ -41,7 +41,7 @@
 			</div>
           
 			<p class="hangju">
-		        commodity seller:Tom
+		        <a href="/shop/id/{{ shop.id }}">View Shop</a>  <!--这里是Seller里的SellerName-->
 			</p>
 
  
@@ -54,6 +54,8 @@
 				</div>
 			</div>
             </div>
+            
+            <!--这里的两个按钮分别是加入cart和favorite-->
 		
 	</div>
     </div>
@@ -73,7 +75,8 @@
 				<div class="tab-content">
 					<div class="tab-pane" id="panel-287145">
 						<p>
-							<img alt="400x400" src="img/xiezi.jpg" />
+							{{ commodity.CommodityDescription}}
+                            <!--这里是Commodity里的CommodityDescription-->
 						</p>
 					</div>
 					<div class="tab-pane active" id="panel-156956">
@@ -82,58 +85,26 @@
             
             <div class="panel-body">
                 <ul class="list-group">
+                    {% for comment in commentlist %}
                     <li class="list-group-item">
                         <div class="row">
                          
                             <div class="col-xs-10 col-md-11">
                               
                                     <div class="mic-info">
-                                        By: <a href="#">Bhaumik Patel</a> on 2 Aug 2013
+                                        By: {{ comment.CustomerID.CustomerName }}
+                                        
+                                        <!--这里可以通过商品ID在Comment表里找买家ID，再在Customer中找到Customername-->
                                     </div>
                                
                                 <div class="comment-text">
-                                    Awesome design
+                                    {{ comment.CommentContent }}  <!--这里是Comment里的CommentContent下面的以此类推-->
                                 </div>
                                
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                           
-                            <div class="col-xs-10 col-md-11">
-                           
-                                  
-                                    <div class="mic-info">
-                                        By: <a href="#">Bhaumik Patel</a> on 11 Nov 2013
-                                    </div>
-                              
-                                <div class="comment-text">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
-                                </div>
-                              
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            
-                            <div class="col-xs-10 col-md-11">
-                              
-                                   
-                                    <div class="mic-info">
-                                        By: <a href="#">Bhaumik Patel</a> on 11 Nov 2013
-                                    </div>
-                              
-                                <div class="comment-text">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </li>
+                    {% endfor %}
                 </ul>
                 <a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span> More</a>
             </div>
@@ -145,5 +116,4 @@
 		</div>
 	</div>
 </div>
-
 {% endblock %}

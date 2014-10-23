@@ -16,7 +16,7 @@ class Seller(models.Model):
 		(1,'normal user'),
 	)
 	SellerAccount = models.CharField(max_length=64)
-	SellerPassword = models.CharField(max_length=16)
+	SellerPassword = models.CharField(max_length=32)
 	SellerName = models.CharField(max_length=64)
 	SellerType = models.CharField(max_length=1,choices=SellerTypeChoices,blank=True)
 	SellerRealName = models.CharField(max_length=64,null=True)
@@ -141,7 +141,7 @@ class Customer(models.Model):
 	)
 	CustomerAccount = models.CharField(max_length=64)
 	CustomerName = models.CharField(max_length=64)
-	CustomerPassword = models.CharField(max_length=16)
+	CustomerPassword = models.CharField(max_length=32)
 	CustomerType = models.CharField(max_length=1,choices=CustomerTypeChoices,blank=True)
 	CustomerTelephone = models.CharField(max_length=64,blank=True)
 	CustomerEmail = models.EmailField()

@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% block title %}Commodity List{% endblock %}
+
+{% block content %}
+	{% for commodity in commodityList %}
+	Name:{{ commodity.CommodityName }}
+	Price:{{ commodity.SellPrice }}
+	{% endfor%}
+	{{ keyword }}
+
+
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-10 column">
+
+        <div class="panel with-nav-tabs panel-info">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                         <!--这里列举了几种商品的排序方法，有一般，按热度，按销售量，按价格高到低和低到高-->
+                            <li class="active"><a href="#tab1info" data-toggle="tab">Comprehensive ranking</a></li>
+                            <li><a href="#tab2info" data-toggle="tab">Popularity</a></li>
+
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown">Price <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#tab4info" data-toggle="tab">The price from low to high</a></li>
+                                    <li><a href="#tab5info" data-toggle="tab">The price from high to low</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1info">
+
+                        <div class="yanse">
+                        <table class="table">
+				<thead>
+					<tr>
+						<th>
+							Picture
+						</th>
+						<th>
+							Commodity title
+						</th>
+						<th>
+							price
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for commodity in commodityList %}
+                    <tr>
+						<td>
+							<img alt="400x400" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+						</td>
+						<td>
+							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
+						</td>
+						<td>
+							{{ commodity.SellPrice }} RMB	<!--这里是Commidity中的PurchasePrice-->
+						</td>
+					</tr>
+                    {% endfor %}
+
+				</tbody>
+			</table>
+
+            </div>
+
+
+                        </div>
+                        <div class="tab-pane fade" id="tab2info">
+                        
+                           <div class="yanse">
+                        <table class="table">
+				<thead>
+					<tr>
+						<th>
+							Picture
+						</th>
+						<th>
+							Commodity title
+						</th>
+						<th>
+							price
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for commodity in commodityList_by_amount %}
+                    <tr>
+						<td>
+							<img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+						</td>
+						<td>
+							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
+						</td>
+						<td>
+							{{ commodity.SellPrice }} RMB	<!--这里是Commidity中的PurchasePrice-->
+						</td>
+					</tr>
+                    {% endfor %}
+				</tbody>
+
+			</table>
+            
+            </div>
+                        
+                        
+                        
+                        </div>
+
+                        <div class="tab-pane fade" id="tab4info">
+                        
+                           <div class="yanse">
+                        <table class="table">
+				<thead>
+					<tr>
+						<th>
+							Picture
+						</th>
+						<th>
+							Commodity title
+						</th>
+						<th>
+							price
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for commodity in commodityList_by_price %}
+                    <tr>
+						<td>
+							<img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+						</td>
+						<td>
+							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
+						</td>
+						<td>
+							{{ commodity.SellPrice }} RMB	<!--这里是Commidity中的PurchasePrice-->
+						</td>
+					</tr>
+                    {% endfor %}
+				</tbody>
+			</table>
+            
+            </div>
+                        
+                        </div>
+                        <div class="tab-pane fade" id="tab5info">
+                        
+                           <div class="yanse">
+                        <table class="table">
+				<thead>
+					<tr>
+						<th>
+							Picture
+						</th>
+						<th>
+							Commodity title
+						</th>
+						<th>
+							price
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for commodity in commodityList_by_counterprice %}
+                    <tr>
+						<td>
+							<img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+						</td>
+						<td>
+							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
+						</td>
+						<td>
+							{{ commodity.SellPrice }} RMB	<!--这里是Commidity中的PurchasePrice-->
+						</td>
+					</tr>
+                    {% endfor %}
+				</tbody>
+			</table>
+            
+            </div>
+                        
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+        
+        <!--这里是页面里的推荐商品部分-->
+		<div class="col-md-2 column yanse">
+        
+        <h2 >Recommend commodity</h2>
+        
+        <img  src="img/cap6.jpg"   /><!--这里是Commidity中的Commodityimage-->
+          <div class='text-left '>
+                        <small class='text-muted yanse'>Price:66.95 RMB</small>  <!--这里是Commidity中的PurchasePrice-->
+                    </div> 
+        
+        <p></p>
+        
+        <img alt="400x400" src="img/cap7.jpg" /><!--这里是Commidity中的Commodityimage-->
+         <div class='text-left '>
+                        <small class='text-muted yanse'>Price:66.95 RMB</small><!--这里是Commidity中的PurchasePrice-->
+                    </div> 
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
