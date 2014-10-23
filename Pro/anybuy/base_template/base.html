@@ -38,9 +38,9 @@
         
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            {% if UserType == 'J'%}
+            {% if UserType == 'J' %}
               <li style="border-right: 1px solid #C0C0C0">
-                <a href="/favorate/">My Favorite</a>
+                <a href="/favorite/">My Favorite</a>
               </li>
               <li>
                 <a href="/cart/">My Carts</a>
@@ -63,8 +63,7 @@
             }
             </script>
             <button type="button" onclick="searchForCommodity()" id="search" class="btn btn-default">Search</button>
-            
-          </form>
+            </form>
           <ul class="nav navbar-nav navbar-right">
             <li>
               <a href="/" style = "color:#3299CC">Homepage</a>
@@ -73,13 +72,13 @@
               <li>
                 <a href="/myinfo">Hello,{{UserName}}</a>
               </li>
-            </li>
             <li>
               <a href="/logout/" style = "color:#A67D3D">Logout</a>
             </li>
-          {% endif %}
+            {% endif %}
           <li>
             <a href="/help_center/" style = "color:#A67D3D">Help center</a>
+          </li>
             
             <!-- <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
@@ -109,9 +108,8 @@
   </body>
 
 
-  
   <!--footer-->
-  <footer class="footer" id="buju">
+  <footer class="footer" id="buju" style = "background-color: #B4AAAA" >
     <nav class="navbar navbar-default navbar-static-bottom" role="navigation" style = "background-color: #B4AAAA">
       <div class="container" >
         <div class="row clearfix" >
@@ -167,5 +165,4 @@
       </div>
     </nav>
   </footer>
-</body>
 </html>
