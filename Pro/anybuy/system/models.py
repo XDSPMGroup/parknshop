@@ -176,7 +176,7 @@ class OrderList(models.Model):
 		(3, 'commenting'),
 		(4, 'refunding'),
 		(5, 'refunded'),
-		(6, 'refund refuded'),
+		(6, 'refused refunded'),
 	)
 	OrderListState = models.IntegerField(choices=StateChoices)
 	OrderListDate = models.DateField()
