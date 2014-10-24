@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Any-Buy!</title>
+  <title>Any-Buy|{% block title %}{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -169,7 +169,10 @@
 					</div>
 				</div>
 				<div class="col-md-6 column" id="shopbase_right">
-					<form role="form">
+					<{% if error %}
+						<p style="color:red;">Please input all the content.</p>
+					{% endif %}
+					<form role="form" action="/ChangeShopInfo/" method="GET">
 						<div class="form-group">
 						<label for="inputstorename" class="col-sm-2 control-label">Store Name</label>
 						<input type="text" class="form-control" id="inputstorename"/>
