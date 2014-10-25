@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+
+<link href="/base_template/css/cart.css" rel="stylesheet">
+<link href="/base_template/css/foot.css" rel="stylesheet">
+
+<!--购物车 Cart CartID 	CartDate CommodityID-->
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+					<thead>
+						<tr>
+							<td style="font-size: xx-large;color: #3a87ad;">My Cart</td>
+						</tr>
+					</thead>
+    				<thead>
+						<tr>
+							<th style="width:40%">Product</th>
+							<th style="width:20%">Price</th>
+							<th style="width:8%">Quantity</th>
+							<th style="width:22%" class="text-center">Subtotal</th>
+							<th style="width:10%"></th>
+							<th style="width:20%"></th>
+						</tr>
+					</thead>
+					<tbody>
+                    {% for cart in cartList %}
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><a href="/commodity/id/{{ cart.CommodityID.id }}" style = "color:#3299CC"><img src="/file/{{ cart.CommodityID.CommodityImage }}" alt="..." class="img-responsive"/></a></div>
+									<div class="col-sm-10">
+										<a href="/commodity/id/{{ cart.CommodityID.id }}" style = "color:#3299CC">
+                                            <h4 class="nomargin">{{ cart.CommodityID.CommodityName }}</h4>
+                                        </a>
+										<p>{{ cart.CommodityID.CommodityDescription }}</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">${{ cart.CommodityID.SellPrice }}</td>
+
+                            <td data-th="Quantity">
+								<input type="number" class="form-control text-center" value="{{ cart.CartCommodityAmount }}">
+							</td>
+
+							<td data-th="Subtotal" class="text-center">{% widthratio cart.CommodityID.SellPrice 1 cart.CartCommodityAmount %}</td>
+							<td class="actions" data-th="">
+								<!--<button class="btn btn-info btn-sm"><i class="glyphicon glyphicon-refresh"></i></button>-->
+								<button class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></button>
+							</td>
+							<td>
+								<input type=checkbox checked="true">
+							</td>
+						</tr>
+                    {% endfor %}
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3" class="hidden-xs"></td>
+							<td class="hidden-xs text-center"><strong>Total $3497</strong></td>
+							<td class="actions" data-th="">
+								<!--<button class="btn btn-info btn-sm"><i class="glyphicon glyphicon-refresh"></i></button>-->
+								<button class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></button>
+							</td>
+							<td>
+								<input type=checkbox checked="true">
+							</td>
+						</tr>
+						<tr>
+						<td colspan="4" class="hidden-xs"></td>
+							<td><a href="#" class="btn btn-primary">Checkout<i class="fa fa-angle-right"></i></a></td>
+						</tr>
+					</tfoot>
+	</table>
+</div>
+{% endblock %}

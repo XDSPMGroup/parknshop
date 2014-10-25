@@ -38,6 +38,8 @@ class Shop(models.Model):
 	ShopName = models.CharField(max_length=64,blank=True)
 	#店铺状态：0-待审核，1-营业，2-歇业
 	ShopState = models.IntegerField(choices=States)
+	BigImage = models.ImageField(upload_to='images',max_length=255,blank=True,null=True)
+	ShopImage = models.ImageField(upload_to='images',max_length=255,blank=True,null=True)
 	def __unicode__(self):
 		return self.ShopName
 

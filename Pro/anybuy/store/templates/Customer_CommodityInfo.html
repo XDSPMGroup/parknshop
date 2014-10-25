@@ -15,10 +15,10 @@
 		</div>
 		<div class="col-md-7 column">
 			<h3 >
-				commodity title:{{ commodity.CommodityName }}
+				Commodity Name:{{ commodity.CommodityName }}
 			</h3> <!--这里是Commodity里的CommodityName-->
 			<p class="hangju">
-		        commodity price:{{ commodity.SellPrice }} RMB
+		        Price:{{ commodity.SellPrice }} RMB
 			</p> <!--这里是Commodity里的OriginalPrice-->
             <div class="row clearfix">
 				<div class="col-md-12 column">
@@ -28,7 +28,7 @@
                         commodity count:
      					</div>	
                           <div class="col-md-1 column">
-                           <input type="text" placeholder="  1" class="input-small" style="width:30px;" >
+                           <input id="num" type="text" value="1" class="input-small" style="width:30px;" >
 					</div>
 					   <div class="col-md-8 column">
                         pairs(last {{ commodity.CommodityAmount }})   <!--这里是Commodity里的CommodityAmount-->
@@ -44,13 +44,23 @@
 		        <a href="/shop/id/{{ shop.id }}">View Shop</a>  <!--这里是Seller里的SellerName-->
 			</p>
 
- 
-			<div class="row clearfix">
+        <script language="javascript">
+            function addtocart() {
+                num = $('#num')[0].value;
+                alert('add' + num + '{{ commodity.CommodityName }}' + 'to cart!');
+                location.href='/addtocart/'+ '{{ commodity.id }}' +'/'+num+'/commodity/';
+            }
+        </script>
+      			<div class="row clearfix">
 				<div class="col-md-3 column">
-					 <button type="button" class="btn btn-primary">Add_to_cart</button>
+					 <button onclick="addtocart()" type="button" class="btn btn-primary">Add to cart</button>
 				</div>
 				<div class="col-md-9 column">
-					 <button type="button" class="btn btn-primary">Add_to_favorite</button>
+					{% if isfavorite %}
+                    <button type="button" class="btn btn-primary">already in favorite</button>
+                    {% else %}
+                    <button type="button" class="btn btn-primary">Add to favorite</button>
+                    {% endif %}
 				</div>
 			</div>
             </div>
@@ -106,7 +116,7 @@
                     </li>
                     {% endfor %}
                 </ul>
-                <a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span> More</a>
+                <!--<a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span> More</a>-->
             </div>
         </div>
     </div>

@@ -2,13 +2,6 @@
 {% block title %}Commodity List{% endblock %}
 
 {% block content %}
-	{% for commodity in commodityList %}
-	Name:{{ commodity.CommodityName }}
-	Price:{{ commodity.SellPrice }}
-	{% endfor%}
-	{{ keyword }}
-
-
 
 <div class="container">
 	<div class="row clearfix">
@@ -42,10 +35,10 @@
 							Picture
 						</th>
 						<th>
-							Commodity title
+							Name
 						</th>
 						<th>
-							price
+							Price
 						</th>
 					</tr>
 				</thead>
@@ -53,10 +46,10 @@
 					{% for commodity in commodityList %}
                     <tr>
 						<td>
-							<img alt="400x400" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+							 <a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC"><img alt="400x400" src="/file/{{ commodity.CommodityImage }}" /></a><!--这里是Commidity中的Commodityimage-->
 						</td>
 						<td>
-							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
+							<a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC">{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName--></a>
 						</td>
 						<td>
 							{{ commodity.SellPrice }} RMB	<!--这里是Commidity中的PurchasePrice-->
@@ -92,10 +85,10 @@
 					{% for commodity in commodityList_by_amount %}
                     <tr>
 						<td>
-							<img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+							<a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC"><img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage--></a>
 						</td>
 						<td>
-							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
+							<a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC">{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName--></a>
 						</td>
 						<td>
 							{{ commodity.SellPrice }} RMB	<!--这里是Commidity中的PurchasePrice-->
@@ -133,11 +126,13 @@
 					{% for commodity in commodityList_by_price %}
                     <tr>
 						<td>
-							<img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
-						</td>
+							<a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC"><img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+						    </a>
+                        </td>
 						<td>
-							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
-						</td>
+							<a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC">{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
+    						</a>
+                        </td>
 						<td>
 							{{ commodity.SellPrice }} RMB	<!--这里是Commidity中的PurchasePrice-->
 						</td>
@@ -170,11 +165,13 @@
 					{% for commodity in commodityList_by_counterprice %}
                     <tr>
 						<td>
-							<img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
-						</td>
+							<a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC"><img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+						    </a>
+                        </td>
 						<td>
-							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
-						</td>
+							<a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC">{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
+						    </a>
+                        </td>
 						<td>
 							{{ commodity.SellPrice }} RMB	<!--这里是Commidity中的PurchasePrice-->
 						</td>
@@ -193,22 +190,22 @@
 		</div>
         
         <!--这里是页面里的推荐商品部分-->
-		<div class="col-md-2 column yanse">
+        <!--<div class="col-md-2 column yanse">
         
         <h2 >Recommend commodity</h2>
         
-        <img  src="img/cap6.jpg"   /><!--这里是Commidity中的Commodityimage-->
+        <img  src="img/cap6.jpg"   />
           <div class='text-left '>
-                        <small class='text-muted yanse'>Price:66.95 RMB</small>  <!--这里是Commidity中的PurchasePrice-->
+                        <small class='text-muted yanse'>Price:66.95 RMB</small>
                     </div> 
         
         <p></p>
         
-        <img alt="400x400" src="img/cap7.jpg" /><!--这里是Commidity中的Commodityimage-->
+        <img alt="400x400" src="img/cap7.jpg" />
          <div class='text-left '>
-                        <small class='text-muted yanse'>Price:66.95 RMB</small><!--这里是Commidity中的PurchasePrice-->
+                        <small class='text-muted yanse'>Price:66.95 RMB</small>
                     </div> 
-		</div>
+		</div>-->
 	</div>
 </div>
 

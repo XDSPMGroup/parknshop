@@ -18,8 +18,24 @@ Customer views | Oct 27 | 陈文康，曹冰
 Seller views | Oct 27 | 寇苗娟，王腾
 Admin views | Oct 24 | 郭枭鹏，李爽
 
-PS: You need to install Python Imaging Library in http://www.pythonware.com/products/pil/ before you runserver.
+#PS: 
+Reference book: [Beginning Django e-commerce](http://pan.baidu.com/s/1mgDmHpY)
+
+You need to install Python Imaging Library 
+
+    cd parknshop/Pro/anybuy/files/framework/Imaging-1.1.7
+    python setup.py install
+
 
 关于图片，存在file/img目录下然后通过下面的形式访问：
 
     <img src="/file/{{msg.imageurl}}"</img>
+
+css/js, saved in base_template:
+
+     <link href="/base_template/css/style.css" rel="stylesheet">
+
+setup Django REST framework to implement RESTful web service
+
+    cd parknshop/Pro/anybuy/files/framework/djangorestframework-0.3.2
+    python setup.py install 
