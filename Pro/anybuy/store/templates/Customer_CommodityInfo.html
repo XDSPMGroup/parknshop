@@ -50,18 +50,34 @@
                 alert('add' + num + '{{ commodity.CommodityName }}' + 'to cart!');
                 location.href='/addtocart/'+ '{{ commodity.id }}' +'/'+num+'/commodity/';
             }
+            function addtofavorite(id) {
+                xmlhttp=new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function()
+                {
+                    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                        //$('#item'+id).slideUp()
+                        t=$('#addtofavoritebt')[0]
+                        t.innerText='already in favorite';
+                        t.onclick=null;
+                    }
+                }
+                xmlhttp.open("GET","/addtofavorite?id="+id,true);
+                xmlhttp.send();
+            }
         </script>
       			<div class="row clearfix">
 				<div class="col-md-3 column">
 					 <button onclick="addtocart()" type="button" class="btn btn-primary">Add to cart</button>
 				</div>
 				<div class="col-md-9 column">
-					{% if isfavorite %}
+				{% if isfavorite %}
                     <button type="button" class="btn btn-primary">already in favorite</button>
                     {% else %}
-                    <button type="button" class="btn btn-primary">Add to favorite</button>
-                    {% endif %}
-				</div>
+                    <button id="addtofavoritebt" onclick="addtofavorite({{ commodity.id }})" type="button" class="btn btn-primary">Add to favorite</button>
+                {% endif %}
+                </div>
+
 			</div>
             </div>
             

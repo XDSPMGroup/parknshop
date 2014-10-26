@@ -25,8 +25,23 @@
 						</tr>
 					</thead>
 					<tbody>
+        <script language="javascript">
+
+            function rmfromcart(id) {
+                xmlhttp=new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function()
+                {
+                    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                        $('#item'+id).slideUp()
+                    }
+                }
+                xmlhttp.open("GET","/rmfromcart?id="+id,true);
+                xmlhttp.send();
+            }
+        </script>
                     {% for cart in cartList %}
-						<tr>
+						<tr id = "item{{ cart.CommodityID.id }}">
 							<td data-th="Product">
 								<div class="row">
 									<div class="col-sm-2 hidden-xs"><a href="/commodity/id/{{ cart.CommodityID.id }}" style = "color:#3299CC"><img src="/file/{{ cart.CommodityID.CommodityImage }}" alt="..." class="img-responsive"/></a></div>
@@ -47,7 +62,7 @@
 							<td data-th="Subtotal" class="text-center">{% widthratio cart.CommodityID.SellPrice 1 cart.CartCommodityAmount %}</td>
 							<td class="actions" data-th="">
 								<!--<button class="btn btn-info btn-sm"><i class="glyphicon glyphicon-refresh"></i></button>-->
-								<button class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></button>
+								<button onclick="rmfromcart('{{ cart.CommodityID.id }}')" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></button>
 							</td>
 							<td>
 								<input type=checkbox checked="true">

@@ -94,6 +94,62 @@ def add_to_cart(request, cid, amount, source):
         return HttpResponseRedirect('/favorite/')
     #return render_to_response('Customer_CommodityInfo.html', locals())
 
+def add_to_favorite(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+        user = Customer.objects.get(id=UserID)
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+        user = None
+    commodity = Commodity.objects.get(id = request.GET['id'])
+    date = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+    Favorite.objects.create(FavoriteDate=date, CustomerID = user, CommodityID = commodity)
+    return HttpResponse('You add: '+commodity.CommodityName)
+
+
+def rm_from_cart(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+        user = Customer.objects.get(id=UserID)
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+        user = None
+    if 'id' in request.GET:
+        commodity = Commodity.objects.get(id = request.GET['id'])
+        Cart.objects.get(CustomerID = user, CommodityID = commodity).delete()
+    else:
+        commodity = None
+    return HttpResponse('You removed: '+commodity.CommodityName)
+
+def rm_from_favorite(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+        user = Customer.objects.get(id=UserID)
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+        user = None
+    if 'id' in request.GET:
+        commodity = Commodity.objects.get(id = request.GET['id'])
+        Favorite.objects.get(CustomerID = user, CommodityID = commodity).delete()
+    else:
+        commodity = None
+    return HttpResponse('You removed: '+commodity.CommodityName+'from favorite')
+
 
 def search(request, keyword):  #/search/keyword/ 以keyword为关键字进行搜索，返回一个commodityList
     if request.session.get('UserID', False):

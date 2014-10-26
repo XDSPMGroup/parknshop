@@ -25,6 +25,10 @@ urlpatterns = patterns('',
     url(r'^favorite/$', 'store.views.favorite'),
     url(r'^cart/$', 'store.views.cart'),
     url(r'^addtocart/(?P<cid>\d*)/(?P<amount>\d*)/(?P<source>\w*)', 'store.views.add_to_cart'),
+    url(r'^addtofavorite/$', 'store.views.add_to_favorite'),
+    url(r'^rmfromcart/$', 'store.views.rm_from_cart'),
+    url(r'^rmfromfavorite/$', 'store.views.rm_from_favorite'),
+
     #url(r'^account/$', views.register, name='register'),
     #url(r'^account/register/$',views.register, name = 'register'),
 )
