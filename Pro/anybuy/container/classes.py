@@ -10,6 +10,7 @@ class Cart_class:
 	CartAmount=0
 	def __init__(self, cartID = None, cartDate = None, customerID = None, commodityID = None, cartCommodityAmount = None):
 		if cartID != None:	
+			self.CartID = cartID
 			CommodityList = []
 			QuantityList = []
 			DateList = []
@@ -61,16 +62,17 @@ class Cart_class:
 		C.delete()
 
 	#获得购物车的商品列表
-	def GetCommodityList(self):
-		#CommodityList = Commodity.objects.all()
-		return self.CartCommodityList
+	def GetCommodityList(self, cartID):
+		CommodityList = Cart.objects.filter(id = cartID)
+		return CommodityList
 
 		
 class Favorite_class:
 	CommodityList=[]
 	DateList=[]
 	def __init__(self, favoriteID = None, favoriteDate = None, customerID = None, commodityID = None):
-		if favoriteID != None:		
+		if favoriteID != None:	
+			self.FavoriteID = favoriteID	
 			CommodityListTemp = []
 			DateListTemp = []
 			# Commodity List
@@ -144,10 +146,10 @@ class Order_class:
 			self.OrderID=orderID
 			order=OrderList.objects.get(id=orderID)
 			self.OrderDate=order.OrderListDate
-			self. OrderState=order.OrderListState
+			self.OrderState=order.OrderListState
 			self.OrderExpressID=  ""
 			self.OrderProfit=0
-	    else:
+		else:
 			self.OrderListAccount=orderListAccount
 			self.OrderState=orderListState
 			self.OrderDate=""

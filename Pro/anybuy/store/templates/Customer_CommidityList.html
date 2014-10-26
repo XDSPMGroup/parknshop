@@ -53,7 +53,7 @@
 					{% for commodity in commodityList %}
                     <tr>
 						<td>
-							<img alt="400x400" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+							<img alt="400x400" src="/file/{{ commodity.CommodityImage }}" style = "width:100px; height:100px" /><!--这里是Commidity中的Commodityimage-->
 						</td>
 						<td>
 							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
@@ -92,7 +92,7 @@
 					{% for commodity in commodityList_by_amount %}
                     <tr>
 						<td>
-							<img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+							<img  src="/file/{{ commodity.CommodityImage }}" style = "width:100px; height:100px"/><!--这里是Commidity中的Commodityimage-->
 						</td>
 						<td>
 							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
@@ -133,7 +133,7 @@
 					{% for commodity in commodityList_by_price %}
                     <tr>
 						<td>
-							<img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+							<img src="/file/{{ commodity.CommodityImage }}" style = "width:100px; height:100px"/><!--这里是Commidity中的Commodityimage-->
 						</td>
 						<td>
 							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
@@ -170,7 +170,7 @@
 					{% for commodity in commodityList_by_counterprice %}
                     <tr>
 						<td>
-							<img style  = "width = 200px; height = 200px" src="/file/{{ commodity.CommodityImage }}" /><!--这里是Commidity中的Commodityimage-->
+							<img src="/file/{{ commodity.CommodityImage }}" style = "width:100px; height:100px"/><!--这里是Commidity中的Commodityimage-->
 						</td>
 						<td>
 							{{ commodity.CommodityName }}<!--这里是Commidity中的CommodityName-->
@@ -197,14 +197,14 @@
         
         <h2 >Recommend commodity</h2>
         
-        <img  src="img/cap6.jpg"   /><!--这里是Commidity中的Commodityimage-->
+        <img  src="/file/images/cap6.jpg"  style = "width:200px; height:200px" /><!--这里是Commidity中的Commodityimage-->
           <div class='text-left '>
                         <small class='text-muted yanse'>Price:66.95 RMB</small>  <!--这里是Commidity中的PurchasePrice-->
                     </div> 
         
         <p></p>
         
-        <img alt="400x400" src="img/cap7.jpg" /><!--这里是Commidity中的Commodityimage-->
+        <img alt="400x400" src="/file/images/cap7.jpg" style = "width:200px; height:200px"/><!--这里是Commidity中的Commodityimage-->
          <div class='text-left '>
                         <small class='text-muted yanse'>Price:66.95 RMB</small><!--这里是Commidity中的PurchasePrice-->
                     </div> 
