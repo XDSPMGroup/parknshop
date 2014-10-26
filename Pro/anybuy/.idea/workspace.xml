@@ -35,17 +35,38 @@
       <file leaf-file-name="Customer_CommidityList.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommidityList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="205" column="79" selection-start="6304" selection-end="6304" vertical-scroll-proportion="-19.791666" vertical-offset="2600" max-vertical-offset="3285">
-              <folding />
+            <state line="231" column="79" selection-start="7521" selection-end="7521" vertical-scroll-proportion="-19.791666" vertical-offset="2990" max-vertical-offset="3675">
+              <folding>
+                <marker date="1414339937000" expanded="true" signature="275:1182" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="325:1159" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="653:1129" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="829:1095" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1223:1683" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1269:1683" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1345:1683" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1390:1683" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1436:1683" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1448:1591" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1458:1578" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1469:1496" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1507:1531" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1542:1567" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1603:1683" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1670:1683" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="1681:1683" placeholder="..." />
+                <marker date="1414339937000" expanded="true" signature="7407:7558" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Customer_CommodityInfo.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Customer_CommodityInfo.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommodityInfo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="39" selection-start="2101" selection-end="2101" vertical-scroll-proportion="-4.7916665" vertical-offset="800" max-vertical-offset="2250">
-              <folding />
+            <state line="61" column="39" selection-start="2136" selection-end="2136" vertical-scroll-proportion="0.42168674" vertical-offset="740" max-vertical-offset="2250">
+              <folding>
+                <element signature="e#274#309#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -81,10 +102,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Customer_MyCart.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Customer_MyCart.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/store/templates/Customer_MyCart.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="47" selection-start="1109" selection-end="1109" vertical-scroll-proportion="0.56626505" vertical-offset="290" max-vertical-offset="1455">
+            <state line="35" column="47" selection-start="1109" selection-end="1109" vertical-scroll-proportion="-9.791667" vertical-offset="290" max-vertical-offset="1455">
               <folding>
                 <element signature="e#1519#1542#0" expanded="true" />
                 <element signature="e#1736#1759#0" expanded="true" />
@@ -563,14 +584,35 @@
     <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommidityList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="205" column="79" selection-start="6304" selection-end="6304" vertical-scroll-proportion="0.0" vertical-offset="2765" max-vertical-offset="3285">
-          <folding />
+          <folding>
+            <marker date="1414339937000" expanded="true" signature="275:1182" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="325:1159" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="653:1129" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="829:1095" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1223:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1269:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1345:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1390:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1436:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1448:1591" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1458:1578" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1469:1496" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1507:1531" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1542:1567" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1603:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1670:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1681:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="7407:7558" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommodityInfo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="17" selection-start="507" selection-end="507" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="2010">
-          <folding />
+          <folding>
+            <element signature="e#274#309#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -644,7 +686,26 @@
     <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommidityList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="199" selection-start="1702" selection-end="1872" vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="3225">
-          <folding />
+          <folding>
+            <marker date="1414339937000" expanded="true" signature="275:1182" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="325:1159" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="653:1129" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="829:1095" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1223:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1269:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1345:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1390:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1436:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1448:1591" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1458:1578" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1469:1496" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1507:1531" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1542:1567" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1603:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1670:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1681:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="7407:7558" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -677,7 +738,26 @@
     <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommidityList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="54" selection-start="2996" selection-end="2996" vertical-scroll-proportion="0.0" vertical-offset="1500" max-vertical-offset="3330">
-          <folding />
+          <folding>
+            <marker date="1414339937000" expanded="true" signature="275:1182" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="325:1159" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="653:1129" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="829:1095" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1223:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1269:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1345:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1390:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1436:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1448:1591" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1458:1578" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1469:1496" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1507:1531" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1542:1567" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1603:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1670:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1681:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="7407:7558" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -862,15 +942,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommidityList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="205" column="79" selection-start="6304" selection-end="6304" vertical-scroll-proportion="-19.791666" vertical-offset="2600" max-vertical-offset="3285">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommodityInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="39" selection-start="2101" selection-end="2101" vertical-scroll-proportion="-4.7916665" vertical-offset="800" max-vertical-offset="2250">
-          <folding />
+        <state line="231" column="79" selection-start="7521" selection-end="7521" vertical-scroll-proportion="-19.791666" vertical-offset="2990" max-vertical-offset="3675">
+          <folding>
+            <marker date="1414339937000" expanded="true" signature="275:1182" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="325:1159" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="653:1129" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="829:1095" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1223:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1269:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1345:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1390:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1436:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1448:1591" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1458:1578" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1469:1496" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1507:1531" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1542:1567" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1603:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1670:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="1681:1683" placeholder="..." />
+            <marker date="1414339937000" expanded="true" signature="7407:7558" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -901,10 +993,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/store/templates/Customer_MyCart.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="47" selection-start="1109" selection-end="1109" vertical-scroll-proportion="0.56626505" vertical-offset="290" max-vertical-offset="1455">
+        <state line="35" column="47" selection-start="1109" selection-end="1109" vertical-scroll-proportion="-9.791667" vertical-offset="290" max-vertical-offset="1455">
           <folding>
             <element signature="e#1519#1542#0" expanded="true" />
             <element signature="e#1736#1759#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommodityInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="39" selection-start="2136" selection-end="2136" vertical-scroll-proportion="0.42168674" vertical-offset="740" max-vertical-offset="2250">
+          <folding>
+            <element signature="e#274#309#0" expanded="true" />
           </folding>
         </state>
       </provider>
