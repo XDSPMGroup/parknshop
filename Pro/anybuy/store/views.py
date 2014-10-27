@@ -167,9 +167,15 @@ def checkoutcart(request):
         UserType = None
         UserAccount = None
         user = None
-    if 'id' in request.GET:
-        commodity = Commodity.objects.get(id = request.GET['id'])
-        Favorite.objects.get(CustomerID = user, CommodityID = commodity).delete()
+    date = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+    cutomerorder = CustomerOrder.objects.create(CustomerOrderState=0, CustomerOrderDate=date, CustomerID=user)
+    # 从购物车中删除，现在是将checkbox注释了，所以这里是删除购物车中所有物品
+    commoditylist = Cart.objects.filter(CustomerID=user)
+    Cart.objects.filter(CustomerID = user).delete()
+    for commodity in commoditylist:
+        shoporder = ShopOrder.objects.create(ShopOrderState=0, ShopOrderDate=date, ShopID=commodity.ShopID)
+        orderlist = OrderList.objects.create(CustomerOrderState=0, CustomerOrderDate=date, CustomerID=user, ShopID=commodity.ShopID, CommodityID = commodity)
+        # 从购物车中删除，现在是将checkbox注释了，所以这里是删除购物车中所有物品
     return HttpResponse('You checked out your cart')
 
 def rm_from_favorite(request):

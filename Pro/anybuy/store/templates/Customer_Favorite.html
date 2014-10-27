@@ -32,7 +32,7 @@
                 {
                     if (xmlhttp.readyState==4 && xmlhttp.status==200)
                     {
-                        $('#item'+id).remove()
+                        $('#item'+id).fadeOut()
                     }
                 }
                 xmlhttp.open("GET","/rmfromfavorite?id="+id,true);

@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^rmfromcart/$', 'store.views.rm_from_cart'),
     url(r'^refreshcart/$', 'store.views.refreshcart'),
     url(r'^rmfromfavorite/$', 'store.views.rm_from_favorite'),
-
+    url(r'^checkout/$', 'store.views.checkoutcart'),
     #url(r'^account/$', views.register, name='register'),
     #url(r'^account/register/$',views.register, name = 'register'),
 )
