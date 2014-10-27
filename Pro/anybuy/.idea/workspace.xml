@@ -26,44 +26,47 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/store/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="142" column="23" selection-start="5192" selection-end="5192" vertical-scroll-proportion="-10.615385" vertical-offset="1764" max-vertical-offset="2505">
+            <state line="170" column="65" selection-start="6189" selection-end="6189" vertical-scroll-proportion="-7.730769" vertical-offset="2259" max-vertical-offset="3120">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Customer_CommidityList.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/anybuy/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="33" selection-start="1007" selection-end="1007" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1680">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Customer_CommidityList.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommidityList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="231" column="79" selection-start="7521" selection-end="7521" vertical-scroll-proportion="-19.791666" vertical-offset="2990" max-vertical-offset="3675">
+            <state line="203" column="13" selection-start="6358" selection-end="6358" vertical-scroll-proportion="0.45783132" vertical-offset="2855" max-vertical-offset="3375">
               <folding>
-                <marker date="1414339937000" expanded="true" signature="275:1182" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="325:1159" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="653:1129" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="829:1095" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1223:1683" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1269:1683" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1345:1683" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1390:1683" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1436:1683" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1448:1591" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1458:1578" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1469:1496" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1507:1531" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1542:1567" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1603:1683" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1670:1683" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="1681:1683" placeholder="..." />
-                <marker date="1414339937000" expanded="true" signature="7407:7558" placeholder="..." />
+                <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Customer_CommodityInfo.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Customer_CommodityInfo.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommodityInfo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="39" selection-start="2136" selection-end="2136" vertical-scroll-proportion="0.42168674" vertical-offset="740" max-vertical-offset="2250">
+            <state line="67" column="0" selection-start="2289" selection-end="2289" vertical-scroll-proportion="-4.375" vertical-offset="900" max-vertical-offset="2265">
               <folding>
                 <element signature="e#274#309#0" expanded="true" />
               </folding>
@@ -87,7 +90,7 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anybuy/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="26" selection-start="1345" selection-end="1345" vertical-scroll-proportion="0.0" vertical-offset="58" max-vertical-offset="570">
+            <state line="29" column="28" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.0" vertical-offset="58" max-vertical-offset="585">
               <folding />
             </state>
           </provider>
@@ -105,10 +108,10 @@
       <file leaf-file-name="Customer_MyCart.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/store/templates/Customer_MyCart.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="47" selection-start="1109" selection-end="1109" vertical-scroll-proportion="-9.791667" vertical-offset="290" max-vertical-offset="1455">
+            <state line="88" column="95" selection-start="3526" selection-end="3531" vertical-scroll-proportion="-12.291667" vertical-offset="1025" max-vertical-offset="1650">
               <folding>
-                <element signature="e#1519#1542#0" expanded="true" />
-                <element signature="e#1736#1759#0" expanded="true" />
+                <element signature="e#1990#2013#0" expanded="true" />
+                <element signature="e#2207#2230#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,14 +142,14 @@
         <option value="$PROJECT_DIR$/account/classes.py" />
         <option value="$PROJECT_DIR$/system/models.py" />
         <option value="$PROJECT_DIR$/store/templates/Seller_EnterShop.html" />
-        <option value="$PROJECT_DIR$/anybuy/settings.py" />
-        <option value="$PROJECT_DIR$/store/templates/Customer_CommidityList.html" />
         <option value="$PROJECT_DIR$/base_template/base.html" />
-        <option value="$PROJECT_DIR$/store/templates/Customer_MyCart.html" />
-        <option value="$PROJECT_DIR$/anybuy/urls.py" />
         <option value="$PROJECT_DIR$/store/templates/Customer_Favorite.html" />
         <option value="$PROJECT_DIR$/store/templates/Customer_CommodityInfo.html" />
+        <option value="$PROJECT_DIR$/anybuy/urls.py" />
+        <option value="$PROJECT_DIR$/store/templates/Customer_MyCart.html" />
         <option value="$PROJECT_DIR$/store/views.py" />
+        <option value="$PROJECT_DIR$/anybuy/settings.py" />
+        <option value="$PROJECT_DIR$/store/templates/Customer_CommidityList.html" />
       </list>
     </option>
   </component>
@@ -585,24 +588,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="205" column="79" selection-start="6304" selection-end="6304" vertical-scroll-proportion="0.0" vertical-offset="2765" max-vertical-offset="3285">
           <folding>
-            <marker date="1414339937000" expanded="true" signature="275:1182" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="325:1159" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="653:1129" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="829:1095" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1223:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1269:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1345:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1390:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1436:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1448:1591" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1458:1578" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1469:1496" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1507:1531" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1542:1567" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1603:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1670:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1681:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="7407:7558" placeholder="..." />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -645,8 +642,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="46" selection-start="820" selection-end="820" vertical-scroll-proportion="0.0" vertical-offset="231" max-vertical-offset="1230">
           <folding>
-            <element signature="e#1519#1542#0" expanded="true" />
-            <element signature="e#1736#1759#0" expanded="true" />
+            <element signature="e#1990#2013#0" expanded="true" />
+            <element signature="e#2207#2230#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -687,24 +684,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="199" selection-start="1702" selection-end="1872" vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="3225">
           <folding>
-            <marker date="1414339937000" expanded="true" signature="275:1182" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="325:1159" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="653:1129" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="829:1095" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1223:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1269:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1345:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1390:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1436:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1448:1591" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1458:1578" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1469:1496" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1507:1531" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1542:1567" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1603:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1670:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1681:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="7407:7558" placeholder="..." />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -739,24 +730,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="54" selection-start="2996" selection-end="2996" vertical-scroll-proportion="0.0" vertical-offset="1500" max-vertical-offset="3330">
           <folding>
-            <marker date="1414339937000" expanded="true" signature="275:1182" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="325:1159" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="653:1129" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="829:1095" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1223:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1269:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1345:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1390:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1436:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1448:1591" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1458:1578" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1469:1496" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1507:1531" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1542:1567" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1603:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1670:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1681:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="7407:7558" placeholder="..." />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -912,13 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/anybuy/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/account/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="173" column="54" selection-start="6762" selection-end="6793" vertical-scroll-proportion="0.39407745" vertical-offset="2332" max-vertical-offset="3030">
@@ -940,32 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommidityList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="231" column="79" selection-start="7521" selection-end="7521" vertical-scroll-proportion="-19.791666" vertical-offset="2990" max-vertical-offset="3675">
-          <folding>
-            <marker date="1414339937000" expanded="true" signature="275:1182" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="325:1159" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="653:1129" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="829:1095" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1223:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1269:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1345:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1390:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1436:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1448:1591" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1458:1578" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1469:1496" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1507:1531" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1542:1567" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1603:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1670:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="1681:1683" placeholder="..." />
-            <marker date="1414339937000" expanded="true" signature="7407:7558" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/store/templates/Customer_Favorite.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="47" selection-start="2324" selection-end="2339" vertical-scroll-proportion="-21.666666" vertical-offset="320" max-vertical-offset="1185">
@@ -977,35 +929,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/anybuy/urls.py">
+    <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommodityInfo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="26" selection-start="1345" selection-end="1345" vertical-scroll-proportion="0.0" vertical-offset="58" max-vertical-offset="570">
-          <folding />
+        <state line="67" column="0" selection-start="2289" selection-end="2289" vertical-scroll-proportion="-4.375" vertical-offset="900" max-vertical-offset="2265">
+          <folding>
+            <element signature="e#274#309#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/views.py">
+    <entry file="file://$PROJECT_DIR$/anybuy/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="23" selection-start="5192" selection-end="5192" vertical-scroll-proportion="-10.615385" vertical-offset="1764" max-vertical-offset="2505">
+        <state line="29" column="28" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.0" vertical-offset="58" max-vertical-offset="585">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/store/templates/Customer_MyCart.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="47" selection-start="1109" selection-end="1109" vertical-scroll-proportion="-9.791667" vertical-offset="290" max-vertical-offset="1455">
+        <state line="88" column="95" selection-start="3526" selection-end="3531" vertical-scroll-proportion="-12.291667" vertical-offset="1025" max-vertical-offset="1650">
           <folding>
-            <element signature="e#1519#1542#0" expanded="true" />
-            <element signature="e#1736#1759#0" expanded="true" />
+            <element signature="e#1990#2013#0" expanded="true" />
+            <element signature="e#2207#2230#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommodityInfo.html">
+    <entry file="file://$PROJECT_DIR$/store/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="39" selection-start="2136" selection-end="2136" vertical-scroll-proportion="0.42168674" vertical-offset="740" max-vertical-offset="2250">
+        <state line="170" column="65" selection-start="6189" selection-end="6189" vertical-scroll-proportion="-7.730769" vertical-offset="2259" max-vertical-offset="3120">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anybuy/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="33" selection-start="1007" selection-end="1007" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1680">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/templates/Customer_CommidityList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="203" column="13" selection-start="6358" selection-end="6358" vertical-scroll-proportion="0.45783132" vertical-offset="2855" max-vertical-offset="3375">
           <folding>
-            <element signature="e#274#309#0" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
