@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^addtocart/(?P<cid>\d*)/(?P<amount>\d*)/(?P<source>\w*)', 'store.views.add_to_cart'),
     url(r'^addtofavorite/$', 'store.views.add_to_favorite'),
     url(r'^rmfromcart/$', 'store.views.rm_from_cart'),
+    url(r'^refreshcart/$', 'store.views.refreshcart'),
     url(r'^rmfromfavorite/$', 'store.views.rm_from_favorite'),
 
     #url(r'^account/$', views.register, name='register'),

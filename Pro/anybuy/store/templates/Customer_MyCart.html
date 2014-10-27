@@ -39,6 +39,19 @@
                 xmlhttp.open("GET","/rmfromcart?id="+id,true);
                 xmlhttp.send();
             }
+            function refresh(id, amount) {
+                xmlhttp=new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function()
+                {
+                    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                        parent.location.reload()
+                    }
+                }
+                xmlhttp.open("GET","/refreshcart?id="+id+"&amount="+amount,true);
+                xmlhttp.send();
+
+            }
         </script>
                     {% for cart in cartList %}
 						<tr id = "item{{ cart.CommodityID.id }}">
@@ -56,16 +69,16 @@
 							<td data-th="Price">${{ cart.CommodityID.SellPrice }}</td>
 
                             <td data-th="Quantity">
-								<input type="number" class="form-control text-center" value="{{ cart.CartCommodityAmount }}">
+								<input onchange="refresh({{ cart.CommodityID.id }}, this.value)" type="number" class="form-control text-center" value="{{ cart.CartCommodityAmount }}">
 							</td>
 
-							<td data-th="Subtotal" class="text-center">{% widthratio cart.CommodityID.SellPrice 1 cart.CartCommodityAmount %}</td>
+							<td id="subtotal{{ cart.CommodityID.id }}" data-th="Subtotal" class="text-center">{% widthratio cart.CommodityID.SellPrice 1 cart.CartCommodityAmount %}</td>
 							<td class="actions" data-th="">
 								<!--<button class="btn btn-info btn-sm"><i class="glyphicon glyphicon-refresh"></i></button>-->
 								<button onclick="rmfromcart('{{ cart.CommodityID.id }}')" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></button>
 							</td>
 							<td>
-								<input type=checkbox checked="true">
+								<!--<input type=checkbox checked="true">-->
 							</td>
 						</tr>
                     {% endfor %}
@@ -73,13 +86,13 @@
 					<tfoot>
 						<tr>
 							<td colspan="3" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><strong>Total $3497</strong></td>
+							<td id="total" class="hidden-xs text-center"><strong>Total {{ total }}</strong></td>
 							<td class="actions" data-th="">
 								<!--<button class="btn btn-info btn-sm"><i class="glyphicon glyphicon-refresh"></i></button>-->
-								<button class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></button>
+								<button class="btn btn-danger btn-sm" ><img src = "img/delete.png" style = "width:20px; height:20px"/></button>
 							</td>
 							<td>
-								<input type=checkbox checked="true">
+								<!--<input type=checkbox checked="true">-->
 							</td>
 						</tr>
 						<tr>

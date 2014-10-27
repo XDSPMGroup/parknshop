@@ -67,6 +67,9 @@ def cart(request):
         UserType = None
         UserAccount = None
     cartList = Cart.objects.filter(CustomerID = UserID)
+    total=0
+    for cart in cartList:
+        total = total+cart.CartCommodityAmount*cart.CommodityID.SellPrice
     return render_to_response('Customer_MyCart.html', locals())
 
 def add_to_cart(request, cid, amount, source):
@@ -130,6 +133,44 @@ def rm_from_cart(request):
     else:
         commodity = None
     return HttpResponse('You removed: '+commodity.CommodityName)
+
+def refreshcart(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+        user = Customer.objects.get(id=UserID)
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+        user = None
+    if 'id' in request.GET:
+        commodity = Commodity.objects.get(id = request.GET['id'])
+        cart = Cart.objects.get(CustomerID = user, CommodityID = commodity)
+        cart.CartCommodityAmount = int(request.GET['amount'])
+        cart.save()
+    else:
+        commodity = None
+    return HttpResponse('You refresh: '+commodity.CommodityName)
+
+def checkoutcart(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+        user = Customer.objects.get(id=UserID)
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+        user = None
+    if 'id' in request.GET:
+        commodity = Commodity.objects.get(id = request.GET['id'])
+        Favorite.objects.get(CustomerID = user, CommodityID = commodity).delete()
+    return HttpResponse('You checked out your cart')
 
 def rm_from_favorite(request):
     if request.session.get('UserID', False):
