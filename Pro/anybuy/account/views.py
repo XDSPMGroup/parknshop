@@ -159,22 +159,31 @@ def login(request):
 			if uf.cleaned_data['identity'] == 'C':
 				try:
 					user = Customer.objects.get(CustomerAccount__exact = UserAccount, CustomerPassword__exact = UserPassword)
+					if user:
+						request.session['UserType'] = uf.cleaned_data['identity']
+						request.session['UserAccount'] = UserAccount
+						request.session['UserID'] = user.id
+						#return render_to_response('index.html',{'customer':user})
+						return HttpResponseRedirect('/index/')
+					else:
+						wrongpw = True
+						return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
 				except:
 					pass
 			else:
 				try:
 					user = Seller.objects.get(SellerAccount__exact = UserAccount, SellerPassword__exact = UserPassword)
+					if user:
+						request.session['UserType'] = uf.cleaned_data['identity']
+						request.session['UserAccount'] = UserAccount
+						request.session['UserID'] = user.id
+						#return render_to_response('index.html',{'customer':user})
+						return HttpResponseRedirect('/sellerHomepage/')#sellerHomepage 代表entershop
+					else:
+						wrongpw = True
+						return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
 				except:
-					pass
-			if user:
-				request.session['UserType'] = uf.cleaned_data['identity']
-				request.session['UserAccount'] = UserAccount
-				request.session['UserID'] = user.id
-				#return render_to_response('index.html',{'customer':user})
-				return HttpResponseRedirect('/index/')
-			else:
-				wrongpw = True
-				return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
+					pass			
 	else:
 		uf = UserForm()
 	return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
@@ -190,6 +199,18 @@ def index(request):
 	else:
 		return HttpResponseRedirect('/login/')
 
+def sellerHomepage(request):
+	UserID = request.session.get('UserID', False)#, 'anybody')
+	UserType = request.session.get('UserType')
+	if UserID:
+		user = Seller.objects.get(id = UserID)
+		UserName = user.SellerName
+		#locals() -> {'UserName': UserName, 'UserType': UserType, 'UserID':UserID}
+		return render_to_response('sellerHomepage.html', locals(), context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/login/')
+
+
 def logout(request):
 	session = request.session.get('UserID', False)
 	if session:
@@ -198,5 +219,6 @@ def logout(request):
 	else:
 		return HttpResponse('You have not login!')
 
-
+#def salesHistory(request):
+	
 
