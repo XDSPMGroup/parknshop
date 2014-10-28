@@ -1,0 +1,59 @@
+{% extends "sellerbase.html" %}
+{% block title %}SalesHistory{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			
+				
+			<h3 class="text-left" style="color:#3a87ad">
+				Sales history
+			</h3>
+			<hr>
+			<div class="row clearfix">
+				<div class="col-md-12 column">   
+        			<div class="row col-md-10">
+			<table class="table table-striped custab">
+				<thead>
+					<tr class="yanse">
+						<th>
+							commodity name
+						</th>
+						<th>
+							unit-price
+						</th>
+						<th>
+							time
+						</th>
+						<th>
+							counts
+						</th>						
+						<th>
+							actual payments
+						</th>
+						<th>
+							status
+						</th>
+					</tr>
+				</thead>
+				{% for salesHistory in SalesHistoryList %}
+				<tr class="yanse" id="item{{salesHistory.CommodityID.id}}">
+					<td>{{salesHistory.CommodityID.CommodityName}}</td>
+					<td>{{salesHistory.CommodityID.SellPrice}}</td>
+					<td>{{salesHistory.OrderListDate}}</td>
+					<td>{{salesHistory.OrderAmount}}</td>
+					<td>{% widthratio salesHistory.CommodityId.SellPrice 1 salesHistory.OrderAmount %}</td>
+					<td>{{salesHistory.OrderListState}}</td>
+				</tr>
+				{% endfor %}
+			</table>		
+		</div>
+		</div>
+		</div>
+	</div>
+	</div>
+</div>
+{% endblock %}
+					
