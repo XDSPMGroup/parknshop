@@ -41,7 +41,7 @@ def getShop(request, cid):
     shop = Shop.objects.get(id=cid)
     commodityList = Commodity.objects.filter(ShopID = shop)
     shopList = Shop.objects.filter(SellerID = shop.SellerID)
-    return render_to_response('Seller_EnterShop.html', locals())
+    return render_to_response('Customer_EnterShop.html', locals())
 
 def favorite(request):
     if request.session.get('UserID', False):
@@ -167,9 +167,15 @@ def checkoutcart(request):
         UserType = None
         UserAccount = None
         user = None
-    if 'id' in request.GET:
-        commodity = Commodity.objects.get(id = request.GET['id'])
-        Favorite.objects.get(CustomerID = user, CommodityID = commodity).delete()
+    date = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+    cutomerorder = CustomerOrder.objects.create(CustomerOrderState=0, CustomerOrderDate=date, CustomerID=user)
+    # 从购物车中删除，现在是将checkbox注释了，所以这里是删除购物车中所有物品
+    commoditylist = Cart.objects.filter(CustomerID=user)
+    Cart.objects.filter(CustomerID = user).delete()
+    for commodity in commoditylist:
+        shoporder = ShopOrder.objects.create(ShopOrderState=0, ShopOrderDate=date, ShopID=commodity.ShopID)
+        orderlist = OrderList.objects.create(CustomerOrderState=0, CustomerOrderDate=date, CustomerID=user, ShopID=commodity.ShopID, CommodityID = commodity)
+        # 从购物车中删除，现在是将checkbox注释了，所以这里是删除购物车中所有物品
     return HttpResponse('You checked out your cart')
 
 def rm_from_favorite(request):
@@ -205,4 +211,17 @@ def search(request, keyword):  #/search/keyword/ 以keyword为关键字进行搜
     commodityList_by_amount = commodityList.order_by('SoldAmount')
     commodityList_by_price = commodityList.order_by('SellPrice')
     commodityList_by_counterprice = commodityList.order_by('-SellPrice')
-    return render_to_response('Customer_CommidityList.html', locals())
+    return render_to_response('Customer_CommodityList.html', locals())
+
+def sellerhome(request): #需要返回shoplist，shopadvlist，commodityadvlist
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+    else:
+        return HttpResponseRedirect('/login/')
+    seller = Seller.objects.get(id=UserID)
+    shoplist = Shop.objects.filter(SellerID = seller)
+    shopadvlist = ShopAdv.objects.filter(OwnerID = seller)
+    commodityadvlist = CommodityAdv.objects.filter(OwnerID = seller)
+    return render_to_response('Customer_CommodityList.html', locals())

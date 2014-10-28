@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script type="text/javascript">
+	$(function(){
+			$('.item')[0].className = "item active";
+			url = window.location.href;
+			if(url.indexOf("home") >= 0)
+				$('.list-group-item')[0].className = "list-group-item active";
+			else if(url.indexOf("ad") >= 0)
+				$('.list-group-item')[1].className = "list-group-item active";
+			else if(url.indexOf("order") >= 0)
+				$('.list-group-item')[2].className = "list-group-item active";
+			else if(url.indexOf("refund") >= 0)
+				$('.list-group-item')[3].className = "list-group-item active";
+			else if(url.indexOf("apply") >= 0)
+				$('.list-group-item')[4].className = "list-group-item active";
+		})
+</script>
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#">Recommend Shop</a>
+				</li>
+			</ul>
+			<div class="carousel slide" id="carousel-112879">
+				<ol class="carousel-indicators">
+					<li class="active" data-target="#carousel-112879" data-slide-to="0">
+					</li>
+					<li data-target="#carousel-112879" data-slide-to="1">
+					</li>
+					<li data-target="#carousel-112879" data-slide-to="2">
+					</li>
+				</ol>
+
+                <div class="carousel-inner">
+					{% for shop in shopadvlist %}
+					<div class="item">
+						<img alt="" src="/file/{{ shop.ShopBigImage }}" />
+						<div class="carousel-caption">
+							<h4>
+								{{ shop.ShopName }}
+							</h4>
+							<p>
+								{{ shop.ShopDescription }}
+							</p>
+						</div>
+					</div>
+
+					{% endfor%}
+				</div>
+                <a class="left carousel-control" href="#carousel-112879" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-112879" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+         </div>
+     </div>
+</div>
+            </br></br></br></br></br>
+ <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-2 column">
+			<div class="list-group">
+					<a class="list-group-item" href="/seller/home">My Shop</a>
+					<a class="list-group-item" href="/seller/ad">Manage Adv</a>
+					<a class="list-group-item" href="/seller/order">Manage Order</a>
+					<a class="list-group-item" href="/seller/refund">Check Refund</a>
+					<a class="list-group-item" href="/seller/applyshop">Apply New Shop</a>
+			</div>
+		</div>
+
+{% block sellercontent %}
+    <!--put content here-->
+{% endblock %}
+
+
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-4 column">
+		</div>
+        <!--<div class="col-md-4 column">
+			<ul class="pagination">
+				<li>
+					<a href="#">Prev</a>
+				</li>
+				<li>
+					<a href="#">1</a>
+				</li>
+				<li>
+					<a href="#">2</a>
+				</li>
+				<li>
+					<a href="#">3</a>
+				</li>
+				<li>
+					<a href="#">4</a>
+				</li>
+				<li>
+					<a href="#">5</a>
+				</li>
+				<li>
+					<a href="#">Next</a>
+				</li>
+			</ul>
+		</div>-->
+		<div class="col-md-4 column">
+		</div>
+	</div>
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+        <h3 style="color:#3a87ad">
+        My other shops
+        </h3>
+        {% for commodity in commodityadvlist %}
+            <a href="/commodity/id/{{ commodity.CommodityID }}">
+                <img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityImage }}" width="235" height="120"/>
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+		{% endfor %}
+        </div>
+	</div>
+</div>
+{% endblock %}
