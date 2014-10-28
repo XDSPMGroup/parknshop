@@ -182,6 +182,7 @@ class OrderList(models.Model):
 	)
 	OrderListState = models.IntegerField(choices=StateChoices)
 	OrderListDate = models.DateField()
+	OrderAmount = models.IntegerField(blank=True, null=True)
 	#SellerID = models.ForeignKey(Seller)
 	ShopOrderID = models.ForeignKey(ShopOrder)
 	CustomerOrderID = models.ForeignKey(CustomerOrder)

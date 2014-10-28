@@ -219,6 +219,54 @@ def logout(request):
 	else:
 		return HttpResponse('You have not login!')
 
-#def salesHistory(request):
-	
+#查看销售历史
+def salesHistory(request):
+	if request.session.get('UserID', False):
+		UserID = request.session['UserID']
+		UserType = request.session['UserType']
+		UserAccount = request.session['UserAccount']
+		UserName = UserAccount
+	else:
+		UserID = None
+		UserType = None
+		UserAccount = None
+	shopOrder = ShopOrder.objects.filter(ShopId = UserID)
+	for so in shopOrder:
+		SaleList = OrderList.objects.filter(ShopOrderID = so)
+		SalesHistoryList.append(SaleList)
+	return render_to_response('SellerSaleHistory.html', locals())
 
+
+#管理订单（查看订单并确认）
+def checkOrder(request):
+	if request.session.get('UserID', False):
+		UserID = request.session['UserID']
+		UserType = request.session['UserType']
+		UserAccount = request.session['UserAccount']
+		UserName = UserAccount
+	else:
+		UserID = None
+		UserType = None
+		UserAccount = None
+	shopOrder = ShopOrder.objects.filter(ShopId = UserID, ShopOrderState =0)
+	for so in shopOrder:
+		List = OrderList.objects.filter(ShopOrderID = so)
+		orderList.append(List)
+	return render_to_response('checkOrder.html', locals())
+
+
+def removeOrderList(request):
+	if request.session.get('UserID', False):
+		UserID = request.session['UserID']
+		UserType = request.session['UserType']
+		UserAccount = request.session['UserAccount']
+		UserName = UserAccount
+	else:
+		UserID = None
+		UserType = None
+		UserAccount = None
+	if 'id' in request.GET:
+		OrderList.objects.get(id = request.GET['id']).OrderListState=1
+	else:
+		pass
+	return HttpResponse("You removed: "+ OrderList.CommodityID.CommodityName+"from Orderlist")
