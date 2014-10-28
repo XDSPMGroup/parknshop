@@ -9,6 +9,18 @@ from system.models import *
 import time
 
 # Create your views here.
+def helpcenter(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+    return render_to_response('helpcenter.html', locals())
+
 def getCommodity(request, cid):
     if request.session.get('UserID', False):
         UserID = request.session['UserID']

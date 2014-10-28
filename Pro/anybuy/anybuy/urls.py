@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'anybuy.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+    url(r'^help_center/$', 'store.views.helpcenter'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^account/', include('account.urls')),
     url(r'^index/$', 'account.views.index',name = 'index'),
