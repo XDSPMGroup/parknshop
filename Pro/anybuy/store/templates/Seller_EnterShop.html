@@ -1,99 +1,10 @@
-{% extends "base.html" %}
-{% block title %}Cart{% endblock %}
+{% extends "sellerbase.html" %}
+{% block title %}Manage Shop{% endblock %}
 
-{% block content %}
-
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<ul class="nav nav-tabs">
-				<li class="active">
-					<a href="#">My shop</a>
-				</li>
-			</ul>
-			<div class="carousel slide" id="carousel-112879">
-
-				<div class="carousel-inner">
-					<div class="item active">
-						<img alt="" src="/file/{{ shop.BigImage }}" />
-						<div class="carousel-caption">
-							<h4>
-								{{ shop.ShopName }}
-							</h4>
-							<p>
-								{{ shop.ShopDescription }}
-							</p>
-						</div>
-					</div>
-
-				</div>
-			</div>
-         </div>
-     </div>
-</div>
-            </br></br></br></br></br>
- <div class="container">
-	<div class="row clearfix">
-		<div class="col-md-2 column">
-			<div class="list-group">
-				 <a class="list-group-item active" href="#">Home</a>
-				<div class="list-group-item">
-					comodity list
-				</div>
-				<div class="list-group-item">
-						modify store
-				</div>
-				<div class="list-group-item">
-					manage ads
-				</div> <a class="list-group-item ">Help</a>
-			</div>
-		</div>
+{% block sellercontent %}
 		<div class="col-md-10 column">
 			{% for commodity in commodityList %}
             <a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC"><img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityImage }}" style = "height:270px;"/></a>
             {% endfor %}
 		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-4 column">
-		</div>
-		<!--<div class="col-md-4 column">
-			<ul class="pagination">
-				<li>
-					<a href="#">Prev</a>
-				</li>
-				<li>
-					<a href="#">1</a>
-				</li>
-				<li>
-					<a href="#">2</a>
-				</li>
-				<li>
-					<a href="#">3</a>
-				</li>
-				<li>
-					<a href="#">4</a>
-				</li>
-				<li>
-					<a href="#">5</a>
-				</li>
-				<li>
-					<a href="#">Next</a>
-				</li>
-			</ul>
-		</div>-->
-		<div class="col-md-4 column">
-		</div>
-	</div>
-    <div class="row clearfix">
-		<div class="col-md-12 column">
-        <h3 style="color:#3a87ad">
-        My other shops
-        </h3>
-            {% for shop in shopList %}
-                 <a href="/shop/id/{{ shop.id }}" style = "color:#3299CC"><img class="img-thumbnail" alt="140x140" src="/file/{{ shop.ShopImage }}" style = "height:270px;"/></a>
-            {% endfor %}
-		</div>
-	</div>
-</div>
 {% endblock %}
