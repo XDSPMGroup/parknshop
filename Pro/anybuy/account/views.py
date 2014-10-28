@@ -178,7 +178,7 @@ def login(request):
 						request.session['UserAccount'] = UserAccount
 						request.session['UserID'] = user.id
 						#return render_to_response('index.html',{'customer':user})
-						return HttpResponseRedirect('/sellerHomepage/')#sellerHomepage 代表entershop
+						return HttpResponseRedirect('/seller/')#sellerHomepage 代表entershop
 					else:
 						wrongpw = True
 						return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))

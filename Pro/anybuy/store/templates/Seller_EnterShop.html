@@ -2,9 +2,61 @@
 {% block title %}Manage Shop{% endblock %}
 
 {% block sellercontent %}
-		<div class="col-md-10 column">
-			{% for commodity in commodityList %}
-            <a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC"><img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityImage }}" style = "height:270px;"/></a>
-            {% endfor %}
-		</div>
+
+
+
+
+<div class="col-md-10 column">
+    <div class="tabbable" id="tabs-890436">
+				<ul class="nav nav-tabs">
+{#                    {% for shop in shoplist %}#}
+					<li class="active">
+{#						<a href="#panel-849926" data-toggle="tab">Commodity</a>#}
+                        <a href="/seller/modify/0">Add a Commodity</a>
+					</li>
+{#                    {% endfor %}#}
+				</ul>
+				<div class="tab-content">
+{#                    {% for shop in shoplist %}#}
+					<div class="tab-pane active" id="panel-849926">
+                        <div class="container">
+	                        <div class="row clearfix">
+		                        <div class="col-md-10 column">
+		                        	<div class="row clearfix">
+{#                                        <div style="width: 280px; height: 290px; float: left;">#}
+{#                                        <a href="/addcommodity/" style = "color:#3299CC"><img class="img-thumbnail" alt="140x140" src="/file/images/addicon.png" style = "width:270px;"/>add a new commodity</a>#}
+{##}
+{#                                        </div>#}
+                                    <script type="text/javascript">
+                                        function del(id) {
+                                            xmlhttp=new XMLHttpRequest();
+                                            xmlhttp.onreadystatechange=function()
+                                            {
+                                                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                                                {
+                                                    $('#item'+id.toString()).fadeOut();
+                                                }
+                                            }
+                                            xmlhttp.open("GET","/seller/delete/"+id.toString(),true);
+                                            xmlhttp.send();
+                                        }
+
+                                    </script>
+                                        {% for commodity in commoditylist %}
+                                        <div id="item{{ commodity.id }}" style="width: 280px; height: 290px; float: left;">
+                                            <a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC"><img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityImage }}" style = "width:270px;"/></a>
+                                            <a href="/seller/modify/{{ commodity.id }}">Modify</a>
+                                            <a onclick="del({{ commodity.id }})">Delete</a>
+                                        </div>
+                                        {% endfor %}
+
+			                        </div>
+		                        </div>
+	                        </div>
+                        </div>
+					</div>
+{#                    {% endfor %}#}
+				</div>
+			</div>
+</div>
 {% endblock %}
