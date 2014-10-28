@@ -1,265 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Bootstrap 3, from LayoutIt!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
-	
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/foot.css" rel="stylesheet">
-	<link href="css/flat-ui.css" rel="stylesheet">
-	
-	
+{% extends "sellerbase.html" %}
+{% block title %}Return&Refund{% endblock %}
 
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="img/favicon.png">
-  
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/scripts.js"></script>
-	<script type="text/javascript" src="js/flat-ui.js"></script>
-	<script type="text/javascript" src="js/flat-ui.min.js"></script>
-</head>
+{% block sellercontent %}
 
-<body>
-<header>
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#" style = "color:#00009C">IMAGE</a>
-				</div>
-				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li>
-							<a href="#">My Shops</a>
-						</li>
-					</ul>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control">
-						</div> <button type="submit" class="btn btn-default">Search</button>
-					</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a href="#" style = "color:#3299CC">Homepage</a>
-						</li>
-						<li>
-							<a href="#">Hello,xxx</a>
-						</li>
-						<li>
-							<a href="#" style = "color:#A67D3D">Help center</a>
-						</li>
-					
-					</ul>
-				</div>
-				
-			</nav>
-</header>
+
 <div class="container">
 	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="page-header">
-				<h1>
+		<div class="col-md-10 column">
+				<h3>
 					Return and refund
-				</h1>
+				</h3>
+			<hr>
+
+			<div class="row clearfix">
+				<div class="col-md-12 column">   
+					<div class="row col-md-10">
+						<table class="table table-striped custab">
+							<thead>
+								<tr class="yanse">
+									<th>
+										No.
+									</th>
+									<th>
+										Commodity Name
+									</th>
+									<th>
+										Order Time
+									</th>
+									<th>
+										Money
+									</th>
+									<th class="text-center">
+									Accept
+									</th>
+									<th class="text-center">
+									Deny
+									</th>
+								</tr>
+							</thead>
+
+				   <script type="text/javascript">
+						function success(id){
+							xmlhttp= new XMLHttpRequest();
+							xmlhttp.onreadystatechange=function()
+							{
+								if(xmlhttp.readyState==4 && xmlhttp.status==200)
+								{
+									$('#item'+id).fadeOut()
+								}
+							}
+							xmlhttp.open("GET","/modifyOrderList1?id="+id,true);
+							xmlhttp.send();
+						}
+					</script>
+
+					<script type="text/javascript">
+						function failure(id){
+							xmlhttp= new XMLHttpRequest();
+							xmlhttp.onreadystatechange=function()
+							{
+								if(xmlhttp.readyState==4 && xmlhttp.status==200)
+								{
+									$('#item'+id).fadeOut()
+								}
+							}
+							xmlhttp.open("GET","/modifyOrderList2?id="+id,true);
+							xmlhttp.send();
+						}
+					</script>
+				    
+				    {% for order in orderList %}					
+					<tr class="yanse" id="item{{ order.CommodityID.id }}">
+
+					    <td>
+							{{ order.id }}
+						</td>
+						<td>
+							<a href="/commodity/id/{{ order.CommodityID.id }}" style = "color:#3299CC">{{ order.CommodityID.CommodityName }}</a>
+						</td>
+						<td>
+							{{order.OrderListDate}}
+						</td>
+						<td>
+							{{order.CommodityID.SellPrice}}$
+						</td>
+						<td class="text-center"><a class='btn btn-info btn-xs' onclick="success('{{order.id}}')"><span class="glyphicon glyphicon-edit"><b>Accept</b>
+						</td>
+						<td class="text-center"><a class='btn btn-info btn-xs' onclick="failure('{{order.id}}')"><span class="glyphicon glyphicon-edit"><b>Deny</b>
+						</td>
+						</tr>
+						{% endfor %}
+					</table>
+			   		</div>
+				</div>
 			</div>
-			<div class="tabbable" id="tabs-630860">
-				<ul class="nav nav-tabs">
-					<li class="active">
-						<a href="#panel-14830" data-toggle="tab">List</a>
-					</li>
-				
-				</ul>
-				
-			</div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>
-							No.
-						</th>
-						<th>
-							Commodity
-						</th>
-						<th>
-							Time
-						</th>
-						<th>
-							Money
-						</th>
-						<th>
-						Accept/Deny
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							Lacoste Blue Sevrin 3 SRM Trainers
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-						<td>
-							<input type="checkbox" checked data-toggle="switch" data-on-color="info" data-off-color="danger" id="custom-switch-08" />
-						</td>
-					</tr>
-					<tr class="active">
-						
-						<td>
-							1
-						</td>
-						<td>
-							Lacoste Blue Sevrin 3 SRM Trainers
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-						<td>
-							<input type="checkbox" checked data-toggle="switch" data-on-color="info" data-off-color="danger" id="custom-switch-08" />
-						</td>
-					
-					</tr>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td>
-							Lacoste Blue Sevrin 3 SRM Trainers
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-						<td>
-							<input type="checkbox" checked data-toggle="switch" data-on-color="info" data-off-color="danger" id="custom-switch-08" />
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							1
-						</td>
-						<td>
-							Lacoste Blue Sevrin 3 SRM Trainers
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-						<td>
-							<input type="checkbox" checked data-toggle="switch" data-on-color="info" data-off-color="danger" id="custom-switch-08" />
-						</td>
-					</tr>
-					<tr class="danger">
-					<td>
-							1
-						</td>
-						<td>
-							Lacoste Blue Sevrin 3 SRM Trainers
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-						<td>
-							<input type="checkbox" checked data-toggle="switch" data-on-color="info" data-off-color="danger" id="custom-switch-08" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
 		</div>
 	</div>
 </div>
-<br>
-<!--footer-->
-<footer class="footer" style = "background-color: #f8f8f8">
-<nav class="navbar navbar-default navbar-static-bottom" role="navigation" style = "background-color: #b4aaaa">
-    <div class="container" >
-        <div class="row clearfix" >
-            <div class="col-md-4 column ui-sortable" style="">	
-                <h4 style = "color:#4491E4">Follow Us</h4>
-                <!--   <ul class="flickr clearfix"></ul>  -->
-                <ul class="menu-widget">
-                    <li><img class="mim-bottom" src="img/fba.png" /><img class="mim-top" src="img/fb.png" /><a class="follow-widget">Facebook</a></li>
-                    <li><img class="mim-bottom" src="img/fla.png" /><img class="mim-top" src="img/fl.png" /><a class="follow-widget">Flickr</a></li>
-                    <li><img class="mim-bottom" src="img/twa.png" /><img class="mim-top" src="img/tw.png" /><a class="follow-widget">Twitter</a></li>
-                    <li><img class="mim-bottom" src="img/bla.png" /><img class="mim-top" src="img/bl.png" /><a class="follow-widget">Blogger</a></li>
-                    <li><img class="mim-bottom" src="img/dla.png" /><img class="mim-top" src="img/dl.png" /><a class="follow-widget">Delicious</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4 column ui-sortable" style="">	
-                <h4 style = "color:#4491E4">Contact Form</h4>
-
-                <form id="contact" class="form-horizontal" method="post" />
-                    <div class="control-group">
-                        <label class="control-label" for="inputName">Name</label>
-
-                        <div class="controls">
-                            <input type="text" id="inputName" style = "width:230px" placeholder="Name" name="inputName" />
-                             </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inputEmail">Email</label>
-
-                        <div class="controls">
-                            <input type="text" id="inputEmail" style = "width:230px" placeholder="Email" name="inputEmail" />
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inputMessage"></label>
-
-                        <div class="controls">
-                            <textarea rows="3" id="inputMessage" style = "width:230px" name="inputMessage"></textarea>
-						</div>
-                    </div>
-                    <div class="submit-div">
-                        <input type="submit" class="btn pull-right footer-button" value="SUBMIT!" />
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-4 column ui-sortable" style="">	
-                <h4 style = "color:#4491E4">Address</h4>
-                <address>
-                    ANYBUY inc.<br />
-                    Xi'an, Taibai Street, 710126<br />
-                    <i class="myicon-phone"></i>(123) 456-7890<br />
-                    <i class="myicon-mail"></i>Anybuy@gmail.com
-                </address>
-                Ut eu nulla eget massa blandit eleifend vel sedis lacus. Sed at viverra nulla. Fusce vel adipisci odio.
-                Phasellus commodo, mauris eget pharetra scelerisque, est justo lacinia tortor.
-            </div>
-        </div>
-    </div>
-</nav>
-</footer>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/flat-ui.min.js"></script>
-
-<script src="js/application.js"></script>
-
-</body>
-</html>
+{% endblock %}

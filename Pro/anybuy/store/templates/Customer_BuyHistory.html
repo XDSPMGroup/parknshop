@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}SalesHistory{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			
+				
+			<h3 class="text-left" style="color:#3a87ad">
+				Buys History
+			</h3>
+			<hr>
+			<a href="/customer/statistics/all"><button class='btn btn-info btn-xs'>All Sales</button></a>
+			<a href="/customer/statistics/year"><button class='btn btn-info btn-xs'>Year Sales</button></a>
+			<a href="/customer/statistics/month"><button class='btn btn-info btn-xs'>Month Sales</button></a>
+			<a href="/customer/statistics/day"><button class='btn btn-info btn-xs'>Day Sales</button></a>
+			<br>
+			<br>
+			<div class="row clearfix">
+				<div class="col-md-12 column">   
+        			<div class="row col-md-10">
+			<table class="table table-striped custab">
+				<thead>
+					<tr class="yanse">
+						<th>
+							commodity name
+						</th>
+						<th>
+							unit-price
+						</th>
+						<th>
+							time
+						</th>
+						<th>
+							counts
+						</th>						
+						<th>
+							actual payments
+						</th>
+						<th>
+							status
+						</th>
+					</tr>
+				</thead>
+				{% for buysHistory in BuysHistoryList %}
+				<tr class="yanse" id="item{{buysHistory.CommodityID.id}}">
+					<td>{{buysHistory.CommodityID.CommodityName}}</td>
+					<td>{{buysHistory.CommodityID.SellPrice}}$</td>
+					<td>{{buysHistory.OrderListDate}}</td>
+					<td>{{buysHistory.OrderAmount}}</td>
+					<td>{% widthratio buysHistory.CommodityID.SellPrice 1 buysHistory.OrderAmount %}$</td>
+					<td>{{buysHistory.OrderListState}}</td>
+				</tr>
+				{% endfor %}				
+			</table>
+			<b>Total Value: {{totalvalue}}$	<b>
+			<br>
+			<br>
+		</div>
+		</div>
+		</div>
+	</div>
+	</div>
+</div>
+{% endblock %}
+					

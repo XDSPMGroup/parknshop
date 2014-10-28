@@ -1,17 +1,23 @@
 {% extends "sellerbase.html" %}
 {% block title %}SalesHistory{% endblock %}
 
-{% block content %}
+{% block sellercontent %}
 
 <div class="container">
 	<div class="row clearfix">
-		<div class="col-md-12 column">
+		<div class="col-md-10 column">
 			
 				
 			<h3 class="text-left" style="color:#3a87ad">
-				Sales history
+				Sales History
 			</h3>
 			<hr>
+			<a href="/seller/statistics/all"><button class='btn btn-info btn-xs'>All Sales</button></a>
+			<a href="/seller/statistics/year"><button class='btn btn-info btn-xs'>Year Sales</button></a>
+			<a href="/seller/statistics/month"><button class='btn btn-info btn-xs'>Month Sales</button></a>
+			<a href="/seller/statistics/day"><button class='btn btn-info btn-xs'>Day Sales</button></a>
+			<br>
+			<br>
 			<div class="row clearfix">
 				<div class="col-md-12 column">   
         			<div class="row col-md-10">
@@ -41,14 +47,17 @@
 				{% for salesHistory in SalesHistoryList %}
 				<tr class="yanse" id="item{{salesHistory.CommodityID.id}}">
 					<td>{{salesHistory.CommodityID.CommodityName}}</td>
-					<td>{{salesHistory.CommodityID.SellPrice}}</td>
+					<td>{{salesHistory.CommodityID.SellPrice}}$</td>
 					<td>{{salesHistory.OrderListDate}}</td>
 					<td>{{salesHistory.OrderAmount}}</td>
-					<td>{% widthratio salesHistory.CommodityId.SellPrice 1 salesHistory.OrderAmount %}</td>
+					<td>{% widthratio salesHistory.CommodityID.SellPrice 1 salesHistory.OrderAmount %}$</td>
 					<td>{{salesHistory.OrderListState}}</td>
 				</tr>
-				{% endfor %}
-			</table>		
+				{% endfor %}				
+			</table>
+			<b>Total Value: {{totalvalue}}$	<b>
+			<br>
+			<br>
 		</div>
 		</div>
 		</div>
