@@ -46,7 +46,10 @@ padding-left: 50px;
 height:40px;
 width:185px;
 }
-
+.floor{
+background:#ffffff;
+height:412px;
+}
 #floor .logo{
 width:120px;
 height:100px;
@@ -55,4 +58,30 @@ height:100px;
 }
 #floor .floor-intro-bottom a{
 color:black;
+}
+#bulletin{
+height:350px;
+}
+#bulletin img{
+z-index:1;
+position:absolute;
+margin-left:-15px;
+margin-top:60px;
+}
+#bulletin h3{
+color:white;
+z-index:1;
+position:absolute;
+text-align:center;
+}
+#top img{
+height:150px;
+width:150px;
+}
+.^floord{1}${
+margin-top: -50px;
+}
+#carousel img{
+width: 1348px;
+height: 650px;
 }
