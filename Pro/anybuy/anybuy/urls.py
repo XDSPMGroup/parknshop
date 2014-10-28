@@ -30,14 +30,10 @@ urlpatterns = patterns('',
     url(r'^rmfromcart/$', 'store.views.rm_from_cart'),
     url(r'^refreshcart/$', 'store.views.refreshcart'),
     url(r'^rmfromfavorite/$', 'store.views.rm_from_favorite'),
-<<<<<<< HEAD
     url(r'^salesHistory/$', 'account.views.salesHistory'),
     url(r'^checkOrder/$', 'account.views.checkOrder'),
     url(r'^removeOrderList/$', 'account.views.removeOrderList'),
-
-=======
     url(r'^checkout/$', 'store.views.checkoutcart'),
->>>>>>> origin/master
     #url(r'^account/$', views.register, name='register'),
     #url(r'^account/register/$',views.register, name = 'register'),
 )
