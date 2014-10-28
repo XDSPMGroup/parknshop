@@ -7,7 +7,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.template import RequestContext
 from system.models import *
 import time
-
+import datetime
 # Create your views here.
 def helpcenter(request):
     if request.session.get('UserID', False):
@@ -245,3 +245,37 @@ def sellerentershop(request): #需要返回shoplist，shopadvlist，commodityadv
 def delfromshop(request, cid):
     Commodity.objects.get(id = cid).delete()
     return HttpResponse('You have deleted a commodity!!!')
+
+#查看购买历史
+def buysHistory(request, time):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+    shopID = Shop.objects.get(SellerID = UserID)
+    shopOrder = ShopOrder.objects.filter(ShopID = shopID)
+    BuysHistoryList = []
+    now = datetime.datetime.now()
+    for so in shopOrder:
+        BuyList = OrderList.objects.filter(CustomerOrderID = so)
+        for sl in BuyList:
+            if time == "all":
+                BuysHistoryList.append(sl)
+            elif time == "year":
+                if sl.OrderListDate.year == now.year:
+                    BuysHistoryList.append(sl)
+            elif time == "month":
+                if sl.OrderListDate.month == now.month:
+                    BuysHistoryList.append(sl)
+            elif time == "day":
+                if sl.OrderListDate.day == now.day:
+                    BuysHistoryList.append(sl)
+    totalvalue = 0
+    for shl in BuysHistoryList:
+        totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
+    return render_to_response('Customer_BuyHistory.html', locals())

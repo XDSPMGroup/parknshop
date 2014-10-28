@@ -300,3 +300,72 @@ def removeOrderList(request):
 	else:
 		ol = None
 	return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
+
+
+def refund(request):
+	if request.session.get('UserID', False):
+		UserID = request.session['UserID']
+		UserType = request.session['UserType']
+		UserAccount = request.session['UserAccount']
+		UserName = UserAccount
+	else:
+		UserID = None
+		UserType = None
+		UserAccount = None
+	shopID = Shop.objects.get(SellerID = UserID)
+	shopOrder = ShopOrder.objects.filter(ShopID = shopID, ShopOrderState = 4)
+	orderList = []
+	for so in shopOrder:
+		List = OrderList.objects.filter(ShopOrderID = so, OrderListState = 4)
+		for ol in List:
+			orderList.append(ol)
+	#return HttpResponse(orderList[0])
+	return render_to_response('Seller_ReturnAndRefund.html', locals())
+
+def modifyOrderList1(request):
+	if request.session.get('UserID', False):
+		UserID = request.session['UserID']
+		UserType = request.session['UserType']
+		UserAccount = request.session['UserAccount']
+		UserName = UserAccount
+	else:
+		UserID = None
+		UserType = None
+		UserAccount = None
+	if 'id' in request.GET:
+		ol = OrderList.objects.get(id = request.GET['id'])
+		ol.OrderListState = 5
+		ol.save()
+		so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
+		so.ShopOrderState = 5
+		so.save()
+		co = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
+		co.CustomerOrderState = 5
+		co.save()
+	else:
+		ol = None
+	return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
+
+def modifyOrderList2(request):
+	if request.session.get('UserID', False):
+		UserID = request.session['UserID']
+		UserType = request.session['UserType']
+		UserAccount = request.session['UserAccount']
+		UserName = UserAccount
+	else:
+		UserID = None
+		UserType = None
+		UserAccount = None
+	if 'id' in request.GET:
+		ol = OrderList.objects.get(id = request.GET['id'])
+		ol.OrderListState = 7
+		ol.save()
+		so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
+		so.ShopOrderState = 7
+		so.save()
+		co = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
+		co.CustomerOrderState = 7
+		co.save()
+	else:
+		ol = None
+	return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")

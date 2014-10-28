@@ -51,7 +51,7 @@
 
         </script>
                 <td><a href="/commodity/id/{{ favorite.CommodityID.id }}" style = "color:#3299CC">{{ favorite.CommodityID.CommodityName }}</a></td> <!--这里是Commodity里的CommodityName-->
-                <td>{{ favorite.CommodityID.SellPrice }}</td>  <!--这里是Commodity里的OriginalPrice-->
+                <td>{{ favorite.CommodityID.SellPrice }}$</td>  <!--这里是Commodity里的OriginalPrice-->
                 <td class="text-center">
                     <a onclick="add{{ favorite.CommodityID.CommodityName }}tocart()" class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Add to Cart</a>
                     <a onclick="rmfromfavoritex('{{ favorite.CommodityID.id }}')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>   <!--这里的两个按钮分别是添加到cart和删除选项-->
