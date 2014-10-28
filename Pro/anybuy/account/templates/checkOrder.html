@@ -14,46 +14,45 @@
 
 			<div class="row clearfix">
 				<div class="col-md-12 column">   
-        			<div class="row col-md-10">
-        				{% for so in shopOrder %}
-        				<table class="table table-striped custab">
-        				<thead>
-        					<tr class="yanse">
+					<div class="row col-md-10">
+						<table class="table table-striped custab">
+						<thead>
+							<tr class="yanse">
 							<th >commodity picture</th>
 							<th >commodity name</th>
 							<th >price</th>
 							<th >order time</th>
+							<th class="text-center">Action</th>
 							</tr>
-        				</thead>
-        				<script type="text/javascript">
-        				function confirmOrder(id){
-        					xmlhttp= new XMLHttpRequest();
-        					xmlhttp.onreadystatechange=function()
-        					{
-        						if(xmlhttp.readyState==4 && xmlhttp.status==200)
-        						{
-        							$('#item'+id).fadeout()
-        						}
-        					}
-        					xmlhttp.open("GET","/removeOrderList?id="+id,true);
-        					xmlhttp.send();
-        				}
-        				</script>
-        				{% for ol in orderList%}
-        				{% if ol.ShopOrderID==so %}
-        				<tr class="yanse" id="item{{ ol.CommodityID.id }}">
-        				<td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC"><img src="/file/{{ ol.CommodityID.CommodityImage }}" style = "height:90px;"/></a></td>
-        				<td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC">{{ ol.CommodityID.CommodityName }}</a></td>
-        				<td>{{ ol.CommodityID.SellPrice }}</td>
-        				<td>{{ ol.OrderListDate }}</td>
-        				</tr>
-        				<a class='btn btn-info btn-xs' onclick="confirmOrder('ol.id')"><span class="glyphicon glyphicon-remove"></span>Confirm</a>
-        				{% endif %}
-        				</table>
-        				{% endfor %}
-        			</div>
+						</thead>
+						<script type="text/javascript">
+						function confirmOrder(id){
+							xmlhttp= new XMLHttpRequest();
+							xmlhttp.onreadystatechange=function()
+							{
+								if(xmlhttp.readyState==4 && xmlhttp.status==200)
+								{
+									$('#item'+id).fadeOut()
+								}
+							}
+							xmlhttp.open("GET","/removeOrderList?id="+id,true);
+							xmlhttp.send();
+						}
+						</script>
+						{% for ol in orderList %}
+						<tr class="yanse" id="item{{ ol.CommodityID.id }}">
+						<td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC"><img src="/file/{{ ol.CommodityID.CommodityImage }}" style = "height:90px;"/></a></td>
+						<td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC">{{ ol.CommodityID.CommodityName }}</a></td>
+						<td>{{ ol.CommodityID.SellPrice }}$</td>
+						<td>{{ ol.OrderListDate }}</td>
+						<td class="text-center"><a class='btn btn-info btn-xs' onclick="confirmOrder('{{ol.id}}')"><span class="glyphicon glyphicon-edit"><b>Confirm</b></td>
+						{% endfor %}
+						</table>
+						
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+{% endblock %}

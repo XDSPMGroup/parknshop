@@ -7,6 +7,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.template import RequestContext
 from system.models import *
 import hashlib
+import datetime
 
 #定义表单模型
 IDENTITY = (
@@ -220,7 +221,7 @@ def logout(request):
 		return HttpResponse('You have not login!')
 
 #查看销售历史
-def salesHistory(request):
+def salesHistory(request, time):
 	if request.session.get('UserID', False):
 		UserID = request.session['UserID']
 		UserType = request.session['UserType']
@@ -230,10 +231,27 @@ def salesHistory(request):
 		UserID = None
 		UserType = None
 		UserAccount = None
-	shopOrder = ShopOrder.objects.filter(ShopId = UserID)
+	shopID = Shop.objects.get(SellerID = UserID)
+	shopOrder = ShopOrder.objects.filter(ShopID = shopID)
+	SalesHistoryList = []
+	now = datetime.datetime.now()
 	for so in shopOrder:
 		SaleList = OrderList.objects.filter(ShopOrderID = so)
-		SalesHistoryList.append(SaleList)
+		for sl in SaleList:
+			if time == "all":
+				SalesHistoryList.append(sl)
+			elif time == "year":
+				if sl.OrderListDate.year == now.year:
+					SalesHistoryList.append(sl)
+			elif time == "month":
+				if sl.OrderListDate.month == now.month:
+					SalesHistoryList.append(sl)
+			elif time == "day":
+				if sl.OrderListDate.day == now.day:
+					SalesHistoryList.append(sl)
+	totalvalue = 0
+	for shl in SalesHistoryList:
+		totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
 	return render_to_response('SellerSaleHistory.html', locals())
 
 
@@ -248,10 +266,14 @@ def checkOrder(request):
 		UserID = None
 		UserType = None
 		UserAccount = None
-	shopOrder = ShopOrder.objects.filter(ShopId = UserID, ShopOrderState =0)
+	shopID = Shop.objects.get(SellerID = UserID)
+	shopOrder = ShopOrder.objects.filter(ShopID = shopID, ShopOrderState = 0)
+	orderList = []
 	for so in shopOrder:
-		List = OrderList.objects.filter(ShopOrderID = so)
-		orderList.append(List)
+		List = OrderList.objects.filter(ShopOrderID = so, OrderListState = 0)
+		for ol in List:
+			orderList.append(ol)
+	#return HttpResponse(orderList[0])
 	return render_to_response('checkOrder.html', locals())
 
 
@@ -266,7 +288,15 @@ def removeOrderList(request):
 		UserType = None
 		UserAccount = None
 	if 'id' in request.GET:
-		OrderList.objects.get(id = request.GET['id']).OrderListState=1
+		ol = OrderList.objects.get(id = request.GET['id'])
+		ol.OrderListState = 1
+		ol.save()
+		so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
+		so.ShopOrderState = 1
+		so.save()
+		so = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
+		so.CustomerOrderState = 1
+		so.save()
 	else:
-		pass
-	return HttpResponse("You removed: "+ OrderList.CommodityID.CommodityName+"from Orderlist")
+		ol = None
+	return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
