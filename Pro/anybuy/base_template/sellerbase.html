@@ -6,7 +6,7 @@
 	$(function(){
 			$('.item')[0].className = "item active";
 			url = window.location.href;
-			if(url.indexOf("home") >= 0)
+			if(url.indexOf("seller") >= 0)
 				$('.list-group-item')[0].className = "list-group-item active";
 			else if(url.indexOf("ad") >= 0)
 				$('.list-group-item')[1].className = "list-group-item active";
@@ -30,25 +30,25 @@
 				</li>
 			</ul>
 			<div class="carousel slide" id="carousel-112879">
-				<ol class="carousel-indicators">
-					<li class="active" data-target="#carousel-112879" data-slide-to="0">
-					</li>
-					<li data-target="#carousel-112879" data-slide-to="1">
-					</li>
-					<li data-target="#carousel-112879" data-slide-to="2">
-					</li>
-				</ol>
+{#				<ol class="carousel-indicators">#}
+{#					<li class="active" data-target="#carousel-112879" data-slide-to="0">#}
+{#					</li>#}
+{#					<li data-target="#carousel-112879" data-slide-to="1">#}
+{#					</li>#}
+{#					<li data-target="#carousel-112879" data-slide-to="2">#}
+{#					</li>#}
+{#				</ol>#}
 
                 <div class="carousel-inner">
 					{% for shop in shopadvlist %}
 					<div class="item">
-						<img alt="" src="/file/{{ shop.ShopBigImage }}" />
+						<img alt="" src="/file/{{ shop.ShopID.BigImage }}" />
 						<div class="carousel-caption">
 							<h4>
-								{{ shop.ShopName }}
+								{{ shop.ShopID.ShopName }}
 							</h4>
 							<p>
-								{{ shop.ShopDescription }}
+								{{ shop.ShopID.ShopDescription }}
 							</p>
 						</div>
 					</div>
@@ -114,12 +114,12 @@
     <div class="row clearfix">
 		<div class="col-md-12 column">
         <h3 style="color:#3a87ad">
-        My other shops
+        Recommend commodity
         </h3>
         {% for commodity in commodityadvlist %}
-            <a href="/commodity/id/{{ commodity.CommodityID }}">
-                <img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityImage }}" width="235" height="120"/>
-            </a>
+            <a href="/commodity/id/{{ commodity.CommodityID.id }}">
+                <img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityID.CommodityImage }}" width="235" height="120"/>
+            </a>{{ commodity.CommodityImage }}
             &nbsp;&nbsp;&nbsp;&nbsp;
 		{% endfor %}
         </div>

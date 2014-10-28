@@ -225,7 +225,7 @@ def search(request, keyword):  #/search/keyword/ 以keyword为关键字进行搜
     commodityList_by_counterprice = commodityList.order_by('-SellPrice')
     return render_to_response('Customer_CommodityList.html', locals())
 
-def sellerhome(request): #需要返回shoplist，shopadvlist，commodityadvlist
+def sellerentershop(request): #需要返回shoplist，shopadvlist，commodityadvlist
     if request.session.get('UserID', False):
         UserID = request.session['UserID']
         UserType = request.session['UserType']
@@ -233,7 +233,15 @@ def sellerhome(request): #需要返回shoplist，shopadvlist，commodityadvlist
     else:
         return HttpResponseRedirect('/login/')
     seller = Seller.objects.get(id=UserID)
-    shoplist = Shop.objects.filter(SellerID = seller)
+    shop = Shop.objects.get(SellerID = seller)
+    commoditylist = Commodity.objects.filter(ShopID = shop)
+    # commodity = commoditylist[0]
     shopadvlist = ShopAdv.objects.filter(OwnerID = seller)
+    # shop = shopadvlist[0]
     commodityadvlist = CommodityAdv.objects.filter(OwnerID = seller)
-    return render_to_response('Customer_CommodityList.html', locals())
+    # return HttpResponse(commoditylist[0].CommodityName)
+    return render_to_response('Seller_EnterShop.html', locals())
+
+def delfromshop(request, cid):
+    Commodity.objects.get(id = cid).delete()
+    return HttpResponse('You have deleted a commodity!!!')
