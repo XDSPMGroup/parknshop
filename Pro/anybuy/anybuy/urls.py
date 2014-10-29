@@ -1,3 +1,4 @@
+#coding=utf-8
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from anybuy import settings
@@ -43,6 +44,7 @@ urlpatterns = patterns('',
     url(r'^modifyOrderList2/$', 'account.views.modifyOrderList2'),
     url(r'^seller/ad/$', 'store.views.manageAD'),
     url(r'^seller/changead/$', 'store.views.changead'),
+    url(r'^seller/modify/(?P<cid>\d*)/$', 'store.views.add_and_modify'), #cid==0时添加新项目， !=0时修改cid的项目
     #url(r'^account/$', views.register, name='register'),
     #url(r'^account/register/$',views.register, name = 'register'),
 )

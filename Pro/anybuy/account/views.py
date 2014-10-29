@@ -1,5 +1,5 @@
 # Create your views here.
-#coding=utf-8
+    #coding=utf-8
 from django.shortcuts import render
 from django import forms
 from django.shortcuts import render_to_response
@@ -179,7 +179,7 @@ def login(request):
 						request.session['UserAccount'] = UserAccount
 						request.session['UserID'] = user.id
 						#return render_to_response('index.html',{'customer':user})
-						return HttpResponseRedirect('/seller/')#sellerHomepage 代表entershop
+						return HttpResponseRedirect('/seller/home')#sellerHomepage 代表entershop
 					else:
 						wrongpw = True
 						return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
@@ -197,12 +197,12 @@ def index(request):
 		UserName = user.CustomerName
 		#locals() -> {'UserName': UserName, 'UserType': UserType, 'UserID':UserID}
 		#return HttpResponse(user.CustomerAccount)
-		return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+		return render_to_response('Homepage.html', locals(), context_instance=RequestContext(request))
 	elif UserID and UserType == 'S':
 		user = Seller.objects.get(id = UserID)
 		UserName = user.SellerName
 		#locals() -> {'UserName': UserName, 'UserType': UserType, 'UserID':UserID}
-		return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+		return render_to_response('Homepage.html', locals(), context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/login/')
 
@@ -222,7 +222,10 @@ def logout(request):
 	session = request.session.get('UserID', False)
 	if session:
 		del request.session['UserID']
-		return render_to_response('logout.html', {'CustomerName': session}, context_instance=RequestContext(request))
+		del request.session['UserType']
+		del request.session['UserAccount']
+		# return render_to_response('logout.html', {'CustomerName': session}, context_instance=RequestContext(request))
+		return HttpResponseRedirect('/index/')##########
 	else:
 		return HttpResponse('You have not login!')
 

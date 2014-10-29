@@ -3,13 +3,21 @@
 
 任务 | 详情 | html文件 | url | status
 ----|-----|----------|----- | ---
-entershop|查看商品list、（entershop上面显示店铺广告，下面显示shop的广告）| |url:/seller/ | done
+entershop|查看商品list、（entershop上面显示店铺广告，下面显示shop的广告）| |url:/seller/ | done by LS
 管理shop|添加修改（包括折扣）商品页面|manageCommodity.html| url:/seller/modify |
-管理广告|改成选择商品和店铺（广告显示在entershop页面）|：manageAD.html |/seller/ad |
-管理订单|把action里面的按钮改成一个confirm，confirm之后状态改为shipping |用favorite页面|/seller/order |
-statistics|查看销售记录|checksaleshistory.html|/seller/statistics
-refund|查看退款：refund 页面全部设置初值为refuse，右下角添加一个提交按钮 ||/seller/refund
-apply|申请shop：申请之后在下面弹出一句话：congratulations|applyshop| url/myshop/applyshop
+管理广告|改成选择商品和店铺（广告显示在entershop页面）|：manageAD.html |/seller/ad |done by LS
+管理订单|把action里面的按钮改成一个confirm，confirm之后状态改为shipping |用favorite页面|/seller/order |done by WT
+statistics|查看销售记录|checksaleshistory.html|/seller/statistics|done by WT
+refund|查看退款：refund 页面全部设置初值为refuse，右下角添加一个提交按钮 ||/seller/refund|done by WT
+apply|申请shop：申请之后在下面弹出一句话：congratulations|applyshop| url/myshop/applyshop|
+customer refund||||done by WT
+logout->homepage || ||done by LS
+help center(TA)做一个静态页面|||| done CXY
+sellerbase!!|||| done by LS
+顾客注册成功之后进入homepage，卖家注册成功之后进入entershop||||done by LS
+refund+comment||||done by WT
+查看顾客历史订单（王腾）||||done by WT
+customer check out ||||
 
 1、2、3李爽，4、5王腾，6、7寇苗娟
 
@@ -62,3 +70,6 @@ setup Django REST framework to implement RESTful web service
 
     cd parknshop/Pro/anybuy/files/framework/djangorestframework-0.3.2
     python setup.py install 
+
+check 之后跳转到 order
+按钮
