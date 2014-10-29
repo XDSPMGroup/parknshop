@@ -233,12 +233,15 @@ def sellerentershop(request): #需要返回shoplist，shopadvlist，commodityadv
     else:
         return HttpResponseRedirect('/login/')
     seller = Seller.objects.get(id=UserID)
-    shop = Shop.objects.get(SellerID = seller)
-    commoditylist = Commodity.objects.filter(ShopID = shop)
+    try:
+        shop = Shop.objects.get(SellerID = seller)
+        commoditylist = Commodity.objects.filter(ShopID = shop)
+        shopadvlist = Shop.objects.filter(SellerID = seller, IsAdv = True)
+        commodityadvlist = Commodity.objects.filter(ShopID = shop, IsAdv = True)
+    except:
+        shop = None
     # commodity = commoditylist[0]
-    shopadvlist = ShopAdv.objects.filter(OwnerID = seller)
     # shop = shopadvlist[0]
-    commodityadvlist = CommodityAdv.objects.filter(OwnerID = seller)
     # return HttpResponse(commoditylist[0].CommodityName)
     return render_to_response('Seller_EnterShop.html', locals())
 
@@ -279,3 +282,52 @@ def buysHistory(request, time):
     for shl in BuysHistoryList:
         totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
     return render_to_response('Customer_BuyHistory.html', locals())
+
+def manageAD(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        return HttpResponseRedirect('/login/')
+    seller = Seller.objects.get(id=UserID)
+    try:
+        shop = Shop.objects.get(SellerID = seller)
+        commoditylist = Commodity.objects.filter(ShopID = shop)
+        shopadvlist = Shop.objects.filter(SellerID = seller, IsAdv = True)
+        commodityadvlist = Commodity.objects.filter(ShopID = shop, IsAdv = True)
+    except:
+        shop = None
+    # commodity = commoditylist[0]
+    shoplist = Shop.objects.filter(SellerID = seller)
+    # shop = shopadvlist[0]
+    commoditylist = Commodity.objects.filter(ShopID = shop)
+    # return HttpResponse(shopadvlist[0])
+    return render_to_response('manageAD.html', locals())
+
+def changead(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        return HttpResponseRedirect('/login/')
+    seller = Seller.objects.get(id=UserID)
+    try:
+        shop = Shop.objects.get(SellerID = seller)
+        commoditylist = Commodity.objects.filter(ShopID = shop)
+        shopadvlist = Shop.objects.filter(SellerID = seller, IsAdv = True)
+        commodityadvlist = Commodity.objects.filter(ShopID = shop, IsAdv = True)
+    except:
+        shop = None
+    cid = request.GET['id']
+    commodity = Commodity.objects.get(id=cid)
+    isadv = commodity.IsAdv
+    if isadv:
+        commodity.IsAdv = False
+    else:
+        commodity.IsAdv = True
+    commodity.save()
+    return HttpResponse("You change the ad state")
