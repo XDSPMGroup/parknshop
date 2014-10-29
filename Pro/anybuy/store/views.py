@@ -233,12 +233,15 @@ def sellerentershop(request): #需要返回shoplist，shopadvlist，commodityadv
     else:
         return HttpResponseRedirect('/login/')
     seller = Seller.objects.get(id=UserID)
-    shop = Shop.objects.get(SellerID = seller)
-    commoditylist = Commodity.objects.filter(ShopID = shop)
+    try:
+        shop = Shop.objects.get(SellerID = seller)
+        commoditylist = Commodity.objects.filter(ShopID = shop)
+        shopadvlist = ShopAdv.objects.filter(OwnerID = seller)
+        commodityadvlist = CommodityAdv.objects.filter(OwnerID = seller)
+    except:
+        shop = None
     # commodity = commoditylist[0]
-    shopadvlist = ShopAdv.objects.filter(OwnerID = seller)
     # shop = shopadvlist[0]
-    commodityadvlist = CommodityAdv.objects.filter(OwnerID = seller)
     # return HttpResponse(commoditylist[0].CommodityName)
     return render_to_response('Seller_EnterShop.html', locals())
 
@@ -291,7 +294,8 @@ def manageAD(request):
     seller = Seller.objects.get(id=UserID)
     shop = Shop.objects.get(SellerID = seller)
     # commodity = commoditylist[0]
-    shopadvlist = ShopAdv.objects.filter(OwnerID = seller)
+    shoplist = Shop.objects.filter(SellerID = seller)
     # shop = shopadvlist[0]
-    commodityadvlist = CommodityAdv.objects.filter(OwnerID = seller)
+    commoditylist = Commodity.objects.filter(ShopID = shop)
+    # return HttpResponse(shopadvlist[0])
     return render_to_response('manageAD.html', locals())

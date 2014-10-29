@@ -192,9 +192,15 @@ def login(request):
 def index(request):
 	UserID = request.session.get('UserID', False)#, 'anybody')
 	UserType = request.session.get('UserType')
-	if UserID:
+	if UserID and UserType == 'C':
 		user = Customer.objects.get(id = UserID)
 		UserName = user.CustomerName
+		#locals() -> {'UserName': UserName, 'UserType': UserType, 'UserID':UserID}
+		#return HttpResponse(user.CustomerAccount)
+		return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+	elif UserID and UserType == 'S':
+		user = Seller.objects.get(id = UserID)
+		UserName = user.SellerName
 		#locals() -> {'UserName': UserName, 'UserType': UserType, 'UserID':UserID}
 		return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 	else:

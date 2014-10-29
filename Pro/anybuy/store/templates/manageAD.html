@@ -35,24 +35,24 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for commodity in commodityadvlist %}
+					{% for commodity in commoditylist %}
                     <tr>
 						<td>
                             <div class="row">
-								<div class="col-sm-2 hidden-xs"><a href="/commodity/id/{{ commodity.CommodityID.id }}" style = "color:#3299CC"><img src="/file/{{ commodity.CommodityID.CommodityImage }}" alt="..." class="img-responsive"/></a></div>
+								<div class="col-sm-2 hidden-xs"><a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC"><img src="/file/{{ commodity.CommodityImage }}" alt="..." class="img-responsive"/></a></div>
 									<div class="col-sm-10">
-										<a href="/commodity/id/{{ commodity.CommodityID.id }}" style = "color:#3299CC">
-                                            <h4 class="nomargin">{{ commodity.CommodityID.CommodityName }}</h4>
+										<a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC">
+                                            <h4 class="nomargin">{{ commodity.CommodityName }}</h4>
                                         </a>
-										<p>{{ commodity.CommodityID.CommodityDescription }}</p>
+										<p>{{ commodity.CommodityDescription }}</p>
 									</div>
 								</div>
 						</td>
 						<td>
-							<input type="checkbox" checked=commodity. />
+							<input type="checkbox" checked={{ commodity.IsAdv }} />
 						</td>
 					</tr>
-
+                    {% endfor %}
 				</tbody>
 			</table>
 			</div>
@@ -60,30 +60,42 @@
 			<div class="tab-pane" id="panel-14831">
 			<table class="table" >
 				<thead>
-					<tr>
-
-						<th>
-							Shop
-						</th>
-
-						<th>
-							Advertise
-						</th>
+					{% for shop in shoplist %}
+                    <tr>
+						<td>
+                            <div class="row">
+								<div class="col-sm-2 hidden-xs">
+{#                                    <a href="/commodity/id/{{ commodity.CommodityID.id }}" style = "color:#3299CC">#}
+                                        <img src="/file/{{ shop.ShopImage }}" alt="..." class="img-responsive"/>
+{#                                    </a>#}
+                                </div>
+								<div class="col-sm-10">
+{#									<a href="/commodity/id/{{ commodity.CommodityID.id }}" style = "color:#3299CC">#}
+                                        <h4 class="nomargin">{{ shop.ShopName }}</h4>
+{#                                    </a>#}
+			    					<p>{{ shop.ShopDescription }}</p>
+								</div>
+							</div>
+						</td>
+						<td>
+							<input type="checkbox" checked={{ shop.IsAdv }} />
+						</td>
 					</tr>
+                    {% endfor %}
 				</thead>
-				<tbody>
-					<tr>
-
-						<td>
-							Lacoste Blue Sevrin 3 SRM Trainers
-						</td>
-
-						<td>
-    							<input type="checkbox" checked />
-						</td>
-					</tr>
-
-				</tbody>
+{#				<tbody>#}
+{#					<tr>#}
+{##}
+{#						<td>#}
+{#							Lacoste Blue Sevrin 3 SRM Trainers#}
+{#						</td>#}
+{##}
+{#						<td>#}
+{#    							<input type="checkbox" checked />#}
+{#						</td>#}
+{#					</tr>#}
+{##}
+{#				</tbody>#}
 			</table>
 			</div>
 			</div>

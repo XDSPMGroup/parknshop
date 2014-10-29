@@ -51,6 +51,9 @@
               <li>
                 <a href="/cart/">My Carts</a>
               </li>
+               <li>
+                <a href="/customer/statistics/all" style = "color:#3299CC">BuyHistory</a>
+              </li>
             {% endif %}
             {% if UserType == 'S' %}
               <li>
@@ -74,13 +77,11 @@
             <li>
               <a href="/" style = "color:#3299CC">Homepage</a>
             </li>
-            {% if UserName %}
+            {% if UserAccount %}
               <li>
-                <a href="/myinfo">Hello,{{UserName}}</a>
+                <a href="/myinfo">Account</a>
               </li>
-              <li>
-                <a href="/customer/statistics/all" style = "color:#3299CC">BuyHistory</a>
-              </li>
+
             <li>
               <a href="/logout/" style = "color:#A67D3D">Logout</a>
             </li>
