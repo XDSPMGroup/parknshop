@@ -40,6 +40,8 @@ class Shop(models.Model):
 	ShopState = models.IntegerField(choices=States)
 	BigImage = models.ImageField(upload_to='images',max_length=255,blank=True,null=True)
 	ShopImage = models.ImageField(upload_to='images',max_length=255,blank=True,null=True)
+	IsAdv = models.BooleanField()
+	IsHomeAdv = models.BooleanField()
 	def __unicode__(self):
 		return self.ShopName
 
@@ -66,6 +68,8 @@ class Commodity(models.Model):
 	CommodityImage = models.ImageField(upload_to='images',max_length=255,blank=True,null=True)
 	CommodityDiscount = models.FloatField(null=True,blank=True)
 	ShopID = models.ForeignKey(Shop)
+	IsAdv = models.BooleanField()
+	IsHomeAdv = models.BooleanField()
 	def __unicode__(self):
 		return '%s %s %s' %(self.CommodityName, self.CommodityType, self.CommodityAmount)
 
