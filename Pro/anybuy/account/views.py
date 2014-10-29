@@ -258,7 +258,7 @@ def salesHistory(request, time):
 	return render_to_response('SellerSaleHistory.html', locals())
 
 
-#管理订单（查看订单并确认）
+#店铺管理订单（查看订单并确认）
 def checkOrder(request):
 	if request.session.get('UserID', False):
 		UserID = request.session['UserID']
@@ -305,9 +305,9 @@ def removeOrderList(request):
 		so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
 		so.ShopOrderState = 1
 		so.save()
-		so = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
-		so.CustomerOrderState = 1
-		so.save()
+		co = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
+		co.CustomerOrderState = 1
+		co.save()
 	else:
 		ol = None
 	return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")

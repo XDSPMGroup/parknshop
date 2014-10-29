@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}Manage Order{% endblock %}
+
+{% block content %}
+
+<link href="/base_template/css/cart.css" rel="stylesheet">
+<link href="/base_template/css/foot.css" rel="stylesheet">
+
+<div class="container">
+	<table id="order" class="table table-hover table-condensed">
+		<thead>
+		<tr>
+			<td style="font-size: xx-large;color: #3a87ad;">Manage Order</td>
+		</tr>
+	    </thead>
+		<thead>
+			<tr>
+			<th >CommodityPicture</th>
+			<th >CommodityName</th>
+			<th >OrderTime</th>
+			<th >Price</th>
+			<th >Counts</th>
+			<th >Total</th>
+			<th >Status</th>
+			<th >Refund</th>
+			<th >Comment</th>
+			</tr>
+		</thead>
+		<script type="text/javascript">
+		function applyRefund(id){
+			xmlhttp= new XMLHttpRequest();
+			xmlhttp.onreadystatechange=function()
+			{
+				if(xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					alert('You have applied refund successfully!');
+					parent.location.reload()
+				}
+			}
+			xmlhttp.open("GET","/apply_refund?id="+id,true);
+			xmlhttp.send();
+		}
+		</script>
+
+		<script type="text/javascript">
+		function cancelRefund(id){
+			xmlhttp= new XMLHttpRequest();
+			xmlhttp.onreadystatechange=function()
+			{
+				if(xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					alert('You have canceled refund successfully!');
+					parent.location.reload()
+				}
+			}
+			xmlhttp.open("GET","/cancel_refund?id="+id,true);
+			xmlhttp.send();
+		}
+		</script>
+
+		<script type="text/javascript">
+		function comment(id1,id2){
+			xmlhttp= new XMLHttpRequest();
+			xmlhttp.onreadystatechange=function()
+			{
+				if(xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					alert('Comment successfully!');
+					document.getElementById("myText"+id2).disabled=true;
+				}
+			}
+			content = document.getElementById("myText"+id2).value;
+			xmlhttp.open("GET","/add_comment?id="+id1 + "&content="+content, true);
+			xmlhttp.send();
+		}
+		</script>
+
+		{% for ol in orderList %}
+		<tr class="yanse" id="item{{ ol.CommodityID.id }}">
+		<td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC"><img src="/file/{{ ol.CommodityID.CommodityImage }}" style = "height:90px;"/></a></td>
+		<td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC">{{ ol.CommodityID.CommodityName }}</a></td>		
+		<td>{{ ol.OrderListDate }}</td>
+		<td>{{ ol.CommodityID.SellPrice }} $</td>
+		<td>{{ ol.OrderAmount}}</td>
+		<td>{% widthratio ol.CommodityID.SellPrice 1 ol.OrderAmount %} $</td>
+
+		{% if ol.OrderListState == 0 %}
+		<td>paying</td>
+		{% endif %}
+		{% if ol.OrderListState == 1 %}
+		<td>shipping</td>
+		{% endif %}
+		{% if ol.OrderListState == 2 %}
+		<td>signing</td>
+		{% endif %}
+		{% if ol.OrderListState == 3 %}
+		<td>commenting</td>
+		{% endif %}
+		{% if ol.OrderListState == 4 %}
+		<td>refunding</td>
+		{% endif %}
+		{% if ol.OrderListState == 5 %}
+		<td>refunded</td>
+		{% endif %}
+		{% if ol.OrderListState == 6 %}
+		<td>refused refunded</td>
+		{% endif %}
+		{% if ol.OrderListState == 7 %}
+		<td>finish</td>
+		{% endif %}
+
+		<!-- {% if ol.OrderListState == 4 %}
+		<td><a style = "color:#3299CC" onclick="cancelRefund('{{ol.id}}')"><b>CancelRefund</b></td>
+		{% else %}
+		<td><a style = "color:#3299CC" onclick="applyRefund('{{ol.id}}')"><b>ApplyRefund</b></td>
+		{% endif %} -->
+		{% if ol.OrderListState == 4 %}
+		<td style = "color:#3299CC"><b>CancelRefund</b></td>
+		{% else %}
+		<td style = "color:#3299CC"><b>ApplyRefund</b></td>
+		{% endif %}
+
+		{% if ol.OrderListState == 7 %}
+		<td>Aready Comment</td>
+		{% else %}
+		<td><textarea id='myText{{ ol.CommodityID.id }}' rows="5" cols="20" placeholder="Input comment here"></textarea><br><a style = "color:#3299CC" onclick="comment('{{ol.id}}','{{ ol.CommodityID.id }}')"><b>Comment</b></td>
+		{% endif %}
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

@@ -133,6 +133,7 @@ class ShopOrder(models.Model):
 		(4, 'refunding'),
 		(5, 'refunded'),
 		(6, 'refund refuded'),
+		(7, 'finish'),
 	)
 	ShopOrderState = models.IntegerField(choices=StateChoices)
 	ShopOrderDate = models.DateField()
@@ -164,6 +165,7 @@ class CustomerOrder(models.Model):
 		(4, 'refunding'),
 		(5, 'refunded'),
 		(6, 'refund refuded'),
+		(7, 'finish'),
 	)
 	CustomerOrderState = models.IntegerField(choices=StateChoices)
 	CustomerOrderDate = models.DateField()
@@ -183,6 +185,7 @@ class OrderList(models.Model):
 		(4, 'refunding'),
 		(5, 'refunded'),
 		(6, 'refused refunded'),
+		(7, 'finish'),
 	)
 	OrderListState = models.IntegerField(choices=StateChoices)
 	OrderListDate = models.DateField()
