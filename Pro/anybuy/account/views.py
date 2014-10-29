@@ -328,6 +328,8 @@ def refund(request):
 	#return HttpResponse(orderList[0])
 	return render_to_response('Seller_ReturnAndRefund.html', locals())
 
+
+
 def modifyOrderList1(request):
 	if request.session.get('UserID', False):
 		UserID = request.session['UserID']

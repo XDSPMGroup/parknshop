@@ -6,7 +6,7 @@
 	$(function(){
 			$('.item')[0].className = "item active";
 			url = window.location.href;
-			if(url.indexOf("seller") >= 0)
+			if(url.indexOf("home") >= 0)
 				$('.list-group-item')[0].className = "list-group-item active";
 			else if(url.indexOf("ad") >= 0)
 				$('.list-group-item')[1].className = "list-group-item active";
@@ -42,13 +42,13 @@
                 <div class="carousel-inner">
 					{% for shop in shopadvlist %}
 					<div class="item">
-						<img alt="" src="/file/{{ shop.ShopID.BigImage }}" />
+						<img alt="" src="/file/{{ shop.BigImage }}" />
 						<div class="carousel-caption">
 							<h4>
-								{{ shop.ShopID.ShopName }}
+								{{ shop.ShopName }}
 							</h4>
 							<p>
-								{{ shop.ShopID.ShopDescription }}
+								{{ shop.ShopDescription }}
 							</p>
 						</div>
 					</div>
@@ -65,7 +65,7 @@
 	<div class="row clearfix">
 		<div class="col-md-2 column">
 			<div class="list-group">
-					<a class="list-group-item" href="/seller/">My Shop</a>
+					<a class="list-group-item" href="/seller/home">My Shop</a>
 					<a class="list-group-item" href="/seller/ad">Manage Adv</a>
 					<a class="list-group-item" href="/seller/order">Manage Order</a>
 					<a class="list-group-item" href="/seller/refund">Check Refund</a>
@@ -111,15 +111,16 @@
 		<div class="col-md-4 column">
 		</div>
 	</div>
+ <hr>
     <div class="row clearfix">
 		<div class="col-md-12 column">
         <h3 style="color:#3a87ad">
         Recommend commodity
         </h3>
         {% for commodity in commodityadvlist %}
-            <a href="/commodity/id/{{ commodity.CommodityID.id }}">
-                <img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityID.CommodityImage }}" width="235" height="120"/>
-            </a>{{ commodity.CommodityImage }}
+            <a href="/commodity/id/{{ commodity.id }}">
+                <img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityImage }}" width="235" height="120"/>
+            </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
 		{% endfor %}
         </div>

@@ -3,11 +3,26 @@
 
 {% block sellercontent %}
 
+<script type="text/javascript">
+    function changestate(id) {
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+{#                $('#item'+id.toString()).fadeOut();#}
+            }
+        }
+        xmlhttp.open("GET","/seller/changead?id="+id.toString(),true);
+        xmlhttp.send();
+    }
+</script>
+
 <div class="col-md-10 column">
 	<div class="page-header">
-		<h1>
+		<h3>
 			Manage Advertisement
-		</h1>
+		</h3>
 		</div>
 		<div class="tabbable" id="tabs-630860">
 			<ul class="nav nav-tabs">
@@ -49,7 +64,11 @@
 								</div>
 						</td>
 						<td>
-							<input type="checkbox" checked={{ commodity.IsAdv }} />
+                            {% if commodity.IsAdv %}
+							<input type="checkbox" onclick="changestate({{ commodity.id }})" checked />
+                            {% else %}
+                            <input type="checkbox" onclick="changestate({{ commodity.id }})"/>
+                            {% endif %}
 						</td>
 					</tr>
                     {% endfor %}
@@ -78,7 +97,7 @@
 							</div>
 						</td>
 						<td>
-							<input type="checkbox" checked={{ shop.IsAdv }} />
+							<input type="checkbox"  />
 						</td>
 					</tr>
                     {% endfor %}
