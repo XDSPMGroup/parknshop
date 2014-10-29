@@ -279,3 +279,19 @@ def buysHistory(request, time):
     for shl in BuysHistoryList:
         totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
     return render_to_response('Customer_BuyHistory.html', locals())
+
+def manageAD(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        return HttpResponseRedirect('/login/')
+    seller = Seller.objects.get(id=UserID)
+    shop = Shop.objects.get(SellerID = seller)
+    # commodity = commoditylist[0]
+    shopadvlist = ShopAdv.objects.filter(OwnerID = seller)
+    # shop = shopadvlist[0]
+    commodityadvlist = CommodityAdv.objects.filter(OwnerID = seller)
+    return render_to_response('manageAD.html', locals())

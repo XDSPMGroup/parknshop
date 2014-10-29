@@ -41,6 +41,7 @@ urlpatterns = patterns('',
     url(r'^seller/delete/(?P<cid>\d*)', 'store.views.delfromshop'),
     url(r'^modifyOrderList1/$', 'account.views.modifyOrderList1'),
     url(r'^modifyOrderList2/$', 'account.views.modifyOrderList2'),
+    url(r'^seller/ad/$', 'store.views.manageAD'),
     #url(r'^account/$', views.register, name='register'),
     #url(r'^account/register/$',views.register, name = 'register'),
 )
