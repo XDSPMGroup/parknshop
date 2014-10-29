@@ -179,7 +179,7 @@ def login(request):
 						request.session['UserAccount'] = UserAccount
 						request.session['UserID'] = user.id
 						#return render_to_response('index.html',{'customer':user})
-						return HttpResponseRedirect('/seller/')#sellerHomepage 代表entershop
+						return HttpResponseRedirect('/seller/home')#sellerHomepage 代表entershop
 					else:
 						wrongpw = True
 						return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
@@ -203,17 +203,6 @@ def index(request):
 		UserName = user.SellerName
 		#locals() -> {'UserName': UserName, 'UserType': UserType, 'UserID':UserID}
 		return render_to_response('index.html', locals(), context_instance=RequestContext(request))
-	else:
-		return HttpResponseRedirect('/login/')
-
-def sellerHomepage(request):
-	UserID = request.session.get('UserID', False)#, 'anybody')
-	UserType = request.session.get('UserType')
-	if UserID:
-		user = Seller.objects.get(id = UserID)
-		UserName = user.SellerName
-		#locals() -> {'UserName': UserName, 'UserType': UserType, 'UserID':UserID}
-		return render_to_response('sellerHomepage.html', locals(), context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/login/')
 
@@ -258,6 +247,14 @@ def salesHistory(request, time):
 	totalvalue = 0
 	for shl in SalesHistoryList:
 		totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
+	seller = Seller.objects.get(id=UserID)
+	try:
+		shop = Shop.objects.get(SellerID = seller)
+		commoditylist = Commodity.objects.filter(ShopID = shop)
+		shopadvlist = Shop.objects.filter(SellerID = seller, IsAdv = True)
+		commodityadvlist = Commodity.objects.filter(ShopID = shop, IsAdv = True)
+	except:
+		shop = None
 	return render_to_response('SellerSaleHistory.html', locals())
 
 
@@ -279,6 +276,14 @@ def checkOrder(request):
 		List = OrderList.objects.filter(ShopOrderID = so, OrderListState = 0)
 		for ol in List:
 			orderList.append(ol)
+	seller = Seller.objects.get(id=UserID)
+	try:
+		shop = Shop.objects.get(SellerID = seller)
+		commoditylist = Commodity.objects.filter(ShopID = shop)
+		shopadvlist = Shop.objects.filter(SellerID = seller, IsAdv = True)
+		commodityadvlist = Commodity.objects.filter(ShopID = shop, IsAdv = True)
+	except:
+		shop = None
 	#return HttpResponse(orderList[0])
 	return render_to_response('checkOrder.html', locals())
 
@@ -325,6 +330,14 @@ def refund(request):
 		List = OrderList.objects.filter(ShopOrderID = so, OrderListState = 4)
 		for ol in List:
 			orderList.append(ol)
+	seller = Seller.objects.get(id=UserID)
+	try:
+		shop = Shop.objects.get(SellerID = seller)
+		commoditylist = Commodity.objects.filter(ShopID = shop)
+		shopadvlist = Shop.objects.filter(SellerID = seller, IsAdv = True)
+		commodityadvlist = Commodity.objects.filter(ShopID = shop, IsAdv = True)
+	except:
+		shop = None
 	#return HttpResponse(orderList[0])
 	return render_to_response('Seller_ReturnAndRefund.html', locals())
 
