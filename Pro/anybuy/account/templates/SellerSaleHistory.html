@@ -51,7 +51,30 @@
 					<td>{{salesHistory.OrderListDate}}</td>
 					<td>{{salesHistory.OrderAmount}}</td>
 					<td>{% widthratio salesHistory.CommodityID.SellPrice 1 salesHistory.OrderAmount %}$</td>
-					<td>{{salesHistory.OrderListState}}</td>
+					{% if salesHistory.OrderListState == 0 %}
+					<td>paying</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 1 %}
+					<td>shipping</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 2 %}
+					<td>signing</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 3 %}
+					<td>commenting</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 4 %}
+					<td>refunding</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 5 %}
+					<td>refunded</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 6 %}
+					<td>refused refunded</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 7 %}
+					<td>finish</td>
+					{% endif %}
 				</tr>
 				{% endfor %}				
 			</table>

@@ -434,3 +434,100 @@ class CommodityForm(forms.Form):
 #     else:#显示表单
 #         form = models.UserForm()
 #     return render_to_response('reg_form.html', {'form': form})
+
+#顾客管理订单（查看订单，申请退款，添加评论，修改评论。）
+def manageOrder(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+    customerOrder = CustomerOrder.objects.filter(CustomerID = UserID)
+    orderList = []
+    for so in customerOrder:
+        List = OrderList.objects.filter(CustomerOrderID = so)
+        for ol in List:
+            orderList.append(ol)
+    #return HttpResponse(orderList[0])
+    return render_to_response('manageOrder.html', locals())
+
+def apply_refund(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+    if 'id' in request.GET:
+        ol = OrderList.objects.get(id = request.GET['id'])
+        ol.OrderListState = 4
+        ol.save()
+        so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
+        so.ShopOrderState = 4
+        so.save()
+        co = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
+        co.CustomerOrderState = 4
+        co.save()
+    else:
+        ol = None
+    return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
+
+
+def cancel_refund(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+    if 'id' in request.GET:
+        ol = OrderList.objects.get(id = request.GET['id'])
+        ol.OrderListState = 7
+        ol.save()
+        so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
+        so.ShopOrderState = 7
+        so.save()
+        co = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
+        co.CustomerOrderState = 7
+        co.save()
+    else:
+        ol = None
+    return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
+
+
+def add_comment(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+    if 'id' in request.GET:
+        ol = OrderList.objects.get(id = request.GET['id'])
+        ol.OrderListState = 7
+        ol.save()
+        so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
+        so.ShopOrderState = 7
+        so.save()
+        co = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
+        co.CustomerOrderState = 7
+        co.save()
+        content = request.GET['content']
+        Comment.objects.create(CommentContent = content, CustomerID = ol.CustomerOrderID.CustomerID, CommodityID = ol.CommodityID)
+    else:
+        ol = None
+    return HttpResponse("You comment: "+ ol.CommodityID.CommodityName+"from Orderlist")
+

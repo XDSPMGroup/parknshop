@@ -206,17 +206,6 @@ def index(request):
 	else:
 		return HttpResponseRedirect('/login/')
 
-def sellerHomepage(request):
-	UserID = request.session.get('UserID', False)#, 'anybody')
-	UserType = request.session.get('UserType')
-	if UserID:
-		user = Seller.objects.get(id = UserID)
-		UserName = user.SellerName
-		#locals() -> {'UserName': UserName, 'UserType': UserType, 'UserID':UserID}
-		return render_to_response('sellerHomepage.html', locals(), context_instance=RequestContext(request))
-	else:
-		return HttpResponseRedirect('/login/')
-
 
 def logout(request):
 	session = request.session.get('UserID', False)
@@ -261,10 +250,18 @@ def salesHistory(request, time):
 	totalvalue = 0
 	for shl in SalesHistoryList:
 		totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
+	seller = Seller.objects.get(id=UserID)
+	try:
+		shop = Shop.objects.get(SellerID = seller)
+		commoditylist = Commodity.objects.filter(ShopID = shop)
+		shopadvlist = Shop.objects.filter(SellerID = seller, IsAdv = True)
+		commodityadvlist = Commodity.objects.filter(ShopID = shop, IsAdv = True)
+	except:
+		shop = None
 	return render_to_response('SellerSaleHistory.html', locals())
 
 
-#管理订单（查看订单并确认）
+#店铺管理订单（查看订单并确认）
 def checkOrder(request):
 	if request.session.get('UserID', False):
 		UserID = request.session['UserID']
@@ -282,6 +279,14 @@ def checkOrder(request):
 		List = OrderList.objects.filter(ShopOrderID = so, OrderListState = 0)
 		for ol in List:
 			orderList.append(ol)
+	seller = Seller.objects.get(id=UserID)
+	try:
+		shop = Shop.objects.get(SellerID = seller)
+		commoditylist = Commodity.objects.filter(ShopID = shop)
+		shopadvlist = Shop.objects.filter(SellerID = seller, IsAdv = True)
+		commodityadvlist = Commodity.objects.filter(ShopID = shop, IsAdv = True)
+	except:
+		shop = None
 	#return HttpResponse(orderList[0])
 	return render_to_response('checkOrder.html', locals())
 
@@ -303,9 +308,9 @@ def removeOrderList(request):
 		so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
 		so.ShopOrderState = 1
 		so.save()
-		so = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
-		so.CustomerOrderState = 1
-		so.save()
+		co = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
+		co.CustomerOrderState = 1
+		co.save()
 	else:
 		ol = None
 	return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
@@ -328,6 +333,14 @@ def refund(request):
 		List = OrderList.objects.filter(ShopOrderID = so, OrderListState = 4)
 		for ol in List:
 			orderList.append(ol)
+	seller = Seller.objects.get(id=UserID)
+	try:
+		shop = Shop.objects.get(SellerID = seller)
+		commoditylist = Commodity.objects.filter(ShopID = shop)
+		shopadvlist = Shop.objects.filter(SellerID = seller, IsAdv = True)
+		commodityadvlist = Commodity.objects.filter(ShopID = shop, IsAdv = True)
+	except:
+		shop = None
 	#return HttpResponse(orderList[0])
 	return render_to_response('Seller_ReturnAndRefund.html', locals())
 

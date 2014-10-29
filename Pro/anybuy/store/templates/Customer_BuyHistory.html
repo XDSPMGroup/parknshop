@@ -8,9 +8,9 @@
 		<div class="col-md-12 column">
 			
 				
-			<h3 class="text-left" style="color:#3a87ad">
+			<h2 class="text-left">
 				Buys History
-			</h3>
+			</h2>
 			<hr>
 			<a href="/customer/statistics/all"><button class='btn btn-info btn-xs'>All Sales</button></a>
 			<a href="/customer/statistics/year"><button class='btn btn-info btn-xs'>Year Sales</button></a>
@@ -51,7 +51,30 @@
 					<td>{{buysHistory.OrderListDate}}</td>
 					<td>{{buysHistory.OrderAmount}}</td>
 					<td>{% widthratio buysHistory.CommodityID.SellPrice 1 buysHistory.OrderAmount %}$</td>
-					<td>{{buysHistory.OrderListState}}</td>
+					{% if buysHistory.OrderListState == 0 %}
+					<td>paying</td>
+					{% endif %}
+					{% if buysHistory.OrderListState == 1 %}
+					<td>shipping</td>
+					{% endif %}
+					{% if buysHistory.OrderListState == 2 %}
+					<td>signing</td>
+					{% endif %}
+					{% if buysHistory.OrderListState == 3 %}
+					<td>commenting</td>
+					{% endif %}
+					{% if buysHistory.OrderListState == 4 %}
+					<td>refunding</td>
+					{% endif %}
+					{% if buysHistory.OrderListState == 5 %}
+					<td>refunded</td>
+					{% endif %}
+					{% if buysHistory.OrderListState == 6 %}
+					<td>refused refunded</td>
+					{% endif %}
+					{% if buysHistory.OrderListState == 7 %}
+					<td>finish</td>
+					{% endif %}
 				</tr>
 				{% endfor %}				
 			</table>
