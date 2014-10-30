@@ -118,7 +118,7 @@
         Recommend commodity
         </h3>
         {% for commodity in commodityadvlist %}
-            <a href="/commodity/id/{{ commodity.id }}">
+            <a id="commodityadv{{ commodity.id }}" href="/commodity/id/{{ commodity.id }}">
                 <img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityImage }}" width="235" height="120"/>
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;

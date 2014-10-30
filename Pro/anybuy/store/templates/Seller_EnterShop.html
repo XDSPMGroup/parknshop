@@ -35,6 +35,7 @@
                                                 if (xmlhttp.readyState==4 && xmlhttp.status==200)
                                                 {
                                                     $('#item'+id.toString()).fadeOut();
+                                                    $('#commodityadv'+id.toString()).fadeOut();
                                                 }
                                             }
                                             xmlhttp.open("GET","/seller/delete/"+id.toString(),true);

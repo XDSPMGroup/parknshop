@@ -67,6 +67,7 @@
             }
 
         </script>
+        {% if UserAccount and UserType == 'C' %}
       			<div class="row clearfix">
 				<div class="col-md-3 column">
 					 <button onclick="addtocart()" type="button" class="btn btn-primary">Add to cart</button>
@@ -80,6 +81,7 @@
                 </div>
 
 			</div>
+        {% endif %}
             </div>
             
             <!--这里的两个按钮分别是加入cart和favorite-->

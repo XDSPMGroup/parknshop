@@ -59,7 +59,11 @@ def register(request):
 				customer.CustomerTelephone = cf.cleaned_data['CustomerTelephone']
 				#write into db
 				customer.save()
-				return render_to_response('success.html',{'UserType':'C','UserName':customer.CustomerName})
+				request.session['UserType'] = cf.cleaned_data['identity']
+				request.session['UserAccount'] = cf.cleaned_data['CustomerAccount']
+				request.session['UserID'] = customer.id
+				return HttpResponseRedirect('/')
+				# return render_to_response('Homepage.html', locals(), context_instance=RequestContext(request))
 			else: 
 			#返回注册成功页面
 				seller = Seller()
@@ -73,7 +77,11 @@ def register(request):
 				seller.SellerTelephone = cf.cleaned_data['CustomerTelephone']
 				#write into db
 				seller.save()
-				return render_to_response('success.html',{'UserType':'S','UserName':seller.SellerName})
+				request.session['UserType'] = cf.cleaned_data['identity']
+				request.session['UserAccount'] = cf.cleaned_data['CustomerAccount']
+				request.session['UserID'] = seller.id
+				return HttpResponseRedirect('/seller/home')
+				# return render_to_response('Homepage.html', locals(), context_instance=RequestContext(request))
 	else:
 		cf = CustomerForm()
 		#cf = CustomerForm(request.POST)
@@ -140,8 +148,6 @@ def info(request):
 		cf = CustomerForm2(data)
 	return render_to_response('myinfo.html',locals(), context_instance=RequestContext(request))
 
-
-
 def getCommodity(request, id):  #/commodity/id/ 返回ID=id 的Commodity
 	
 	commodity = Commodity.objects.get(id = int(id))
@@ -164,11 +170,11 @@ def login(request):
 						request.session['UserType'] = uf.cleaned_data['identity']
 						request.session['UserAccount'] = UserAccount
 						request.session['UserID'] = user.id
-						#return render_to_response('index.html',{'customer':user})
+						#return render_to_response('Homepage.html', locals(), context_instance=RequestContext(request))
 						return HttpResponseRedirect('/index/')
 					else:
 						wrongpw = True
-						return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
+						return render_to_response('login.html', locals(), context_instance=RequestContext(request))
 				except:
 					pass
 			else:
@@ -182,7 +188,7 @@ def login(request):
 						return HttpResponseRedirect('/seller/home')#sellerHomepage 代表entershop
 					else:
 						wrongpw = True
-						return render_to_response('login.html', {'uf': uf, 'wrongpw': wrongpw}, context_instance=RequestContext(request))
+						return render_to_response('login.html', locals(), context_instance=RequestContext(request))
 				except:
 					pass			
 	else:
@@ -192,6 +198,7 @@ def login(request):
 def index(request):
 	UserID = request.session.get('UserID', False)#, 'anybody')
 	UserType = request.session.get('UserType')
+	UserAccount = request.session.get('UserAccount')
 	if UserID and UserType == 'C':
 		user = Customer.objects.get(id = UserID)
 		UserName = user.CustomerName
@@ -204,7 +211,7 @@ def index(request):
 		#locals() -> {'UserName': UserName, 'UserType': UserType, 'UserID':UserID}
 		return render_to_response('Homepage.html', locals(), context_instance=RequestContext(request))
 	else:
-		return HttpResponseRedirect('/login/')
+		return render_to_response('Homepage.html', locals(), context_instance=RequestContext(request))
 
 
 def logout(request):

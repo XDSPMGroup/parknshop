@@ -2,15 +2,13 @@
 {% block title %}Modify Commodity{% endblock %}
 
 {% block sellercontent %}
-
-{#<form method = 'post' enctype="multipart/form-data">#}
-{#{% csrf_token %}#}
-{#{{cf.as_p}}#}
-{#<input type="submit" value = "Save" />#}
-{#</form>#}
-<form action="/message/" enctype="multipart/form-data" method="post">
+<div class="col-md-10 column">
+<h3>Commodity Infomation</h3>
+    <hr>
+<form method = 'post' enctype="multipart/form-data">
 {% csrf_token %}
-    <input type="file" name = "picfile">
-       <button value="提交" type="submit">提交</button>
+{{cf.as_p}}
+<input type="submit" value = "Save" />
 </form>
+</div>
 {% endblock %}
