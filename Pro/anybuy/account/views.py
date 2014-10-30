@@ -249,10 +249,10 @@ def salesHistory(request, time):
 				if sl.OrderListDate.year == now.year:
 					SalesHistoryList.append(sl)
 			elif time == "month":
-				if sl.OrderListDate.month == now.month:
+				if sl.OrderListDate.month == now.month and sl.OrderListDate.year == now.year:
 					SalesHistoryList.append(sl)
 			elif time == "day":
-				if sl.OrderListDate.day == now.day:
+				if sl.OrderListDate.day == now.day and sl.OrderListDate.month == now.month and sl.OrderListDate.year == now.year:
 					SalesHistoryList.append(sl)
 	totalvalue = 0
 	for shl in SalesHistoryList:

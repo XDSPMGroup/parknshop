@@ -191,7 +191,8 @@ def checkoutcart(request):
         orderlist = OrderList.objects.create(OrderListState=0, OrderListDate=date, OrderAmount = 1, CustomerOrderID=cutomerorder, ShopOrderID=shoporder, CommodityID = commodity.CommodityID, )
         # 从购物车中删除，现在是将checkbox注释了，所以这里是删除购物车中所有物品
     Cart.objects.filter(CustomerID = user).delete()
-    return HttpResponse('You checked out your cart')
+    return HttpResponseRedirect('/cart')
+    # return HttpResponse('You checked out your cart')
 
 def rm_from_favorite(request):
     if request.session.get('UserID', False):
@@ -276,10 +277,10 @@ def buysHistory(request, time):
                 if sl.OrderListDate.year == now.year:
                     BuysHistoryList.append(sl)
             elif time == "month":
-                if sl.OrderListDate.month == now.month:
+                if sl.OrderListDate.month == now.month and sl.OrderListDate.year == now.year:
                     BuysHistoryList.append(sl)
             elif time == "day":
-                if sl.OrderListDate.day == now.day:
+                if sl.OrderListDate.day == now.day and sl.OrderListDate.month == now.month and sl.OrderListDate.year == now.year:
                     BuysHistoryList.append(sl)
     totalvalue = 0
     for shl in BuysHistoryList:
