@@ -1,0 +1,16 @@
+.nav_change{
+	border-right-width: 1px;
+	border-right-style: outset;
+	border-right-color: #eee;
+}
+.nav_top{
+	padding-top: 100px;
+	font-size: 20px;
+	font-weight: bolder;
+}
+.floor{
+	text-align: center;
+}
+.Font_color{
+	color: #3a87ad;
+}

@@ -2,11 +2,27 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<h1>Register here:</h1>
 
-<form method = 'post' enctype="multipart/form-data">
-{% csrf_token %}
-{{cf.as_p}}
-<input type="submit" value = "register" />
-</form>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+            <div class="col-md-4 column">
+            </div>
+				<div class="col-md-4 column">
+                    <h3 class="text-center text-default" style="color:#3a87ad">
+                    Register here:
+                    </h3>
+                    <form method = 'post' enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{cf.as_p}}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <br><br><br>
+
 {% endblock %}

@@ -2,12 +2,15 @@
 
 from django.shortcuts import render
 from django import forms
+from django.forms import ModelForm
 from django.shortcuts import render_to_response
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import RequestContext
 from system.models import *
 import time
 import datetime
+from PIL import Image
+import hashlib
 # Create your views here.
 def helpcenter(request):
     if request.session.get('UserID', False):
@@ -183,11 +186,11 @@ def checkoutcart(request):
     cutomerorder = CustomerOrder.objects.create(CustomerOrderState=0, CustomerOrderDate=date, CustomerID=user)
     # 从购物车中删除，现在是将checkbox注释了，所以这里是删除购物车中所有物品
     commoditylist = Cart.objects.filter(CustomerID=user)
-    Cart.objects.filter(CustomerID = user).delete()
+    shoporder = ShopOrder.objects.create(ShopOrderState=0, ShopOrderDate=date, ShopID=commoditylist[0].CommodityID.ShopID)
     for commodity in commoditylist:
-        shoporder = ShopOrder.objects.create(ShopOrderState=0, ShopOrderDate=date, ShopID=commodity.ShopID)
-        orderlist = OrderList.objects.create(CustomerOrderState=0, CustomerOrderDate=date, CustomerID=user, ShopID=commodity.ShopID, CommodityID = commodity)
+        orderlist = OrderList.objects.create(OrderListState=0, OrderListDate=date, OrderAmount = 1, CustomerOrderID=cutomerorder, ShopOrderID=shoporder, CommodityID = commodity.CommodityID, )
         # 从购物车中删除，现在是将checkbox注释了，所以这里是删除购物车中所有物品
+    Cart.objects.filter(CustomerID = user).delete()
     return HttpResponse('You checked out your cart')
 
 def rm_from_favorite(request):
@@ -260,8 +263,8 @@ def buysHistory(request, time):
         UserID = None
         UserType = None
         UserAccount = None
-    shopID = Shop.objects.get(SellerID = UserID)
-    shopOrder = ShopOrder.objects.filter(ShopID = shopID)
+    # shopID = Customer.objects.get(Customer = UserID)
+    shopOrder = CustomerOrder.objects.filter(CustomerID = UserID)
     BuysHistoryList = []
     now = datetime.datetime.now()
     for so in shopOrder:
@@ -331,6 +334,92 @@ def changead(request):
         commodity.IsAdv = True
     commodity.save()
     return HttpResponse("You change the ad state")
+
+#定义表单模型
+CommodityTypeChoices=(
+    ('C','Clothing'),
+    ('A','Accessory'),
+    ('S','Sport'),
+    ('J','Jewelry'),
+    ('D','Digit'),
+    ('H','Household appliances'),
+    ('M','Makeup'),
+    ('F','Food'),
+    ('E','Entertainment'),
+    ('O','Others')
+)
+
+
+class CommodityForm(forms.Form):
+    CommodityName = forms.CharField(label='CommodityName', max_length=64)
+    CommodityDescription = forms.CharField(label='Description')
+    CommodityAmount = forms.IntegerField(label='Amount')
+    SoldAmount = forms.IntegerField(label='Sold Amount')
+    PurchasePrice = forms.FloatField(label='PurchasePrice')
+    SellPrice = forms.FloatField(label='Sell Price')
+    CommodityType = forms.ChoiceField(label='Type', choices=CommodityTypeChoices)
+    CommodityImage = forms.ImageField(label='Image', required=False)  #,upload_to='images',max_length=255)
+    CommodityDiscount = forms.FloatField(label='Discount')
+    #ShopID = models.ForeignKey(Shop)
+    IsAdv = forms.BooleanField(label='Is Adv?', required=False)
+
+def add_and_modify(request, cid): # cid==0时添加新项目， !=0时修改cid的项目
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        return HttpResponseRedirect('/login/')
+    seller = Seller.objects.get(id=UserID)
+    try:
+        shop = Shop.objects.get(SellerID = seller)
+        commoditylist = Commodity.objects.filter(ShopID = shop)
+        shopadvlist = Shop.objects.filter(SellerID = seller, IsAdv = True)
+        commodityadvlist = Commodity.objects.filter(ShopID = shop, IsAdv = True)
+    except:
+        shop = None
+    if request.method == 'POST':
+        cf = CommodityForm(request.POST, request.FILES)
+        if cf.is_valid():
+            #get form
+            if int(cid) == 0:
+                commodity = Commodity()
+            else:
+                commodity = Commodity.objects.get(id = cid)
+            commodity.CommodityName = cf.cleaned_data['CommodityName']
+            commodity.CommodityDescription = cf.cleaned_data['CommodityDescription']
+            commodity.CommodityAmount = cf.cleaned_data['CommodityAmount']
+            commodity.SoldAmount = cf.cleaned_data['SoldAmount']
+            commodity.PurchasePrice = cf.cleaned_data['PurchasePrice']
+            commodity.SellPrice = cf.cleaned_data['SellPrice']
+            commodity.CommodityType = cf.cleaned_data['CommodityType']
+            commodity.CommodityImage = cf.cleaned_data['CommodityImage']
+            commodity.CommodityDiscount = cf.cleaned_data['CommodityDiscount']
+            commodity.IsAdv = cf.cleaned_data['IsAdv']
+            commodity.IsHomeAdv = True
+            commodity.ShopID = shop
+            image = request.FILES["CommodityImage"]
+            commodity.save()
+            return HttpResponseRedirect('/seller/home')
+    else:
+        cf = CommodityForm()
+        if int(cid) != 0: # 如果cid!=0 就代表要修改的CommodityID
+            commodity = Commodity.objects.get(id = cid)
+            data={
+            'CommodityName' : commodity.CommodityName,
+            'CommodityDescription' : commodity.CommodityDescription,
+            'CommodityAmount' : commodity.CommodityAmount,
+            'SoldAmount' : commodity.SoldAmount,
+            'PurchasePrice' : commodity.PurchasePrice,
+            'SellPrice' : commodity.SellPrice,
+            'CommodityType' : commodity.CommodityType,
+            'CommodityImage' : commodity.CommodityImage,
+            'CommodityDiscount' : commodity.CommodityDiscount,
+            'IsAdv' : commodity.IsAdv,
+            }
+            cf = CommodityForm(data)
+    return render_to_response('manageCommodity.html',locals(), context_instance=RequestContext(request))
 
 
 #顾客管理订单（查看订单，申请退款，添加评论，修改评论。）
@@ -428,5 +517,4 @@ def add_comment(request):
     else:
         ol = None
     return HttpResponse("You comment: "+ ol.CommodityID.CommodityName+"from Orderlist")
-
 
