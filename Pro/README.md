@@ -5,6 +5,10 @@
 4. check out -> filling address and choose pay method
 5. Order state
 6. BUY fuction
+7. 图片上传时的截取
+8. 添加商品时不选图片报错
+9. discount范围
+10. delete commodity时需要提示
 
 
 ## Programmer 29 Oct.前的任务
