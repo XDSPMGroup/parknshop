@@ -14,14 +14,18 @@
 
 			<div class="row clearfix">
 				<div class="col-md-12 column">   
-					<div class="row col-md-10">
+					<div class="row col-md-12">
 						<table class="table table-striped custab">
 						<thead>
 							<tr class="yanse">
-							<th >commodity picture</th>
-							<th >commodity name</th>
-							<th >price</th>
-							<th >order time</th>
+							<th >OrderNo.</th>
+							<th >CommodityPicture</th>
+							<th >CommodityName</th>
+							<th >UnitPrice</th>
+							<th >Counts</th>
+							<th >TotalMoney</th>
+							<th >OrderTime</th>
+							<th >ShipAddress</th>
 							<th class="text-center">Action</th>
 							</tr>
 						</thead>
@@ -41,10 +45,14 @@
 						</script>
 						{% for ol in orderList %}
 						<tr class="yanse" id="item{{ ol.CommodityID.id }}">
+						<td>{{ ol.id }}</td>
 						<td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC"><img src="/file/{{ ol.CommodityID.CommodityImage }}" style = "height:90px;"/></a></td>
 						<td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC">{{ ol.CommodityID.CommodityName }}</a></td>
 						<td>{{ ol.CommodityID.SellPrice }}$</td>
+						<td>{{ ol.OrderAmount }}</td>
+						<td>{% widthratio ol.CommodityID.SellPrice 1 ol.OrderAmount %}$</td>
 						<td>{{ ol.OrderListDate }}</td>
+						<td>{{ ol.CustomerOrderID.CustomerID.CustomerAddress }}</td>
 						<td class="text-center"><a class='btn btn-info btn-xs' onclick="confirmOrder('{{ol.id}}')"><span class="glyphicon"><b>Confirm</b></td>
 						{% endfor %}
 						</table>

@@ -7,14 +7,12 @@
 <link href="/base_template/css/foot.css" rel="stylesheet">
 
 <div class="container">
+	<h2>Manage Order</h2>
+	<hr>
 	<table id="order" class="table table-hover table-condensed">
 		<thead>
-		<tr>
-			<td style="font-size: xx-large;color: #3a87ad;">Manage Order</td>
-		</tr>
-	    </thead>
-		<thead>
-			<tr>
+			<tr class="yanse">
+			<th >OrderNo.</th>
 			<th >CommodityPicture</th>
 			<th >CommodityName</th>
 			<th >OrderTime</th>
@@ -77,6 +75,7 @@
 
 		{% for ol in orderList %}
 		<tr class="yanse" id="item{{ ol.CommodityID.id }}">
+		<td>{{ol.id}}</td>
 		<td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC"><img src="/file/{{ ol.CommodityID.CommodityImage }}" style = "height:90px;"/></a></td>
 		<td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC">{{ ol.CommodityID.CommodityName }}</a></td>		
 		<td>{{ ol.OrderListDate }}</td>
