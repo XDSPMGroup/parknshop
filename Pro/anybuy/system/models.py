@@ -12,8 +12,8 @@ class HelpCenter(models.Model):
 
 class Seller(models.Model):
 	SellerTypeChoices=(
-		(0,'limited user'),
-		(1,'normal user'),
+		('l','limited user'),
+		('n','normal user'),
 	)
 	SellerAccount = models.CharField(max_length=64)
 	SellerPassword = models.CharField(max_length=32)
@@ -143,8 +143,8 @@ class ShopOrder(models.Model):
 
 class Customer(models.Model):
 	CustomerTypeChoices=(
-		(0,'limited user'),
-		(1,'normal user'),
+		('l','limited user'),
+		('n','normal user'),
 	)
 	CustomerAccount = models.CharField(max_length=64)
 	CustomerName = models.CharField(max_length=64)
