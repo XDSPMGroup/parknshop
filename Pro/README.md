@@ -1,3 +1,11 @@
+## Feedback of presentation
+1. lack customer's information in seller's view of order
+2. Homepage Adv management and income
+3. Account duplicate
+4. check out -> filling address and choose pay method
+5. Order state
+6. BUY fuction
+
 
 ## Programmer 29 Oct.前的任务
 

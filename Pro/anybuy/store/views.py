@@ -191,7 +191,8 @@ def checkoutcart(request):
         orderlist = OrderList.objects.create(OrderListState=0, OrderListDate=date, OrderAmount = 1, CustomerOrderID=cutomerorder, ShopOrderID=shoporder, CommodityID = commodity.CommodityID, )
         # 从购物车中删除，现在是将checkbox注释了，所以这里是删除购物车中所有物品
     Cart.objects.filter(CustomerID = user).delete()
-    return HttpResponse('You checked out your cart')
+    return HttpResponseRedirect('/cart')
+    # return HttpResponse('You checked out your cart')
 
 def rm_from_favorite(request):
     if request.session.get('UserID', False):
