@@ -16,7 +16,7 @@
 任务 | 详情 | html文件 | url | status
 ----|-----|----------|----- | ---
 entershop|查看商品list、（entershop上面显示店铺广告，下面显示shop的广告）| |url:/seller/ | done by LS
-管理shop|添加修改（包括折扣）商品页面|manageCommodity.html| url:/seller/modify |
+管理shop|添加修改（包括折扣）商品页面|manageCommodity.html| url:/seller/modify | done by LS
 管理广告|改成选择商品和店铺（广告显示在entershop页面）|：manageAD.html |/seller/ad |done by LS
 管理订单|把action里面的按钮改成一个confirm，confirm之后状态改为shipping |用favorite页面|/seller/order |done by WT
 statistics|查看销售记录|checksaleshistory.html|/seller/statistics|done by WT
