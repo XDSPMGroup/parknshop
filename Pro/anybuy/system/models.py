@@ -87,28 +87,28 @@ class ShopAdv(models.Model):
 	OwnerID = models.ForeignKey(Seller)
 	AdvertisementContent = models.TextField()
 	def __unicode__(self):
-		return self.id
+		return '%s %s' %(self.id, self.AdvertisementContent)
 
 class CommodityAdv(models.Model):
 	CommodityID = models.ForeignKey(Commodity)
 	OwnerID = models.ForeignKey(Seller)
 	AdvertisementContent = models.TextField()
 	def __unicode__(self):
-		return self.id
+		return '%s %s' %(self.id, self.AdvertisementContent)
 
 class HomeShopAdv(models.Model):
 	ShopID = models.ForeignKey(Shop)
 	OwnerID = models.ForeignKey(Administrator)
 	AdvertisementContent = models.TextField()
 	def __unicode__(self):
-		return self.id
+		return '%s %s' %(self.id, self.AdvertisementContent)
 
 class HomeCommodityAdv(models.Model):
 	CommodityID = models.ForeignKey(Commodity)
 	OwnerID = models.ForeignKey(Administrator)
 	AdvertisementContent = models.TextField()
 	def __unicode__(self):
-		return self.id
+		return '%s %s' %(self.id, self.AdvertisementContent)
 
 class System(models.Model):
 	BulletinBoardContent = models.CharField(max_length=64,blank=True)
