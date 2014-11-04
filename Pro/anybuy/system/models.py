@@ -8,7 +8,7 @@ class HelpCenter(models.Model):
 	HelpCenterName = models.CharField(max_length=64)
 	HelpCenterContent = models.TextField(blank=True)
 	def __unicode__(self):
-		return self.HelpCenterName
+		return '%s %s' %(self.id, self.HelpCenterName)
 
 class Seller(models.Model):
 	SellerTypeChoices=(
@@ -25,7 +25,7 @@ class Seller(models.Model):
 	SellerEmail = models.EmailField(blank=True)
 	SellerAddress = models.CharField(max_length=64,blank=True)
 	def __unicode__(self):
-		return '%s %s' %(self.SellerAccount,self.SellerName)
+		return '%s %s %s' %(self.id, self.SellerAccount, self.SellerName)
 
 class Shop(models.Model):
 	States=(
@@ -43,7 +43,7 @@ class Shop(models.Model):
 	IsAdv = models.BooleanField()
 	IsHomeAdv = models.BooleanField()
 	def __unicode__(self):
-		return self.ShopName
+		return '%s %s' %(self.id, self.ShopName)
 
 class Commodity(models.Model):
 	CommodityTypeChoices=(
@@ -71,7 +71,7 @@ class Commodity(models.Model):
 	IsAdv = models.BooleanField()
 	IsHomeAdv = models.BooleanField()
 	def __unicode__(self):
-		return '%s %s %s' %(self.CommodityName, self.CommodityType, self.CommodityAmount)
+		return '%s %s %s %s' %(self.id, self.CommodityName, self.CommodityType, self.CommodityAmount)
 
 class Administrator(models.Model):
 	AdministratorAccount = models.CharField(max_length=64)
@@ -80,27 +80,35 @@ class Administrator(models.Model):
 	AdministratorTelephone = models.CharField(max_length=64,blank=True)
 	AdministratorEmail = models.EmailField()
 	def __unicode__(self):
-		return self.AdministratorName
+		return '%s %s' %(self.id, self.AdministratorName)
 
 class ShopAdv(models.Model):
 	ShopID = models.ForeignKey(Shop)
 	OwnerID = models.ForeignKey(Seller)
 	AdvertisementContent = models.TextField()
+	def __unicode__(self):
+		return self.id
 
 class CommodityAdv(models.Model):
 	CommodityID = models.ForeignKey(Commodity)
 	OwnerID = models.ForeignKey(Seller)
 	AdvertisementContent = models.TextField()
+	def __unicode__(self):
+		return self.id
 
 class HomeShopAdv(models.Model):
 	ShopID = models.ForeignKey(Shop)
 	OwnerID = models.ForeignKey(Administrator)
 	AdvertisementContent = models.TextField()
+	def __unicode__(self):
+		return self.id
 
 class HomeCommodityAdv(models.Model):
 	CommodityID = models.ForeignKey(Commodity)
 	OwnerID = models.ForeignKey(Administrator)
 	AdvertisementContent = models.TextField()
+	def __unicode__(self):
+		return self.id
 
 class System(models.Model):
 	BulletinBoardContent = models.CharField(max_length=64,blank=True)
@@ -108,21 +116,21 @@ class System(models.Model):
 	BulletinBoardDate = models.DateField(blank=True)
 	ComissionRate = models.FloatField(blank=True)
 	def __unicode__(self):
-		return '%s %s' %(self.BulletinBoardDate,self.BulletinBoardContent)
+		return '%s %s %s' %(self.id, self.BulletinBoardDate,self.BulletinBoardContent)
 
 class BlacklistSeller(models.Model):
 	BlacklistSellerReason = models.TextField()
 	SellerID = models.ForeignKey(Seller)
 	AdministratorID = models.ForeignKey(Administrator)
 	def __unicode__(self):
-		return self.BlacklistSellerReason
+		return '%s %s' %(self.id, self.BlacklistSellerReason)
 
 class Discount(models.Model):
 	DiscountRate = models.FloatField(blank=True)
 	SellerID = models.ForeignKey(Seller)
 	ShopID = models.ForeignKey(Shop)
 	def __unicode__(self):
-		return '%s' %(self.DiscountRate)
+		return '%s %s' %(self.id, self.DiscountRate)
 
 class ShopOrder(models.Model):
 	StateChoices=(
@@ -139,7 +147,7 @@ class ShopOrder(models.Model):
 	ShopOrderDate = models.DateField()
 	ShopID = models.ForeignKey(Shop)
 	def __unicode__(self):
-		return '%s %s' %(self.ShopOrderDate, self.ShopOrderState)
+		return '%s %s %s' %(self.id, self.ShopOrderDate, self.ShopOrderState)
 
 class Customer(models.Model):
 	CustomerTypeChoices=(
@@ -154,7 +162,7 @@ class Customer(models.Model):
 	CustomerEmail = models.EmailField()
 	CustomerAddress = models.TextField(blank=True)
 	def __unicode__(self):
-		return u'%s %s' %(self.CustomerAccount, self.CustomerName)
+		return u'%s %s %s' %(self.id, self.CustomerAccount, self.CustomerName)
 
 class CustomerOrder(models.Model):
 	StateChoices=(
@@ -171,7 +179,7 @@ class CustomerOrder(models.Model):
 	CustomerOrderDate = models.DateField()
 	CustomerID = models.ForeignKey(Customer)
 	def __unicode__(self):
-		return '%s %s' %(self.CustomerOrderState, self.CustomerOrderDate)
+		return '%s %s %s' %(self.id, self.CustomerOrderState, self.CustomerOrderDate)
 
 class OrderList(models.Model):
 	#OrderListAccount = models.CharField(max_length=64)
@@ -195,14 +203,14 @@ class OrderList(models.Model):
 	CustomerOrderID = models.ForeignKey(CustomerOrder)
 	CommodityID = models.ForeignKey(Commodity)
 	def __unicode__(self):
-		return '%s %s' %(self.OrderListDate, self.OrderListState)
+		return '%s %s %s' %(self.id, self.OrderListDate, self.OrderListState)
 
 class Comment(models.Model):
 	CommentContent = models.TextField(blank=True)
 	CustomerID = models.ForeignKey(Customer)
 	CommodityID = models.ForeignKey(Commodity)
 	def __unicode__(self):
-		return self.CommentContent
+		return '%s %s' %(seld.id, self.CommentContent)
 
 class Cart(models.Model):
 	CartDate = models.DateField()
@@ -210,14 +218,14 @@ class Cart(models.Model):
 	CommodityID = models.ForeignKey(Commodity)
 	CartCommodityAmount = models.IntegerField(blank=True, default=1)
 	def __unicode__(self):
-		return '%s %s' %(self.CartCommodityAmount, self.CartDate)
+		return '%s %s %s' %(self.id, self.CartCommodityAmount, self.CartDate)
 
 class Favorite(models.Model):
 	FavoriteDate = models.DateField()
 	CustomerID = models.ForeignKey(Customer)
 	CommodityID = models.ForeignKey(Commodity)
 	def __unicode__(self):
-		return '%s' %(self.FavoriteDate)
+		return '%s %s' %(self.id, self.FavoriteDate)
 
 
 class BlacklistCustomer(models.Model):
@@ -225,4 +233,4 @@ class BlacklistCustomer(models.Model):
 	AdministratorID = models.ForeignKey(Administrator)
 	CustomerID = models.ForeignKey(Customer)
 	def __unicode__(self):
-		return self.BlacklistCustomerReason
+		return '%s %s' %(self.id, self.BlacklistCustomerReason)

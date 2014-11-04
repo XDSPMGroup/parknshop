@@ -12,40 +12,42 @@
 				Buys History
 			</h2>
 			<hr>
-			<a href="/customer/statistics/all"><button class='btn btn-info btn-xs'>All Sales</button></a>
-			<a href="/customer/statistics/year"><button class='btn btn-info btn-xs'>Year Sales</button></a>
-			<a href="/customer/statistics/month"><button class='btn btn-info btn-xs'>Month Sales</button></a>
-			<a href="/customer/statistics/day"><button class='btn btn-info btn-xs'>Day Sales</button></a>
+			<a href="/customer/statistics/all"><button class='btn btn-info btn-xs'>All Buys</button></a>
+			<a href="/customer/statistics/year"><button class='btn btn-info btn-xs'>Year Buys</button></a>
+			<a href="/customer/statistics/month"><button class='btn btn-info btn-xs'>Month Buys</button></a>
+			<a href="/customer/statistics/day"><button class='btn btn-info btn-xs'>Day Buys</button></a>
 			<br>
 			<br>
 			<div class="row clearfix">
 				<div class="col-md-12 column">   
-        			<div class="row col-md-10">
+        			<div class="row col-md-13">
 			<table class="table table-striped custab">
 				<thead>
 					<tr class="yanse">
+						<th>OrderNo.</th>
 						<th>
-							commodity name
+							CommodityName
 						</th>
 						<th>
-							unit-price
+							UnitPrice
 						</th>
 						<th>
-							time
+							OrderTime
 						</th>
 						<th>
-							counts
+							Counts
 						</th>						
 						<th>
-							actual payments
+							ActualPayments
 						</th>
 						<th>
-							status
+							Status
 						</th>
 					</tr>
 				</thead>
 				{% for buysHistory in BuysHistoryList %}
 				<tr class="yanse" id="item{{buysHistory.CommodityID.id}}">
+					<td>{{buysHistory.id}}</td>
 					<td>{{buysHistory.CommodityID.CommodityName}}</td>
 					<td>{{buysHistory.CommodityID.SellPrice}}$</td>
 					<td>{{buysHistory.OrderListDate}}</td>
