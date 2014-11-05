@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}First Shop{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+            <div class="col-md-4 column">
+            </div>
+				<div class="col-md-4 column">
+                    <h3>Add your First Shop</h3>
+    <hr>
+<form method = 'post' enctype="multipart/form-data">
+{% csrf_token %}
+{{sf.as_p}}
+<input type="submit" value = "Save" />
+</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <br><br><br>
+
+{% endblock %}

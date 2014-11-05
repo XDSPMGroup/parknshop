@@ -80,7 +80,7 @@ def register(request):
 				request.session['UserType'] = cf.cleaned_data['identity']
 				request.session['UserAccount'] = cf.cleaned_data['CustomerAccount']
 				request.session['UserID'] = seller.id
-				return HttpResponseRedirect('/seller/home')
+				return HttpResponseRedirect('/addshop')
 				# return render_to_response('Homepage.html', locals(), context_instance=RequestContext(request))
 	else:
 		cf = CustomerForm()
@@ -199,6 +199,9 @@ def index(request):
 	UserID = request.session.get('UserID', False)#, 'anybody')
 	UserType = request.session.get('UserType')
 	UserAccount = request.session.get('UserAccount')
+	homeshopadv = HomeShopAdv.objects.all()
+	homecommodityadv = HomeCommodityAdv.objects.all()
+	bulletin = System.objects.get(id = 1)
 	if UserID and UserType == 'C':
 		user = Customer.objects.get(id = UserID)
 		UserName = user.CustomerName
