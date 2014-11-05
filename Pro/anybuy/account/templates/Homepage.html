@@ -99,37 +99,27 @@
 			<div class="col-md-9 column">
 				<div class="tabbable" id="tabs-412305">
 					<ul class="nav nav-tabs">
-						<li>
+						<li class="active">
 							<a href="#panel-22874" data-toggle="tab">Top 10 Commodities</a>
 						</li>
-						<li class="active">
+						<li>
 							<a href="#panel-71918" data-toggle="tab">Top 10 Shops</a>
 						</li>
 					</ul>
 					<div id="top" class="tab-content">
-						<div class="tab-pane" id="panel-22874">      <!--TP 10 商品-->
-							<a href = "/commodity/id/7/"><img src="/file/images/TPO商品1.png" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO商品2.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO商品3.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO商品4.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO商品5.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO商品6.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO商品7.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO商品8.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO商品9.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO商品10.jpg" class="logo"></a>
+						<div class="tab-pane active" id="panel-22874">      <!--TP 10 商品-->
+							{% for commodityadv in homecommodityadv %}
+                                <a href = "/commodity/id/{{ commodityadv.CommodityID.id }}/">
+                                    <img src="/file/{{ commodityadv.CommodityID.CommodityImage }}" class="logo">
+                                </a>
+                            {% endfor %}
 						</div>
-						<div class="tab-pane active" id="panel-71918">			    <!--TP 10 店铺-->
-							<a href = "/shop/id/1/"><img src="/file/images/TPO店铺1.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO店铺2.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO店铺3.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO店铺4.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO店铺5.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO店铺6.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO店铺7.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO店铺8.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO店铺9.jpg" class="logo"></a>
-							<a href = ""><img src="/file/images/TPO店铺10.jpg" class="logo"></a>
+						<div class="tab-pane" id="panel-71918">			    <!--TP 10 店铺-->
+                            {% for shopadv in homeshopadv %}
+                                <a href = "/shop/id/{{ shopadv.ShopID.id }}">
+                                    <img src="/file/{{ shopadv.ShopID.ShopImage }}" class="logo">
+                                </a>
+                            {% endfor %}
 						</div>
 					</div>
 				</div>
@@ -138,10 +128,9 @@
 				<img src="/file/images/bulletin.jpg">
 				<h2 style="text-align:center">Bulletin</h2>
 				<h3 style = "color:white;">
-				    <br/>
-					11.11 is coming~~
-					<br/><br/>
-					Get ready to shopping!
+				    {{ bulletin.BulletinBoardContent }}<br>
+                    {{ bulletin.BulletinBoardDescription }}<br>
+                    {{ bulletin.BulletinBoardDate }}
 				</h3>
 			</div>
 		</div>

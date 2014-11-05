@@ -36,19 +36,23 @@
 	<div class="row clearfix">
 		<div class="col-md-2 column">
 			<div class="list-group">
-				 <a class="list-group-item active" href="#">Home</a>
-				<div class="list-group-item">
-					comodity list
-				</div>
-				<div class="list-group-item">
-						modify store
-				</div>
-				<div class="list-group-item">
-					manage ads
-				</div> <a class="list-group-item ">Help</a>
+{#				 <a class="list-group-item active" href="#">Home</a>#}
+{#				<div class="list-group-item">#}
+{#					comodity list#}
+{#				</div>#}
+{#				<div class="list-group-item">#}
+{#						modify store#}
+{#				</div>#}
+{#				<div class="list-group-item">#}
+{#					manage ads#}
+{#				</div> <a class="list-group-item ">Help</a>#}
 			</div>
 		</div>
 		<div class="col-md-10 column">
+        <h1>{{ shop.ShopName }}</h1>
+        <p>
+            {{ shop.ShopDescription }}
+		</p>
 			{% for commodity in commodityList %}
             <a href="/commodity/id/{{ commodity.id }}" style = "color:#3299CC"><img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityImage }}" style = "height:270px;"/></a>
             {% endfor %}

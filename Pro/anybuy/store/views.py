@@ -129,7 +129,6 @@ def add_to_favorite(request):
     Favorite.objects.create(FavoriteDate=date, CustomerID = user, CommodityID = commodity)
     return HttpResponse('You add: '+commodity.CommodityName)
 
-
 def rm_from_cart(request):
     if request.session.get('UserID', False):
         UserID = request.session['UserID']
@@ -212,7 +211,6 @@ def rm_from_favorite(request):
     else:
         commodity = None
     return HttpResponse('You removed: '+commodity.CommodityName+'from favorite')
-
 
 def search(request, keyword):  #/search/keyword/ 以keyword为关键字进行搜索，返回一个commodityList
     if request.session.get('UserID', False):
@@ -422,6 +420,41 @@ def add_and_modify(request, cid): # cid==0时添加新项目， !=0时修改cid�
             cf = CommodityForm(data)
     return render_to_response('manageCommodity.html',locals(), context_instance=RequestContext(request))
 
+class ShopForm(forms.Form):
+    ShopName = forms.CharField(label='ShopName')
+    ShopDescription = forms.CharField(label='Description', required=False)
+    #店铺状态：0-待审核，1-营业，2-歇业
+    BigImage = forms.ImageField(label='BigImage', required=False)
+    ShopImage = forms.ImageField(label='ShopImage', required=False)
+
+def add_and_modify_shop(request): # cid==0时添加新项目， !=0时修改cid的项目
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        return HttpResponseRedirect('/login/')
+    seller = Seller.objects.get(id=UserID)
+    if request.method == 'POST':
+        sf = ShopForm(request.POST, request.FILES)
+        if sf.is_valid():
+            #get form
+            shop = Shop()
+            shop.ShopName = sf.cleaned_data['ShopName']
+            shop.ShopDescription = sf.cleaned_data['ShopDescription']
+            shop.BigImage = sf.cleaned_data['BigImage']
+            shop.ShopImage = sf.cleaned_data['ShopImage']
+            shop.SellerID = seller
+            shop.IsAdv = True
+            shop.IsHomeAdv = True
+            shop.ShopState = 1
+            shop.save()
+            return HttpResponseRedirect('/seller/home')
+    else:
+        sf = ShopForm()
+    return render_to_response('addshop.html',locals(), context_instance=RequestContext(request))
+
 
 #顾客管理订单（查看订单，申请退款，添加评论，修改评论。）
 def manageOrder(request):
@@ -467,7 +500,6 @@ def apply_refund(request):
         ol = None
     return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
 
-
 def cancel_refund(request):
     if request.session.get('UserID', False):
         UserID = request.session['UserID']
@@ -491,7 +523,6 @@ def cancel_refund(request):
     else:
         ol = None
     return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
-
 
 def add_comment(request):
     if request.session.get('UserID', False):
