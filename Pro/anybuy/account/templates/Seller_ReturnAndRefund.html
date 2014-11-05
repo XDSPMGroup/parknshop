@@ -14,7 +14,7 @@
 
 			<div class="row clearfix">
 				<div class="col-md-12 column">   
-					<div class="row col-md-12">
+					<div class="row col-md-13">
 						<table class="table table-striped custab">
 							<thead>
 								<tr class="yanse">
@@ -31,7 +31,7 @@
 									<th>
 										TotalMoney
 									</th>
-									<th>ShipAddress</th>
+									<th>CustomerInfo</th>
 									<th class="text-center">
 									Accept
 									</th>
@@ -87,7 +87,10 @@
 						<td>
 							{% widthratio order.CommodityID.SellPrice 1 order.OrderAmount %}$
 						</td>
-						<td>{{ order.CustomerOrderID.CustomerID.CustomerAddress }}</td>
+						<td>Name:{{ order.CustomerOrderID.CustomerID.CustomerName}}<br>
+							Tel:{{ order.CustomerOrderID.CustomerID.CustomerTelephone}}<br>
+							Email:{{ order.CustomerOrderID.CustomerID.CustomerEmail}}<br>
+							Addr:{{ order.CustomerOrderID.CustomerID.CustomerAddress }}</td>
 						<td class="text-center"><a class='btn btn-info btn-xs' onclick="success('{{order.id}}')"><span class="glyphicon"><b>Accept</b>
 						</td>
 						<td class="text-center"><a class='btn btn-info btn-xs' onclick="failure('{{order.id}}')"><span class="glyphicon"><b>Deny</b>
