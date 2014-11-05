@@ -41,7 +41,7 @@
 							ActualMoney
 						</th>	
 						<th>
-							ShipAddress
+							CustomerInfo
 						</th>
 						<th>
 							Status
@@ -56,7 +56,10 @@
 					<td>{{ salesHistory.CommodityID.SellPrice }}$</td>
 					<td>{{ salesHistory.OrderAmount }}</td>
 					<td>{% widthratio salesHistory.CommodityID.SellPrice 1 salesHistory.OrderAmount %}$</td>
-					<td>{{ salesHistory.CustomerOrderID.CustomerID.CustomerAddress }}</td>
+					<td>Name:{{ salesHistory.CustomerOrderID.CustomerID.CustomerName}}<br>
+						Tel:{{ salesHistory.CustomerOrderID.CustomerID.CustomerTelephone}}<br>
+						Email:{{ salesHistory.CustomerOrderID.CustomerID.CustomerEmail}}<br>
+						Addr:{{ salesHistory.CustomerOrderID.CustomerID.CustomerAddress }}</td>
 					{% if salesHistory.OrderListState == 0 %}
 					<td>paying</td>
 					{% endif %}

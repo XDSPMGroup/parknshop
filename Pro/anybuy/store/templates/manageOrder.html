@@ -108,16 +108,16 @@
 		<td>finish</td>
 		{% endif %}
 
-		<!-- {% if ol.OrderListState == 4 %}
+		{% if ol.OrderListState == 4 %}
 		<td><a style = "color:#3299CC" onclick="cancelRefund('{{ol.id}}')"><b>CancelRefund</b></td>
 		{% else %}
 		<td><a style = "color:#3299CC" onclick="applyRefund('{{ol.id}}')"><b>ApplyRefund</b></td>
-		{% endif %} -->
-		{% if ol.OrderListState == 4 %}
+		{% endif %}
+		<!-- {% if ol.OrderListState == 4 %}
 		<td style = "color:#3299CC"><b>CancelRefund</b></td>
 		{% else %}
 		<td style = "color:#3299CC"><b>ApplyRefund</b></td>
-		{% endif %}
+		{% endif %} -->
 
 		{% if ol.OrderListState == 7 %}
 		<td>Aready Comment</td>
