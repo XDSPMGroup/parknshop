@@ -18,3 +18,6 @@ tags
 *~
 *.ids
 *.xml
+Pro/anybuy/db.sqlite3
+Pro/anybuy/db.sqlite3
+*.sqlite3

@@ -69,7 +69,7 @@
 					<a class="list-group-item" href="/seller/ad">Manage Adv</a>
 					<a class="list-group-item" href="/seller/order">Manage Order</a>
 					<a class="list-group-item" href="/seller/refund">Check Refund</a>
-					<a class="list-group-item" href="/seller/applyshop">Apply New Shop</a>
+{#					<a class="list-group-item" href="/seller/applyshop">Apply New Shop</a>#}
                     <a class="list-group-item" href="/seller/statistics/all">Sales Statistics</a>
 			</div>
 		</div>
@@ -118,7 +118,7 @@
         Recommend commodity
         </h3>
         {% for commodity in commodityadvlist %}
-            <a href="/commodity/id/{{ commodity.id }}">
+            <a id="commodityadv{{ commodity.id }}" href="/commodity/id/{{ commodity.id }}">
                 <img class="img-thumbnail" alt="140x140" src="/file/{{ commodity.CommodityImage }}" width="235" height="120"/>
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;

@@ -17,9 +17,9 @@
     <table class="table table-striped custab">
     <thead >
         <tr class="yanse">
-            <th >commodity picture</th>
-            <th >commodity title</th>
-            <th >price</th>
+            <th >Commodity Picture</th>
+            <th >Commodity Title</th>
+            <th >Price</th>
             <th class="text-center">Action</th>
         </tr>
     </thead>
@@ -38,23 +38,20 @@
                 xmlhttp.open("GET","/rmfromfavorite?id="+id,true);
                 xmlhttp.send();
             }
+            function addtocart(cid) {
+                alert('You have added {{ favorite.CommodityID.CommodityName }} to cart!');
+                location.href='/addtocart/'+ cid +'/1';
+            }
+
         </script>
         {% for favorite in favoriteList %}
         <tr class="yanse" id="item{{ favorite.CommodityID.id }}">
                 <td><a href="/commodity/id/{{ favorite.CommodityID.id }}" style = "color:#3299CC"><img src="/file/{{ favorite.CommodityID.CommodityImage }}" style = "height:90px;"/></a></td> <!--这里是Commodity里CommodityImage,可以根据favorite里的CommodityID找吧-->
-
-        <script language="javascript">
-            function add{{ favorite.CommodityID.CommodityName }}tocart() {
-                alert('You have added {{ favorite.CommodityID.CommodityName }} to cart!');
-                location.href='/addtocart/'+ '{{ favorite.CommodityID.id }}' +'/1';
-            }
-
-        </script>
                 <td><a href="/commodity/id/{{ favorite.CommodityID.id }}" style = "color:#3299CC">{{ favorite.CommodityID.CommodityName }}</a></td> <!--这里是Commodity里的CommodityName-->
                 <td>{{ favorite.CommodityID.SellPrice }}$</td>  <!--这里是Commodity里的OriginalPrice-->
                 <td class="text-center">
-                    <a onclick="add{{ favorite.CommodityID.CommodityName }}tocart()" class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Add to Cart</a>
-                    <a onclick="rmfromfavoritex('{{ favorite.CommodityID.id }}')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>   <!--这里的两个按钮分别是添加到cart和删除选项-->
+                    <a onclick="addtocart({{ favorite.CommodityID.id }})" class='btn btn-info btn-xs' href="#"> Add to Cart</a>
+                    <a onclick="rmfromfavoritex('{{ favorite.CommodityID.id }}')" class="btn btn-danger btn-xs"> Del</a></td>   <!--这里的两个按钮分别是添加到cart和删除选项-->
         </tr>
         {% endfor %}
     </table>

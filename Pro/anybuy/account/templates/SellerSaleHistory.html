@@ -20,38 +20,70 @@
 			<br>
 			<div class="row clearfix">
 				<div class="col-md-12 column">   
-        			<div class="row col-md-10">
+        			<div class="row col-md-12">
 			<table class="table table-striped custab">
 				<thead>
 					<tr class="yanse">
+						<th>OrderNo.</th>
 						<th>
-							commodity name
+							CommodityName
 						</th>
 						<th>
-							unit-price
+							OrderTime
 						</th>
 						<th>
-							time
+							UnitPrice
 						</th>
 						<th>
-							counts
+							Counts
 						</th>						
 						<th>
-							actual payments
+							ActualMoney
+						</th>	
+						<th>
+							CustomerInfo
 						</th>
 						<th>
-							status
+							Status
 						</th>
 					</tr>
 				</thead>
 				{% for salesHistory in SalesHistoryList %}
 				<tr class="yanse" id="item{{salesHistory.CommodityID.id}}">
-					<td>{{salesHistory.CommodityID.CommodityName}}</td>
-					<td>{{salesHistory.CommodityID.SellPrice}}$</td>
-					<td>{{salesHistory.OrderListDate}}</td>
-					<td>{{salesHistory.OrderAmount}}</td>
+					<td>{{ salesHistory.id }}</td>
+					<td>{{ salesHistory.CommodityID.CommodityName }}</td>
+					<td>{{ salesHistory.OrderListDate }}</td>
+					<td>{{ salesHistory.CommodityID.SellPrice }}$</td>
+					<td>{{ salesHistory.OrderAmount }}</td>
 					<td>{% widthratio salesHistory.CommodityID.SellPrice 1 salesHistory.OrderAmount %}$</td>
-					<td>{{salesHistory.OrderListState}}</td>
+					<td>Name:{{ salesHistory.CustomerOrderID.CustomerID.CustomerName}}<br>
+						Tel:{{ salesHistory.CustomerOrderID.CustomerID.CustomerTelephone}}<br>
+						Email:{{ salesHistory.CustomerOrderID.CustomerID.CustomerEmail}}<br>
+						Addr:{{ salesHistory.CustomerOrderID.CustomerID.CustomerAddress }}</td>
+					{% if salesHistory.OrderListState == 0 %}
+					<td>paying</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 1 %}
+					<td>shipping</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 2 %}
+					<td>signing</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 3 %}
+					<td>commenting</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 4 %}
+					<td>refunding</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 5 %}
+					<td>refunded</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 6 %}
+					<td>refused refunded</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 7 %}
+					<td>finish</td>
+					{% endif %}
 				</tr>
 				{% endfor %}				
 			</table>

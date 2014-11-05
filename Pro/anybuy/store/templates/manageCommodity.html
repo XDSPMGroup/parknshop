@@ -1,0 +1,14 @@
+{% extends "sellerbase.html" %}
+{% block title %}Modify Commodity{% endblock %}
+
+{% block sellercontent %}
+<div class="col-md-10 column">
+<h3>Commodity Infomation</h3>
+    <hr>
+<form method = 'post' enctype="multipart/form-data">
+{% csrf_token %}
+{{cf.as_p}}
+<input type="submit" value = "Save" />
+</form>
+</div>
+{% endblock %}

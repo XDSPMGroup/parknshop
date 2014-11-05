@@ -1,15 +1,32 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 
+
 {% block content %}
-<h1>Please Login</h1>
-{% if wrongpw %}
-Wrong account or password!
-{% endif %}
-<form method = 'post' enctype="multipart/form-data">
-    {% csrf_token %}
-    {{uf.as_p}}
-    <input type="submit" value = "ok" />
-</form>
-No account? <a href="/register/">Register</a>
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+            <div class="col-md-8 column">
+            </div>
+				<div class="col-md-4 column">
+                    <h3 class="text-center text-default" style="color:#3a87ad">
+                    Please Login
+                    </h3>
+                    {% if wrongpw %}
+                    Wrong account or password!
+                    {% endif %}
+                    <form method = 'post' enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{uf.as_p}}
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    No account? <a href="/register/">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <br><br><br>
 {% endblock %}
