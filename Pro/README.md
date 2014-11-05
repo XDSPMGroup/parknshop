@@ -5,6 +5,10 @@
 4. check out -> filling address and choose pay method
 5. Order state
 6. BUY fuction
+7. 图片上传时的截取
+8. 添加商品时不选图片报错
+9. discount范围
+10. delete commodity时需要提示
 
 
 ## Programmer 29 Oct.前的任务
@@ -12,7 +16,7 @@
 任务 | 详情 | html文件 | url | status
 ----|-----|----------|----- | ---
 entershop|查看商品list、（entershop上面显示店铺广告，下面显示shop的广告）| |url:/seller/ | done by LS
-管理shop|添加修改（包括折扣）商品页面|manageCommodity.html| url:/seller/modify |
+管理shop|添加修改（包括折扣）商品页面|manageCommodity.html| url:/seller/modify | done by LS
 管理广告|改成选择商品和店铺（广告显示在entershop页面）|：manageAD.html |/seller/ad |done by LS
 管理订单|把action里面的按钮改成一个confirm，confirm之后状态改为shipping |用favorite页面|/seller/order |done by WT
 statistics|查看销售记录|checksaleshistory.html|/seller/statistics|done by WT
