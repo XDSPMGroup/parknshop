@@ -18,11 +18,6 @@ tags
 *~
 *.ids
 *.xml
-<<<<<<< HEAD
-Pro/anybuy/db.sqlite3
-Pro/anybuy/db.sqlite3
-*.sqlite3
-=======
 *.png
 *.jpg
->>>>>>> 678675c516ac8822ceed4894b7a33e1552f7605d
+*.sqlite3
