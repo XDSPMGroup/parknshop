@@ -234,3 +234,8 @@ class BlacklistCustomer(models.Model):
 	CustomerID = models.ForeignKey(Customer)
 	def __unicode__(self):
 		return '%s %s' %(self.id, self.BlacklistCustomerReason)
+
+class Income(models.Model):
+	IncomeAmount = models.FloatField()
+	def __unicode__(self):
+		return '%s %s' %(self.id, self.IncomeAmount)

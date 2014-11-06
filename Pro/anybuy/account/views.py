@@ -321,6 +321,12 @@ def removeOrderList(request):
 		co = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
 		co.CustomerOrderState = 1
 		co.save()
+		income = 0
+		income = income + ol.CommodityID.SellPrice * ol.OrderAmount
+		incomeAmount = income * System.objects.get(id = 1).ComissionRate
+		tmp = Income.objects.get(id = 1)
+		tmp.IncomeAmount = tmp.IncomeAmount + incomeAmount
+		tmp.save()
 	else:
 		ol = None
 	return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
