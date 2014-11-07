@@ -100,6 +100,7 @@ class HomeShopAdv(models.Model):
 	ShopID = models.ForeignKey(Shop)
 	OwnerID = models.ForeignKey(Administrator)
 	AdvertisementContent = models.TextField()
+	ApplyState = models.BooleanField()
 	def __unicode__(self):
 		return '%s %s' %(self.id, self.AdvertisementContent)
 
@@ -107,6 +108,7 @@ class HomeCommodityAdv(models.Model):
 	CommodityID = models.ForeignKey(Commodity)
 	OwnerID = models.ForeignKey(Administrator)
 	AdvertisementContent = models.TextField()
+	ApplyState = models.BooleanField()
 	def __unicode__(self):
 		return '%s %s' %(self.id, self.AdvertisementContent)
 

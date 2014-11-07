@@ -53,4 +53,6 @@ urlpatterns = patterns('',
     url(r'^seller/modify/(?P<cid>\d*)/$', 'store.views.add_and_modify'), #cid==0时添加新项目， !=0时修改cid的项目
     #url(r'^account/$', views.register, name='register'),
     #url(r'^account/register/$',views.register, name = 'register'),
+    # admin
+    url(r'^adm/adv/$', 'system.views.manageadv'),
 )

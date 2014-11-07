@@ -3,14 +3,27 @@ from system.models import *
 
 # Register your models here.
 
+class HomeShopAdvAdmin(admin.ModelAdmin):
+    list_display = ('id','ShopID', 'AdvertisementContent', 'ApplyState')
+    search_fields = ('id','ShopID', 'AdvertisementContent')
+
+class HomeCommodityAdvAdmin(admin.ModelAdmin):
+    list_display = ('id', 'CommodityID', 'AdvertisementContent', 'ApplyState')
+    search_fields = ('id','AdvertisementContent')
+
+class CommodityAdmin(admin.ModelAdmin):
+    list_display = ('id', 'CommodityName', 'CommodityImage')
+    search_fields = ('id', 'CommodityName', 'CommodityDescription')
+
+
 admin.site.register(HelpCenter)
 admin.site.register(Seller)
 admin.site.register(Shop)
-admin.site.register(Commodity)
+admin.site.register(Commodity, CommodityAdmin)
 admin.site.register(ShopAdv)
 admin.site.register(CommodityAdv)
-admin.site.register(HomeShopAdv)
-admin.site.register(HomeCommodityAdv)
+admin.site.register(HomeShopAdv, HomeShopAdvAdmin)
+admin.site.register(HomeCommodityAdv, HomeCommodityAdvAdmin)
 admin.site.register(Administrator)
 admin.site.register(System)
 admin.site.register(BlacklistSeller)
