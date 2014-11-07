@@ -17,7 +17,7 @@
         xmlhttp.send();
     }
 
-    function applyhomeadv(id) {
+    function applyhomeadv(id, kind) {
         xmlhttp=new XMLHttpRequest();
         xmlhttp.onreadystatechange=function()
         {
@@ -26,7 +26,11 @@
 {#                $('#item'+id.toString()).fadeOut();#}
             }
         }
-        xmlhttp.open("GET","/seller/applyhomeadv?id="+id.toString(),true);
+        if (kind == 'c') {
+            xmlhttp.open("GET","/seller/applyhomecommodityadv?id="+id.toString(),true);
+        }
+        else
+            xmlhttp.open("GET","/seller/applyhomeshopadv?id="+id.toString(),true);
         xmlhttp.send();
     }
 </script>
@@ -52,7 +56,7 @@
 
 			</div>
 			<div class="tab-content">
-				<div class="tab-pane active" id="panel-14830">
+		    <div class="tab-pane active" id="panel-14830">
 			<table class="table" >
 				<thead>
 					<tr>
@@ -139,7 +143,7 @@
 {#				</tbody>#}
 			</table>
 			</div>
-                <div class="tab-pane" id="panel-14832">
+            <div class="tab-pane" id="panel-14832">
 			    <table class="table" >
                 <thead>
 					<tr>
@@ -147,7 +151,7 @@
 							Shop
 						</th>
 						<th>
-							Advertise
+							Apply for Advertise
 						</th>
 					</tr>
 				</thead>
@@ -169,7 +173,11 @@
 							</div>
 						</td>
 						<td>
-							<input type="checkbox"  />
+                            {% if shop.IsHomeAdv %}
+							<input type="checkbox" onclick="applyhomeadv({{ shop.id }}, 's')" checked />
+                            {% else %}
+                            <input type="checkbox" onclick="applyhomeadv({{ shop.id }}, 's')"  />
+                            {% endif %}
 						</td>
 					</tr>
                     {% endfor %}
@@ -201,10 +209,10 @@
 								</div>
 						</td>
 						<td>
-                            {% if commodity.IsAdv %}
-							<input type="checkbox" onclick="changestate({{ commodity.id }})" checked />
+                            {% if commodity.IsHomeAdv %}
+							<input type="checkbox" onclick="applyhomeadv({{ commodity.id }}, 'c')" checked />
                             {% else %}
-                            <input type="checkbox" onclick="changestate({{ commodity.id }})"/>
+                            <input type="checkbox" onclick="applyhomeadv({{ commodity.id }}, 'c')"/>
                             {% endif %}
 						</td>
 					</tr>

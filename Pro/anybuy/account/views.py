@@ -16,28 +16,28 @@ IDENTITY = (
 )
 
 class CustomerForm(forms.Form):
-	identity = forms.ChoiceField(label='your identity:', choices=IDENTITY)
-	CustomerAccount = forms.CharField(label='Account:', max_length=64)
-	CustomerName = forms.CharField(label='Name:', max_length=64)
+	identity = forms.ChoiceField(label='Identity:', choices=IDENTITY)
+	CustomerAccount = forms.CharField(label='Account :', max_length=64)
+	CustomerName = forms.CharField(label='Realname:', max_length=64)
 	CustomerPassword = forms.CharField(label='Password:', widget=forms.PasswordInput(), max_length=16)
 	#CustomerType = forms.CharField(label='Type：', max_length=1, choices=CustomerTypeChoices,blank=True)
-	CustomerTelephone = forms.CharField(label='Tel:',max_length=64)
-	CustomerEmail = forms.EmailField(label='E-mail:')
-	CustomerAddress = forms.CharField(label='Address:')
+	CustomerTelephone = forms.CharField(label='Telephone:',max_length=64)
+	CustomerEmail = forms.EmailField(label='Emailaddr:')
+	CustomerAddress = forms.CharField(label='RealAddr :')
 
 class CustomerForm2(forms.Form):
 	#identity = forms.ChoiceField(label='your identity:', choices=IDENTITY)
 	CustomerAccount = forms.CharField(label='Account:', max_length=64)
-	CustomerName = forms.CharField(label='Name:', max_length=64)
+	CustomerName = forms.CharField(label='YourName:', max_length=64)
 	CustomerPassword = forms.CharField(label='Password:', widget=forms.PasswordInput(), max_length=16)
 	#CustomerType = forms.CharField(label='Type：', max_length=1, choices=CustomerTypeChoices,blank=True)
-	CustomerTelephone = forms.CharField(label='Tel:',max_length=64)
-	CustomerEmail = forms.EmailField(label='E-mail:')
-	CustomerAddress = forms.CharField(label='Address:')
+	CustomerTelephone = forms.CharField(label='Phone:',max_length=64)
+	CustomerEmail = forms.EmailField(label=   'E-mail:')
+	CustomerAddress = forms.CharField(label=  'Address:')
 
 class UserForm(forms.Form):
-	identity = forms.ChoiceField(label='your identity:', choices=IDENTITY)
-	UserAccount = forms.CharField(label='Account:', max_length=64)
+	identity = forms.ChoiceField(label=  'identity:', choices=IDENTITY)
+	UserAccount = forms.CharField(label= 'Account: ', max_length=64)
 	UserPassword = forms.CharField(label='Password:', widget=forms.PasswordInput(), max_length=16)
 
 # Create your views here.
@@ -199,8 +199,8 @@ def index(request):
 	UserID = request.session.get('UserID', False)#, 'anybody')
 	UserType = request.session.get('UserType')
 	UserAccount = request.session.get('UserAccount')
-	homeshopadv = HomeShopAdv.objects.all()
-	homecommodityadv = HomeCommodityAdv.objects.all()
+	homeshopadv = HomeShopAdv.objects.filter(ApplyState=True)
+	homecommodityadv = HomeCommodityAdv.objects.filter(ApplyState=True)
 	bulletin = System.objects.get(id = 1)
 	if UserID and UserType == 'C':
 		user = Customer.objects.get(id = UserID)
@@ -428,6 +428,10 @@ def adminIncome(request):
 	orders = OrderList.objects.filter(OrderListState__in = [7,8])
 	for ol in orders:
 		orderList.append(ol)
+	conserveorderList = []
+	conserveorders = OrderList.objects.filter(OrderListState__in = [1,2,3,4,5,6])
+	for ol in conserveorders:
+		conserveorderList.append(ol)
 	totalvalue = 0
 	for shl in orderList:
 		totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount

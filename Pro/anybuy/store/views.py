@@ -194,7 +194,32 @@ def checkoutcart(request):
     # return HttpResponse('You checked out your cart')
 
 def bank(request):
-    return render_to_response('bank.html')
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+        user = Customer.objects.get(id=UserID)
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+        user = None
+    return render_to_response('bank.html',locals())
+
+def bankaccount(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+        user = Customer.objects.get(id=UserID)
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+        user = None
+    return render_to_response('bankaccount.html', locals())
 
 def rm_from_favorite(request):
     if request.session.get('UserID', False):
@@ -334,6 +359,56 @@ def changead(request):
         commodity.IsAdv = False
     else:
         commodity.IsAdv = True
+    commodity.save()
+    return HttpResponse("You change the ad state")
+
+def applyhomeshopadv(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        return HttpResponseRedirect('/login/')
+    seller = Seller.objects.get(id=UserID)
+    try:
+        shop = Shop.objects.get(SellerID = seller)
+    except:
+        shop = None
+    ishomeadv = shop.IsHomeAdv
+    if ishomeadv:
+        shop.IsHomeAdv = False
+        HomeShopAdv.objects.get(ShopID=shop).delete()
+    else:
+        shop.IsHomeAdv = True
+        admin=Administrator.objects.get(id=1)
+        HomeShopAdv.objects.create(ShopID=shop, OwnerID=admin, AdvertisementContent=shop.ShopName, ApplyState=False)
+    shop.save()
+    return HttpResponse("You apply the home shop ad state")
+
+def applyhomecommodityadv(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        return HttpResponseRedirect('/login/')
+    seller = Seller.objects.get(id=UserID)
+    try:
+        shop = Shop.objects.get(SellerID = seller)
+    except:
+        shop = None
+    cid = request.GET['id']
+    commodity = Commodity.objects.get(id=cid)
+    ishomeadv = commodity.IsHomeAdv
+    if ishomeadv:
+        commodity.IsHomeAdv = False
+        HomeCommodityAdv.objects.get(CommodityID=commodity).delete()
+    else:
+        commodity.IsHomeAdv = True
+        admin=Administrator.objects.get(id=1)
+        HomeCommodityAdv.objects.create(CommodityID=commodity, OwnerID=admin, AdvertisementContent=commodity.CommodityName, ApplyState=False)
     commodity.save()
     return HttpResponse("You change the ad state")
 
