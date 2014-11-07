@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}SalesHistory{% endblock %}
+{% block title %}BuysHistory{% endblock %}
 
 {% block content %}
 
@@ -57,7 +57,7 @@
 					<td>paying</td>
 					{% endif %}
 					{% if buysHistory.OrderListState == 1 %}
-					<td>shipping</td>
+					<td>shipping<br>ShipNo:{{ buysHistory.ShipNo }}</td>
 					{% endif %}
 					{% if buysHistory.OrderListState == 2 %}
 					<td>signing</td>
@@ -76,6 +76,9 @@
 					{% endif %}
 					{% if buysHistory.OrderListState == 7 %}
 					<td>finish</td>
+					{% endif %}
+					{% if buysHistory.OrderListState == 8 %}
+					<td>commented</td>
 					{% endif %}
 				</tr>
 				{% endfor %}				

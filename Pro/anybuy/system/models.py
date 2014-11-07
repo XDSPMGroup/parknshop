@@ -142,6 +142,7 @@ class ShopOrder(models.Model):
 		(5, 'refunded'),
 		(6, 'refund refuded'),
 		(7, 'finish'),
+		(8, 'commented')
 	)
 	ShopOrderState = models.IntegerField(choices=StateChoices)
 	ShopOrderDate = models.DateField()
@@ -174,6 +175,7 @@ class CustomerOrder(models.Model):
 		(5, 'refunded'),
 		(6, 'refund refuded'),
 		(7, 'finish'),
+		(8, 'commented')
 	)
 	CustomerOrderState = models.IntegerField(choices=StateChoices)
 	CustomerOrderDate = models.DateField()
@@ -185,6 +187,7 @@ class OrderList(models.Model):
 	#OrderListAccount = models.CharField(max_length=64)
 	#订单状态：0-待付款，1-已付款待发货，2-待签收，
 	# 3-待评价，4-待退款，5-退款成功，6-卖家拒绝退款
+	# 7-交易完成
 	StateChoices=(
 		(0, 'paying'),
 		(1, 'shipping'),
@@ -194,10 +197,12 @@ class OrderList(models.Model):
 		(5, 'refunded'),
 		(6, 'refused refunded'),
 		(7, 'finish'),
+		(8, 'commented')
 	)
 	OrderListState = models.IntegerField(choices=StateChoices)
 	OrderListDate = models.DateField()
 	OrderAmount = models.IntegerField(blank=True, null=True)
+	ShipNo = models.CharField(max_length = 64)
 	#SellerID = models.ForeignKey(Seller)
 	ShopOrderID = models.ForeignKey(ShopOrder)
 	CustomerOrderID = models.ForeignKey(CustomerOrder)

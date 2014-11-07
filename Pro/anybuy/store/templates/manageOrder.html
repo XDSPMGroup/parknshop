@@ -87,7 +87,7 @@
 		<td>paying</td>
 		{% endif %}
 		{% if ol.OrderListState == 1 %}
-		<td>shipping</td>
+		<td>shipping<br>ShipNo:{{ ol.ShipNo }}</td>
 		{% endif %}
 		{% if ol.OrderListState == 2 %}
 		<td>signing</td>
@@ -107,19 +107,23 @@
 		{% if ol.OrderListState == 7 %}
 		<td>finish</td>
 		{% endif %}
+		{% if ol.OrderListState == 8 %}
+		<td>commented</td>
+		{% endif %}
 
 		{% if ol.OrderListState == 4 %}
 		<td><a style = "color:#3299CC" onclick="cancelRefund('{{ol.id}}')"><b>CancelRefund</b></td>
 		{% else %}
 		<td><a style = "color:#3299CC" onclick="applyRefund('{{ol.id}}')"><b>ApplyRefund</b></td>
 		{% endif %}
+
 		<!-- {% if ol.OrderListState == 4 %}
 		<td style = "color:#3299CC"><b>CancelRefund</b></td>
 		{% else %}
 		<td style = "color:#3299CC"><b>ApplyRefund</b></td>
 		{% endif %} -->
 
-		{% if ol.OrderListState == 7 %}
+		{% if ol.OrderListState == 8 %}
 		<td>Aready Comment</td>
 		{% else %}
 		<td><textarea id='myText{{ ol.CommodityID.id }}' rows="5" cols="20" placeholder="Input comment here"></textarea><br><a style = "color:#3299CC" onclick="comment('{{ol.id}}','{{ ol.CommodityID.id }}')"><b>Comment</b></td>

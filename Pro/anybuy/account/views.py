@@ -244,7 +244,7 @@ def salesHistory(request, time):
 	SalesHistoryList = []
 	now = datetime.datetime.now()
 	for so in shopOrder:
-		SaleList = OrderList.objects.filter(ShopOrderID = so)
+		SaleList = OrderList.objects.filter(ShopOrderID = so, OrderListState__gte = 7)
 		for sl in SaleList:
 			if time == "all":
 				SalesHistoryList.append(sl)
@@ -260,6 +260,17 @@ def salesHistory(request, time):
 	totalvalue = 0
 	for shl in SalesHistoryList:
 		totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
+
+	SalesHistoryList1 = []
+	for so in shopOrder:
+		SaleList = OrderList.objects.filter(ShopOrderID = so, OrderListState__in = [1,2,3,4,5,6])
+		for sl in SaleList:
+			SalesHistoryList1.append(sl)
+	totalvalue1 = 0
+	for shl1 in SalesHistoryList1:
+		totalvalue1 = totalvalue1 + shl1.CommodityID.SellPrice * shl1.OrderAmount
+
+
 	seller = Seller.objects.get(id=UserID)
 	try:
 		shop = Shop.objects.get(SellerID = seller)
