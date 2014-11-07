@@ -323,8 +323,10 @@ def removeOrderList(request):
 		UserType = None
 		UserAccount = None
 	if 'id' in request.GET:
+		content = request.GET['content']
 		ol = OrderList.objects.get(id = request.GET['id'])
 		ol.OrderListState = 1
+		ol.ShipNo = content
 		ol.save()
 		so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
 		so.ShopOrderState = 1
