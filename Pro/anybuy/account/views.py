@@ -450,4 +450,5 @@ def adminIncome(request):
 			commodityAdv.append(c)
 			commodityAdvNum = commodityAdvNum + 1
 	commodityAdvIncome = commodityAdvNum * 2000.0
+	totalIncome = shopAdvIncome + commodityAdvIncome
 	return render_to_response('adminIncome.html', locals())
