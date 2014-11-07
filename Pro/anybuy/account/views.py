@@ -420,3 +420,34 @@ def modifyOrderList2(request):
 	else:
 		ol = None
 	return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
+
+
+def adminIncome(request):
+	#comission money
+	orderList = []
+	orders = OrderList.objects.filter(OrderListState__in = [7,8])
+	for ol in orders:
+		orderList.append(ol)
+	totalvalue = 0
+	for shl in orderList:
+		totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
+	totalcomission = totalvalue * 0.02
+	#adv income from shopAdv
+	shopAdvNum = 0
+	shopAdv = []
+	shop = Shop.objects.all()
+	for s in shop:
+		if s.IsAdv == True:
+			shopAdv.append(s)
+			shopAdvNum = shopAdvNum + 1
+	shopAdvIncome = shopAdvNum * 2000.0
+	##adv income from commodityAdv
+	commodityAdvNum = 0
+	commodityAdv = []
+	commodity = Commodity.objects.all()
+	for c in commodity:
+		if c.IsAdv == True:
+			commodityAdv.append(c)
+			commodityAdvNum = commodityAdvNum + 1
+	commodityAdvIncome = commodityAdvNum * 2000.0
+	return render_to_response('adminIncome.html', locals())
