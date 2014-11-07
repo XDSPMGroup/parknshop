@@ -244,7 +244,7 @@ def salesHistory(request, time):
 	SalesHistoryList = []
 	now = datetime.datetime.now()
 	for so in shopOrder:
-		SaleList = OrderList.objects.filter(ShopOrderID = so)
+		SaleList = OrderList.objects.filter(ShopOrderID = so, OrderListState__gte = 7)
 		for sl in SaleList:
 			if time == "all":
 				SalesHistoryList.append(sl)
@@ -260,6 +260,17 @@ def salesHistory(request, time):
 	totalvalue = 0
 	for shl in SalesHistoryList:
 		totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
+
+	SalesHistoryList1 = []
+	for so in shopOrder:
+		SaleList = OrderList.objects.filter(ShopOrderID = so, OrderListState__in = [1,2,3,4,5,6])
+		for sl in SaleList:
+			SalesHistoryList1.append(sl)
+	totalvalue1 = 0
+	for shl1 in SalesHistoryList1:
+		totalvalue1 = totalvalue1 + shl1.CommodityID.SellPrice * shl1.OrderAmount
+
+
 	seller = Seller.objects.get(id=UserID)
 	try:
 		shop = Shop.objects.get(SellerID = seller)
@@ -409,3 +420,34 @@ def modifyOrderList2(request):
 	else:
 		ol = None
 	return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
+
+
+def adminIncome(request):
+	#comission money
+	orderList = []
+	orders = OrderList.objects.filter(OrderListState__in = [7,8])
+	for ol in orders:
+		orderList.append(ol)
+	totalvalue = 0
+	for shl in orderList:
+		totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
+	totalcomission = totalvalue * 0.02
+	#adv income from shopAdv
+	shopAdvNum = 0
+	shopAdv = []
+	shop = Shop.objects.all()
+	for s in shop:
+		if s.IsAdv == True:
+			shopAdv.append(s)
+			shopAdvNum = shopAdvNum + 1
+	shopAdvIncome = shopAdvNum * 2000.0
+	##adv income from commodityAdv
+	commodityAdvNum = 0
+	commodityAdv = []
+	commodity = Commodity.objects.all()
+	for c in commodity:
+		if c.IsAdv == True:
+			commodityAdv.append(c)
+			commodityAdvNum = commodityAdvNum + 1
+	commodityAdvIncome = commodityAdvNum * 2000.0
+	return render_to_response('adminIncome.html', locals())

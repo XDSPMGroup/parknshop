@@ -539,13 +539,13 @@ def add_comment(request):
         UserAccount = None
     if 'id' in request.GET:
         ol = OrderList.objects.get(id = request.GET['id'])
-        ol.OrderListState = 7
+        ol.OrderListState = 8
         ol.save()
         so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
-        so.ShopOrderState = 7
+        so.ShopOrderState = 8
         so.save()
         co = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
-        co.CustomerOrderState = 7
+        co.CustomerOrderState = 8
         co.save()
         content = request.GET['content']
         Comment.objects.create(CommentContent = content, CustomerID = ol.CustomerOrderID.CustomerID, CommodityID = ol.CommodityID)

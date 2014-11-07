@@ -35,6 +35,7 @@ urlpatterns = patterns('',
     url(r'^customer/statistics/(?P<time>.*)$', 'store.views.buysHistory'),  
     url(r'^customer/order/$', 'store.views.manageOrder'), 
     url(r'^apply_refund/$', 'store.views.apply_refund'), 
+    url(r'^cancel_refund/$', 'store.views.cancel_refund'),
     url(r'^add_comment/$', 'store.views.add_comment'), 
     url(r'^seller/statistics/(?P<time>.*)$', 'account.views.salesHistory'),  
     url(r'^seller/home/$', 'store.views.sellerentershop'),
@@ -55,4 +56,5 @@ urlpatterns = patterns('',
     #url(r'^account/register/$',views.register, name = 'register'),
     # admin
     url(r'^adm/adv/$', 'system.views.manageadv'),
+    url(r'^adminIncome/$', 'account.views.adminIncome'),
 )

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-us" >
+<head>
+<title>AnyBuy|AdminIncome</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css" />
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/static/admin/css/ie.css" /><![endif]-->
+
+<script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
+
+<meta name="robots" content="NONE,NOARCHIVE" />
+
+    <link href="/base_template/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/base_template/css/foot.css" type="text/css" rel="stylesheet" />
+    <link href="/base_template/css/favorite.css" rel="stylesheet">
+    <link href="/base_template/css/style.css" rel="stylesheet">
+    
+    
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/file/images/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/file/images/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/file/images/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/file/images/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/file/images/favicon.png">
+    
+    <script type="text/javascript" src="/base_template/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/base_template/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/base_template/js/scripts.js"></script>
+</head>
+
+
+<body class="dashboard">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name">Django administration</h1>
+
+        </div>
+        
+        <div id="user-tools">
+            Welcome,
+            <strong>samsung</strong>.            
+                
+                <a href="#">Change password</a> /
+                
+                <a href="#">Log out</a>
+            
+        </div>
+        
+        
+    </div>
+    <!-- END Header -->
+
+<div class="col-md-10 column">
+    <div class="page-header">
+        <h3 style="color:#3a87ad">
+            Administrator Income
+        </h3>
+        </div>
+        <div class="tabbable" id="tabs-630860">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#panel-14830" data-toggle="tab"><h4 style="color:#3a87ad">Advertisement Income</h4></a>
+                </li>
+                <li>
+                    <a href="#panel-14831" data-toggle="tab"><h4 style="color:#3a87ad">Comission Income</h4></a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="panel-14830">
+            <h4 style="color:#3a87ad">Shop Adv Income</h4>
+            This part is that the income from advertising for shops!
+            <br>
+            <br>
+            <table class="table table-striped custab" >
+                <thead>
+                <tr class="yanse">
+                    <th>SellerAccount</th>
+                    <th>SellerName</th>
+                    <th>ShopName</th>
+                    <th>ShopDescription</th>
+                    <th>SellerTel</th>
+                    <th>SellerEmail</th>
+                    <th>SellerAddress</th>
+                    <th>AdvFees</th>
+                </tr>
+                </thead>
+                {% for s in shopAdv %}
+                <tr class="yanse" id="item{{ ol.CommodityID.id }}">
+                <td>{{ s.SellerID.SellerAccount }}</td>
+                <td>{{ s.SellerID.SellerName }}</td>
+                <td>{{ s.ShopName }}</td>
+                <td>{{ s.ShopDescription }}</td>
+                <td>{{ s.SellerID.SellerTelephone }}</td>
+                <td>{{ s.SellerID.SellerEmail }}</td>
+                <td>{{ s.SellerID.SellerAddress }}</td>
+                <td>2000.0$</td>
+                {% endfor %}
+            </table>
+            <b>Total Income : {{ shopAdvIncome }}$</b>
+            <hr>
+
+            <h4 style="color:#3a87ad">Commodity Adv Income</h4>
+            This part is that the income from advertising for commodities!
+            <br>
+            <br>
+            <table class="table table-striped custab" >
+                <thead>
+                <tr class="yanse">
+                    <th>SellerAccount</th>
+                    <th>SellerName</th>
+                    <th>CommodityImage</th>
+                    <th>CommodityName</th>
+                    <th>CommodityDescription</th>
+                    <th>CommodityPrice</th>
+                    <th>SellerTel</th>
+                    <th>SellerEmail</th>
+                    <th>SellerAddress</th>
+                    <th>AdvFees</th>
+                </tr>
+                </thead>
+                {% for c in commodityAdv %}
+                <tr class="yanse" id="item{{ ol.CommodityID.id }}">
+                <td>{{ c.ShopID.SellerID.SellerAccount }}</td>
+                <td>{{ c.ShopID.SellerID.SellerName }}</td>
+                <td><a href="/commodity/id/{{ c.id }}" style = "color:#3299CC"><img src="/file/{{ c.CommodityImage }}" style = "height:90px;"/></a></td>
+                <td><a href="/commodity/id/{{ c.id }}" style = "color:#3299CC">{{ c.CommodityName }}</a></td>
+                <td>{{ c.CommodityDescription }}</td>
+                <td>{{ c.SellPrice }}$</td>
+                <td>{{ c.ShopID.SellerID.SellerTelephone }}</td>
+                <td>{{ c.ShopID.SellerID.SellerEmail }}</td>
+                <td>{{ c.ShopID.SellerID.SellerAddress }}</td>
+                <td>2000.0$</td>
+                {% endfor %}
+            </table>
+            <b>Total Income : {{ commodityAdvIncome }}$</b>
+            </div>
+
+
+            <div class="tab-pane" id="panel-14831">
+            <table class="table table-striped custab" >
+                <thead>
+                <tr class="yanse">
+                    <th >OrderNo.</th>
+                    <th >CommodityPicture</th>
+                    <th >CommodityName</th>
+                    <th >UnitPrice</th>
+                    <th >Counts</th>
+                    <th >TotalMoney</th>
+                    <th >OrderTime</th>
+                    <th >CustomerInfo</th>
+                    <th >Status</th>
+                </tr>
+                </thead>
+
+                {% for ol in orderList %}
+                <tr class="yanse" id="item{{ ol.CommodityID.id }}">
+                <td>{{ ol.id }}</td>
+                <td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC"><img src="/file/{{ ol.CommodityID.CommodityImage }}" style = "height:90px;"/></a></td>
+                <td><a href="/commodity/id/{{ ol.CommodityID.id }}" style = "color:#3299CC">{{ ol.CommodityID.CommodityName }}</a></td>
+                <td>{{ ol.CommodityID.SellPrice }}$</td>
+                <td>{{ ol.OrderAmount }}</td>
+                <td>{% widthratio ol.CommodityID.SellPrice 1 ol.OrderAmount %}$</td>
+                <td>{{ ol.OrderListDate }}</td>
+                <td>Name:{{ ol.CustomerOrderID.CustomerID.CustomerName}}<br>
+                    Tel:{{ ol.CustomerOrderID.CustomerID.CustomerTelephone}}<br>
+                    Email:{{ ol.CustomerOrderID.CustomerID.CustomerEmail}}<br>
+                    Addr:{{ ol.CustomerOrderID.CustomerID.CustomerAddress }}</td>
+
+                {% if ol.OrderListState == 0 %}
+                <td>paying</td>
+                {% endif %}
+                {% if ol.OrderListState == 1 %}
+                <td>shipping<br>ShipNo:{{ ol.ShipNo }}</td>
+                {% endif %}
+                {% if ol.OrderListState == 2 %}
+                <td>signing</td>
+                {% endif %}
+                {% if ol.OrderListState == 3 %}
+                <td>commenting</td>
+                {% endif %}
+                {% if ol.OrderListState == 4 %}
+                <td>refunding</td>
+                {% endif %}
+                {% if ol.OrderListState == 5 %}
+                <td>refunded</td>
+                {% endif %}
+                {% if ol.OrderListState == 6 %}
+                <td>refused refunded</td>
+                {% endif %}
+                {% if ol.OrderListState == 7 %}
+                <td>finish</td>
+                {% endif %}
+                {% if ol.OrderListState == 8 %}
+                <td>commented</td>
+                {% endif %}
+
+                {% endfor %}
+            </table>
+            <b>Total Value: {{totalvalue}} $ <b>
+            <br>
+            <b>Total Comission: {{ totalcomission }} $</b>
+        <hr>
+        <hr>
+        </div>
+    </div>
+</div>

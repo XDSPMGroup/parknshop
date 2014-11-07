@@ -11,6 +11,7 @@
 			<h3 class="text-left" style="color:#3a87ad">
 				Sales History
 			</h3>
+			<h4>This part is that the transaction has finished completely!</h4>
 			<hr>
 			<a href="/seller/statistics/all"><button class='btn btn-info btn-xs'>All Sales</button></a>
 			<a href="/seller/statistics/year"><button class='btn btn-info btn-xs'>Year Sales</button></a>
@@ -64,7 +65,7 @@
 					<td>paying</td>
 					{% endif %}
 					{% if salesHistory.OrderListState == 1 %}
-					<td>shipping</td>
+					<td>shipping<br>ShipNo:{{ salesHistory.ShipNo }}</td>
 					{% endif %}
 					{% if salesHistory.OrderListState == 2 %}
 					<td>signing</td>
@@ -84,6 +85,9 @@
 					{% if salesHistory.OrderListState == 7 %}
 					<td>finish</td>
 					{% endif %}
+					{% if salesHistory.OrderListState == 8 %}
+					<td>commented</td>
+					{% endif %}
 				</tr>
 				{% endfor %}				
 			</table>
@@ -93,6 +97,91 @@
 		</div>
 		</div>
 		</div>
+        <hr>
+        <h3 class="text-left" style="color:#3a87ad">
+				Sales History
+		</h3>
+		<h4>This part of money is conserved by admin. When the transaction complete, the money will be automatically remitted to your account.</h4>
+		<hr>
+		<div class="row clearfix">
+			<div class="col-md-12 column">   
+        		<div class="row col-md-12">
+			<table class="table table-striped custab">
+				<thead>
+					<tr class="yanse">
+						<th>OrderNo.</th>
+						<th>
+							CommodityName
+						</th>
+						<th>
+							OrderTime
+						</th>
+						<th>
+							UnitPrice
+						</th>
+						<th>
+							Counts
+						</th>						
+						<th>
+							ActualMoney
+						</th>	
+						<th>
+							CustomerInfo
+						</th>
+						<th>
+							Status
+						</th>
+					</tr>
+				</thead>
+				{% for salesHistory in SalesHistoryList1 %}
+				<tr class="yanse" id="item{{salesHistory.CommodityID.id}}">
+					<td>{{ salesHistory.id }}</td>
+					<td>{{ salesHistory.CommodityID.CommodityName }}</td>
+					<td>{{ salesHistory.OrderListDate }}</td>
+					<td>{{ salesHistory.CommodityID.SellPrice }}$</td>
+					<td>{{ salesHistory.OrderAmount }}</td>
+					<td>{% widthratio salesHistory.CommodityID.SellPrice 1 salesHistory.OrderAmount %}$</td>
+					<td>Name:{{ salesHistory.CustomerOrderID.CustomerID.CustomerName}}<br>
+						Tel:{{ salesHistory.CustomerOrderID.CustomerID.CustomerTelephone}}<br>
+						Email:{{ salesHistory.CustomerOrderID.CustomerID.CustomerEmail}}<br>
+						Addr:{{ salesHistory.CustomerOrderID.CustomerID.CustomerAddress }}</td>
+					{% if salesHistory.OrderListState == 0 %}
+					<td>paying</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 1 %}
+					<td>shipping<br>ShipNo:{{ salesHistory.ShipNo }}</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 2 %}
+					<td>signing</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 3 %}
+					<td>commenting</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 4 %}
+					<td>refunding</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 5 %}
+					<td>refunded</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 6 %}
+					<td>refused refunded</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 7 %}
+					<td>finish</td>
+					{% endif %}
+					{% if salesHistory.OrderListState == 8 %}
+					<td>commented</td>
+					{% endif %}
+				</tr>
+				{% endfor %}				
+			</table>
+			<b>Total Value: {{totalvalue1}}$	<b>
+			<br>
+			<br>
+		</div>
+		</div>
+		</div>
+
 	</div>
 	</div>
 </div>

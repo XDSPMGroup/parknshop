@@ -26,6 +26,7 @@
 							<th >TotalMoney</th>
 							<th >OrderTime</th>
 							<th >CustomerInfo</th>
+							<th >Status</th>
 							<th class="text-center">Action</th>
 							</tr>
 						</thead>
@@ -56,6 +57,35 @@
 							Tel:{{ ol.CustomerOrderID.CustomerID.CustomerTelephone}}<br>
 							Email:{{ ol.CustomerOrderID.CustomerID.CustomerEmail}}<br>
 							Addr:{{ ol.CustomerOrderID.CustomerID.CustomerAddress }}</td>
+
+						{% if ol.OrderListState == 0 %}
+						<td>paying</td>
+						{% endif %}
+						{% if ol.OrderListState == 1 %}
+						<td>shipping<br>ShipNo:{{ ol.ShipNo }}</td>
+						{% endif %}
+						{% if ol.OrderListState == 2 %}
+						<td>signing</td>
+						{% endif %}
+						{% if ol.OrderListState == 3 %}
+						<td>commenting</td>
+						{% endif %}
+						{% if ol.OrderListState == 4 %}
+						<td>refunding</td>
+						{% endif %}
+						{% if ol.OrderListState == 5 %}
+						<td>refunded</td>
+						{% endif %}
+						{% if ol.OrderListState == 6 %}
+						<td>refused refunded</td>
+						{% endif %}
+						{% if ol.OrderListState == 7 %}
+						<td>finish</td>
+						{% endif %}
+						{% if ol.OrderListState == 8 %}
+						<td>commented</td>
+						{% endif %}
+
 						<td class="text-center"><a class='btn btn-info btn-xs' onclick="confirmOrder('{{ol.id}}')"><span class="glyphicon"><b>Confirm</b></td>
 						{% endfor %}
 						</table>
