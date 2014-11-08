@@ -13,6 +13,9 @@
                     <h3 class="text-center text-default" style="color:#3a87ad">
                     Register here:
                     </h3>
+                    {% if duplicate %}
+                        <p style="color: red">This account is used! Choose another one.</p>
+                    {% endif %}
                     <form method = 'post' enctype="multipart/form-data">
                     {% csrf_token %}
                     {{cf.as_p}}

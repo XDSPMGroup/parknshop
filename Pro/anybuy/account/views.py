@@ -43,6 +43,7 @@ class UserForm(forms.Form):
 # Create your views here.
 
 def register(request):
+	duplicate=False
 	if request.method == "POST":
 		cf = CustomerForm(request.POST)
 		if cf.is_valid():
@@ -50,6 +51,10 @@ def register(request):
 			if cf.cleaned_data['identity'] == 'C':
 				customer = Customer()
 				customer.CustomerAccount = cf.cleaned_data['CustomerAccount']
+				cu=Customer.objects.filter(CustomerAccount=customer.CustomerAccount)
+				if len(cu) == 1:
+					duplicate=True
+					return render_to_response('register.html',locals(), context_instance=RequestContext(request))
 				customer.CustomerName = cf.cleaned_data['CustomerName']
 				pw = cf.cleaned_data['CustomerPassword']
 				pw_md5 = hashlib.md5(pw).hexdigest()
@@ -68,6 +73,10 @@ def register(request):
 			#返回注册成功页面
 				seller = Seller()
 				seller.SellerAccount = cf.cleaned_data['CustomerAccount']
+				cu=Seller.objects.filter(SellerAccount=seller.SellerAccount)
+				if len(cu) == 1:
+					duplicate=True
+					return render_to_response('register.html',locals(), context_instance=RequestContext(request))
 				seller.SellerName = cf.cleaned_data['CustomerName']
 				pw = cf.cleaned_data['CustomerPassword']
 				pw_md5 = hashlib.md5(pw).hexdigest()
