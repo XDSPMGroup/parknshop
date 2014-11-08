@@ -57,7 +57,7 @@ urlpatterns = patterns('',
     #url(r'^account/register/$',views.register, name = 'register'),
     # admin
     url(r'^adm/adv/$', 'system.views.manageadv'),
-    url(r'^adminIncome/$', 'account.views.adminIncome'),
+    url(r'^adminIncome/(?P<time>.*)/$', 'account.views.adminIncome'),
     url(r'^seller/applyhomeshopadv/$', 'store.views.applyhomeshopadv'),
     url(r'^seller/applyhomecommodityadv/$', 'store.views.applyhomecommodityadv'),
     url(r'^db/$', 'system.views.db'),

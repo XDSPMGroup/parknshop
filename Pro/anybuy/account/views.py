@@ -433,14 +433,25 @@ def modifyOrderList2(request):
 	return HttpResponse("You modified: "+ ol.CommodityID.CommodityName+"from Orderlist")
 
 
-def adminIncome(request):
+def adminIncome(request, time):
 	#comission money
 	orderList = []
 	orders = OrderList.objects.filter(OrderListState__in = [7,8])
+	now = datetime.datetime.now()
 	for ol in orders:
-		orderList.append(ol)
+		if time == "all":
+			orderList.append(ol)
+		elif time == "year":
+			if ol.OrderListDate.year == now.year:
+				orderList.append(ol)
+		elif time == "month":
+			if ol.OrderListDate.month == now.month and ol.OrderListDate.year == now.year:
+				orderList.append(ol)
+		elif time == "day":
+			if ol.OrderListDate.day == now.day and ol.OrderListDate.month == now.month and ol.OrderListDate.year == now.year:
+				orderList.append(ol)
 	conserveorderList = []
-	conserveorders = OrderList.objects.filter(OrderListState__in = [1,2,3,4,5,6])
+	conserveorders = OrderList.objects.filter(OrderListState__in = [0,1,2,3,4,5,6])
 	for ol in conserveorders:
 		conserveorderList.append(ol)
 	totalvalue = 0
