@@ -323,8 +323,10 @@ def removeOrderList(request):
 		UserType = None
 		UserAccount = None
 	if 'id' in request.GET:
+		content = request.GET['content']
 		ol = OrderList.objects.get(id = request.GET['id'])
 		ol.OrderListState = 1
+		ol.ShipNo = content
 		ol.save()
 		so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
 		so.ShopOrderState = 1
@@ -454,4 +456,5 @@ def adminIncome(request):
 			commodityAdv.append(c)
 			commodityAdvNum = commodityAdvNum + 1
 	commodityAdvIncome = commodityAdvNum * 2000.0
+	totalIncome = shopAdvIncome + commodityAdvIncome
 	return render_to_response('adminIncome.html', locals())

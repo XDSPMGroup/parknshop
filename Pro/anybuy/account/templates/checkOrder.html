@@ -14,7 +14,7 @@
 
 			<div class="row clearfix">
 				<div class="col-md-12 column">   
-					<div class="row col-md-12">
+					<div class="row col-md-10">
 						<table class="table table-striped custab">
 						<thead>
 							<tr class="yanse">
@@ -31,16 +31,18 @@
 							</tr>
 						</thead>
 						<script type="text/javascript">
-						function confirmOrder(id){
+						function confirmOrder(id1,id2){
 							xmlhttp= new XMLHttpRequest();
 							xmlhttp.onreadystatechange=function()
 							{
 								if(xmlhttp.readyState==4 && xmlhttp.status==200)
 								{
+									document.getElementById("myText"+id2).disabled=true
 									$('#item'+id).fadeOut()
 								}
 							}
-							xmlhttp.open("GET","/removeOrderList?id="+id,true);
+							content = document.getElementById("myText"+id2).value;
+							xmlhttp.open("GET","/removeOrderList?id="+id1 + "&content="+content,true);
 							xmlhttp.send();
 						}
 						</script>
@@ -86,7 +88,7 @@
 						<td>commented</td>
 						{% endif %}
 
-						<td class="text-center"><a class='btn btn-info btn-xs' onclick="confirmOrder('{{ol.id}}')"><span class="glyphicon"><b>Confirm</b></td>
+						<td class="text-center"><input type="text" id='myText{{ ol.CommodityID.id }}'size="10" placeholder="Input ShipNo" /><br><br><a class='btn btn-info btn-xs' onclick="confirmOrder('{{ol.id}}','{{ ol.CommodityID.id }}')"><span class="glyphicon"><b>Confirm</b></td>
 						{% endfor %}
 						</table>
 						
