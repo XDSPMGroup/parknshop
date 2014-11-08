@@ -1,0 +1,110 @@
+<html lang="en-us"><head>
+<title>Database administration</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css">
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/static/admin/css/ie.css" /><![endif]-->
+<script type="text/javascript" src="/base_template/js/jquery.min.js"></script>
+<script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
+<script type="text/javascript">
+    function restore_db(db) {
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+{#                $('#'+db).fadeOut();#}
+                $('#info')[0].innerText="You restore database from "+db;
+            }
+        }
+        xmlhttp.open("GET","/restoredb?db="+db,true);
+        xmlhttp.send();
+    }
+
+    function delete_db(db) {
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                $('#'+db).fadeOut();
+                $('#info')[0].innerText="You remove "+db;
+            }
+        }
+        xmlhttp.open("GET","/deletedb?db="+db,true);
+        xmlhttp.send();
+    }
+
+    function backup_db() {
+        xmlhttp=new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                $('#info')[0].innerText="You back up current database as "+xmlhttp.responseText;
+                $('tbody').append('<tr class="model-group"><th scope="row">'+xmlhttp.responseText+'<td><a onclick="restore_db('+xmlhttp.responseText+')" class="changelink">Restore</a></td><td><a onclick="delete_db('+xmlhttp.responseText+')" class="deletelink">Delete</a></td>')
+
+            }
+        }
+        xmlhttp.open("GET","/backupdb/",true);
+        xmlhttp.send();
+    }
+</script>
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+<body class="dashboard">
+<!-- Container -->
+<div id="container">
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+<h1 id="site-name">Django administration</h1>
+        </div>
+        <div id="user-tools">
+            Welcome,
+            <strong>samsung</strong>.
+                <a href="/admin/password_change/">Change password</a> /
+                <a href="/admin/logout/">Log out</a>
+        </div>
+    </div>
+    <!-- END Header -->
+    <!-- Content -->
+    <div id="content" class="colMS">
+        
+        <h1>Database administration</h1>
+        <p>Note: The database of this system will backup automatically.
+        <p id="info" style="color: red"></p>
+<input onclick="backup_db()" type="submit" value="Back up current point" class="default" name="back up"><br><br>
+        <div id="content-main">
+
+        <div class="app-auth module">
+        <table>
+        <caption>
+            <a href="/admin/auth/" class="section" title="Models in the Auth application">
+                Back up History
+            </a>
+        </caption>
+
+            <tbody>
+            {% for db in backup_list %}
+            <tr id="{{ db }}" class="model-group">
+            
+                <th scope="row">{{ db }}</th>
+                <td><a onclick="restore_db('{{ db }}')" class="changelink">Restore</a></td>
+                <td><a onclick="delete_db('{{ db }}')" class="deletelink">Delete</a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody></table>
+        </div>
+</div>
+
+
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+</body></html>

@@ -60,4 +60,8 @@ urlpatterns = patterns('',
     url(r'^adminIncome/$', 'account.views.adminIncome'),
     url(r'^seller/applyhomeshopadv/$', 'store.views.applyhomeshopadv'),
     url(r'^seller/applyhomecommodityadv/$', 'store.views.applyhomecommodityadv'),
+    url(r'^db/$', 'system.views.db'),
+    url(r'^backupdb/$', 'system.views.backupdb'),
+    url(r'^restoredb/$', 'system.views.restoredb'),
+    url(r'^deletedb/$', 'system.views.deletedb'),
 )
