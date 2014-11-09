@@ -628,3 +628,29 @@ def add_comment(request):
         ol = None
     return HttpResponse("You comment: "+ ol.CommodityID.CommodityName+"from Orderlist")
 
+def confirm(request):
+    if request.session.get('UserID', False):
+        UserID = request.session['UserID']
+        UserType = request.session['UserType']
+        UserAccount = request.session['UserAccount']
+        UserName = UserAccount
+    else:
+        UserID = None
+        UserType = None
+        UserAccount = None
+    if 'id' in request.GET:
+        ol = OrderList.objects.get(id = request.GET['id'])
+        ol.OrderListState = 7 # change to 7 for easy operation
+        ol.save()
+        so = ShopOrder.objects.get(id = ol.ShopOrderID.id)
+        so.ShopOrderState = 7
+        so.save()
+        co = CustomerOrder.objects.get(id = ol.CustomerOrderID.id)
+        co.CustomerOrderState = 7
+        co.save()
+        content = request.GET['content']
+        Comment.objects.create(CommentContent = content, CustomerID = ol.CustomerOrderID.CustomerID, CommodityID = ol.CommodityID)
+    else:
+        ol = None
+    return HttpResponse("You comment: "+ ol.CommodityID.CommodityName+"from Orderlist")
+
