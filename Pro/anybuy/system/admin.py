@@ -5,7 +5,7 @@ from system.models import *
 
 class HomeShopAdvAdmin(admin.ModelAdmin):
     list_display = ('id','ShopID', 'AdvertisementContent', 'ApplyState')
-    search_fields = ('id','ShopID', 'AdvertisementContent')
+    search_fields = ('id', 'AdvertisementContent')
 
 class HomeCommodityAdvAdmin(admin.ModelAdmin):
     list_display = ('id', 'CommodityID', 'AdvertisementContent', 'ApplyState')

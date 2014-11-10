@@ -457,7 +457,8 @@ def adminIncome(request, time):
 	totalvalue = 0
 	for shl in orderList:
 		totalvalue = totalvalue + shl.CommodityID.SellPrice * shl.OrderAmount
-	totalcomission = totalvalue * 0.02
+	rate = System.objects.get(id=1)
+	totalcomission = totalvalue * rate.ComissionRate
 	#adv income from shopAdv
 	shopAdvNum = 0
 	shopAdv = []
